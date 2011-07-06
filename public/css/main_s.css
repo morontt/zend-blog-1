@@ -1,0 +1,340 @@
+/*********************************************
+AUTHOR:        morontt 
+WEBSITE:       http://zadachnik.info/
+LAST MODIFIED: June-29-2011
+*********************************************/
+
+/*******************
+   HTML ELEMENTS
+*******************/
+
+body
+{
+	margin: 0 auto;
+	padding: 0;
+	font-size: 12pt;
+	font-family: 'Consolas', monospace;
+	/* background-color: #ffffff; */
+	color: #ffffff;
+	background-image: url("/img/blackpatt.png");
+	background-repeat: repeat;
+	background-position: top left;
+}
+
+a
+{
+	text-decoration: none;
+	color: #95E61D;
+}
+
+a:hover
+{
+	color: #DAF29F;
+}
+
+p
+{
+	/* text-align: justify; */
+	margin: 5px 5px 20px 5px;
+    padding: 5px 0 0 0;
+}
+
+img
+{
+/*	float: right; */
+/*	position: relative; */
+	background-color: #DAF29F;
+	border: 3px solid #4C6F0F;
+	padding: 3px;
+	margin: 0 0 5px 10px;
+}
+
+table
+{
+    border: 1px solid #333;
+    text-align: left;
+    border-spacing: 3px;
+    padding: 2px;
+}
+
+th
+{
+    background: #000;
+    font-weight: 500;
+    padding: 5px;
+}
+
+tr
+{
+    background: #333;
+}
+
+td
+{
+    border: 1px solid #000;
+    padding: 5px;
+}
+
+tr.odd
+{
+    background: #445044;
+}
+
+tr.even
+{
+    background: #333;
+}
+
+/**************
+	LAYOUT
+**************/
+
+#container
+{
+	margin: 15px auto;
+	padding: 10px;
+	width: 1120px;
+	/* background-color: #ffffff; */
+	text-align: left;
+	border: 1px solid #ffffff;
+}
+
+#header
+{
+	margin: 0px;
+	padding: 0px;
+	height: 262px;
+	background-color: #000000;
+	background-image: url("http://zadachnik.info/Logo.png");
+	background-repeat: no-repeat;
+	border: 1px solid #ffffff;
+}
+
+#sitename
+{
+	margin: 20px 60px 0 0;
+	font-size: 50px;
+    text-align: right;
+	letter-spacing: -1px;
+	font-family: "Georgia", serif;
+	/* color: #4C6F0F; */
+	color: #00E000;
+	/* border: 1px solid #aaaaaa; */
+}
+
+#sitename:first-letter
+{
+	color: #DAF29F;
+}
+
+#menu
+{
+	margin: 10px 0 10px 0;
+	padding: 5px;
+	font-size: 14pt;
+	opacity: 0.8;
+	/* filter: alpha(Opacity = 80); */
+	background-color: #000000;
+	border: 1px solid #ffffff;
+}
+
+#menu ul
+{
+	margin: 0;
+	padding: 5px;
+	color: #DAF29F;
+	list-style-type: none;
+	/* border: 1px solid #ffffff; */
+}
+
+#menu li
+{
+	margin: 10px 0 10px 0;
+	padding: 5px;
+	display: inline;
+	background-color: #4C6F0F;
+	border: 1px solid #ffffff;
+}
+
+#menu li a
+{
+	color: #DAF29F;
+}
+
+#menu li.act
+{
+	color: #000000;
+	background-color: #DAF29F;
+}
+
+#menu li.act a
+{
+	color: #000000;
+}
+
+#menu li:hover
+{
+	color: #000000;
+	background-color: #00E000;
+}
+
+#menu li a:hover
+{
+	color: #000000;
+}
+
+#menu li.user
+{
+	font-family: "Georgia", serif;
+    font-style: italic;
+    /* font-weight: 700; */
+    color: #FFCC33;
+	background-color: #000000;
+}
+
+#strlist
+{
+	margin: 10px 0 10px 0;
+	padding: 0;
+	background-color: #333333;
+	/* text-align: left; */
+	border: 1px solid #ffffff;
+}
+
+#strlist.left
+{
+	margin-right: 255px;
+}
+
+#strlist a.button
+{
+    /* margin: 15px 5px 5px 5px; */
+	padding: 5px;
+    font-size: 14pt;
+    color: #DAF29F;
+	background-color: #4C6F0F;
+	border: 1px solid #FFF;
+}
+
+#strlist a.button:hover
+{
+    color: #000;
+    background-color: #00E000;
+}
+
+#sidebar
+{
+	margin: 0 0 10px 0;
+	float: right;
+    width: 240px;
+    background: #333333;
+	border: 1px solid #ffffff;
+}
+
+div.title
+{
+	margin: 5px;
+	padding: 2px 5px 2px 5px;
+	background-color: #000000;
+	border: 1px solid #ffffff;
+}
+
+div.strecord
+{
+	/* position: relative; */
+	margin: 10px 10px 40px 10px;
+	padding: 5px;
+	background-color: #666666;
+	text-align: left;
+	border: 1px solid #000000;
+}
+
+div.dateline
+{
+	margin: 0;
+	padding: 5px;
+	background-color: #000000;
+	font-size: 10pt;
+	font-family: "Georgia", serif;
+	font-style: italic;
+	text-align: right;
+}
+
+div.dateline a
+{
+	color: #ffcc33;
+	font-weight: bold
+}
+
+div.dateline a:hover
+{
+	color: #ff9933;
+}
+
+div.theme
+{
+	margin: 0;
+	padding: 5px;
+	background-color: #000000;
+	font-size: 14pt;
+	font-family: "Georgia", serif;
+	font-style: italic;
+	text-align: left;
+}
+
+div.paginator
+{
+	margin: 10px 10px 7px 10px;
+	padding: 5px;
+	text-align: center;
+	background-color: #000000;
+	border: 1px solid #ffffff;
+}
+
+div.strloginform
+{
+	margin: 10px 50px 10px 50px;
+	text-align: center;
+	background-color: #000000;
+	border: 1px solid #ffffff;
+}
+
+div.strsigninform
+{
+	margin: 10px 50px 10px 50px;
+	padding: 5px;
+	text-align: left;
+	background-color: #000000;
+	border: 1px solid #ffffff;
+}
+
+ul.My_Navigation
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0 0 15px;
+}
+
+ul.Zend_Tag_Cloud
+{
+    list-style-type: none;
+    margin: 5px 5px 20px 5px;
+    padding: 0;
+}
+
+ul.Zend_Tag_Cloud li
+{
+    display: inline;
+}
+
+#footer
+{
+	margin: 10px 0 0 0;
+	padding: 5px;
+	font-size: 10pt;
+	text-align: center;
+	opacity: 0.8;
+	/* filter: alpha(Opacity = 80); */
+	background-color: #000000;
+	border: 1px solid #ffffff;
+}
