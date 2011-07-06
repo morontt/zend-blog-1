@@ -1,0 +1,14 @@
+<?php $this->headTitle('Signin'); ?>
+
+<div id="strlist">
+<div class="strecord">
+    <div class="theme">Регистрация</div>
+    <div class="strsigninform">
+    <?php
+    if (isset($this->errorMessage)) {
+        echo $this->errorMessage;
+    }
+    echo $this->form; ?>
+    </div>
+</div>
+</div>

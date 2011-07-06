@@ -1,0 +1,17 @@
+<?php $this->headTitle('Восстановление пароля'); ?>
+
+<div id="strlist">
+<div class="strecord">
+    <div class="theme">Восстановление пароля</div>
+    <div class="strsigninform">
+    <?php if (!isset($this->message)) : ?>
+    Введите email-адрес, указанный вами при регистрации.
+    <?php
+    endif;
+    if (isset($this->message)) {
+        echo $this->message;
+    }
+    echo $this->form; ?>
+    </div>
+</div>
+</div>

@@ -1,0 +1,20 @@
+<?php $this->headTitle('Удаление тега'); ?>
+
+<div id="strlist">
+    <div class="strecord">
+        <div class="theme">Удаление тега</div>
+        <?php if (!$this->statusAction) : ?>
+        <p>Вы действительно хотите удалить тег &laquo;<?php echo $this->tag->name; ?>&raquo;?</p>
+        <form action="" method="post">
+            <input type = "submit" name = "del" value="Да" />
+            <input type = "submit" name = "del" value="Нет" />
+        </form>
+        <?php else : ?>
+        <p>Тег удалён</p>
+        <p><a href="<?php echo $this->url(array('module' => 'aria77',
+                                                'controller' => 'tag',
+                                                'action' => 'index'
+                         ), 'tagsControl'); ?>">Вернуться к управлению тегами</a></p>
+        <?php endif; ?>
+    </div>
+</div>

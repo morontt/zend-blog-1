@@ -1,0 +1,27 @@
+<?php $this->headTitle('Панель управления'); ?>
+
+<div id="strlist">
+    <div class="strecord">
+        <div class="theme">Панель управления</div>
+        <p><ul>
+            <li><a href="<?php echo $this->url(array('module' => 'aria77',
+                                                     'controller' => 'topic',
+                                                     'action' => 'index'), 'topicControl', TRUE);
+                         ?>">Управление записями</a></li>
+            <li><a href="<?php echo $this->url(array('module' => 'aria77',
+                                                     'controller' => 'category',
+                                                     'action' => 'index'), 'categoryControl', TRUE);
+                         ?>">Управление категориями</a></li>
+            <li><a href="<?php echo $this->url(array('module' => 'aria77',
+                                                     'controller' => 'tag',
+                                                     'action' => 'index'), 'tagsControl', TRUE);
+                         ?>">Управление тегами</a></li>
+            <?php if ($this->editUser) : ?><li><a href="<?php
+                               echo $this->url(array('module' => 'aria77',
+                                                     'controller' => 'users',
+                                                     'action' => 'index'), 'usersControl', TRUE);
+                         ?>">Управление пользователями</a></li><?php endif; ?>
+        </ul></p>
+    </div>
+</div>
+

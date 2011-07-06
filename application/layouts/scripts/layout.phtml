@@ -1,0 +1,26 @@
+<?php echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<?php echo $this->headTitle(); ?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/main_s.css'); ?>
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<div id="sitename">
+                <a href="<?php echo $this->url(array('page' => 1), 'home'); ?>">Локальный блог</a>
+			</div>
+		</div>
+        <?php 
+            echo $this->siteMenu();
+            echo $this->layout()->content;
+		?>
+		
+		<div id="footer">
+		&copy; 2011 <a href="<?php echo $this->url(array('page' => 1), 'home'); ?>">ZendBlog</a>: Footer
+		</div>
+	</div>
+</body>
+</html>
+

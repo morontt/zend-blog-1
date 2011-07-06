@@ -1,0 +1,55 @@
+<?php $this->headTitle('Управление категориями'); ?>
+
+<div id="strlist">
+    <div class="strecord">
+        <div class="theme">Управление категориями</div>
+        <p><table>
+        <tr>
+        <th>Категория</th>
+        <th>Родитель</th>
+        <th>Количество</th>
+        <th></th>
+        <th></th>
+        </tr>
+        <?php $classTr = 'odd'; ?>
+        <?php foreach ($this->paginator as $category) { ?>
+        <tr class="<?php echo $classTr ?>">
+        <td><?php echo $category->name ?></td>
+        <?php if ($category->parent_id) : ?>
+            <td><?php echo $this->nameCategory[$category->parent_id] ?></td>
+        <?php else : ?>
+            <td>...</td>
+        <?php endif; ?>
+        <td><?php echo $category->count ?></td>
+        <td><a href="<?php echo $this->url(array('module' => 'aria77',
+                                            'controller' => 'category',
+                                            'action' => 'edit',
+                                            'id' => $category->category_id),
+                                            'editCategory');
+                           ?>">Edit</a></td>
+        <?php if (($category->category_id != 1)&&($category->count == 0)) : ?>
+        <td><a href="<?php echo $this->url(array('module' => 'aria77',
+                                            'controller' => 'category',
+                                            'action' => 'delete',
+                                            'id' => $category->category_id),
+                                            'deleteCategory');
+                           ?>">Delete</a></td>
+        <?php else : ?>
+        <td>Delete</td>
+        <?php endif; ?>
+        </tr>
+            
+        <?php   if ($classTr == 'odd') :
+                    $classTr = 'even';
+                else :
+                    $classTr = 'odd';
+                endif;
+        } ?>
+        </table></p>
+        <p><a href="<?php echo $this->url(array('module' => 'aria77',
+                                                'controller' => 'category',
+                                                'action' => 'add'),
+                    'addCategory'); ?>" class="button">Создать категорию</a></p>
+    </div>
+    <?php echo $this->paginationControl($this->paginator, 'Elastic', 'main_paginator.phtml'); ?>
+</div>

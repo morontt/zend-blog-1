@@ -1,0 +1,20 @@
+<?php $this->headTitle('Удаление категории'); ?>
+
+<div id="strlist">
+    <div class="strecord">
+        <div class="theme">Удаление категории</div>
+        <?php if (!$this->statusAction) : ?>
+        <p>Вы действительно хотите удалить категорию &laquo;<?php echo $this->category->name; ?>&raquo;?</p>
+        <form action="" method="post">
+            <input type = "submit" name = "del" value="Да" />
+            <input type = "submit" name = "del" value="Нет" />
+        </form>
+        <?php else : ?>
+        <p>Категория удалена</p>
+        <p><a href="<?php echo $this->url(array('module' => 'aria77',
+                                                'controller' => 'category',
+                                                'action' => 'index'), 'categoryControl');
+                         ?>">Вернуться к управлению категориями</a></p>
+        <?php endif; ?>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<?php $this->headTitle($this->topic->title); ?>
+
+<div id="sidebar">
+    <div class="title">Категории:</div>
+    <?php echo $this->partial('categoryNavigation.phtml', array('allCategory' => $this->nameCategory)); ?>
+    <div class="title">Теги:</div>    
+    <?php echo $this->listTags() ?>
+</div>
+<div id="strlist" class="left">
+<div class="strecord">
+	<div class="theme">
+        <?php if ($this->topic->hide)
+                    echo 'Hidden: '; ?>
+		<?php echo $this->topic->title; ?>
+	</div>
+	<div class="dateline">
+        Автор: <a href="<?php echo $this->url(array('module' => 'default',
+                                                'controller' => 'index',
+                                                    'action' => 'author',
+                                                      'page' => 1,
+                                                        'id' => $this->topic->user_id), 'author');
+                        ?>"><?php echo $this->nameUser[$this->topic->user_id] . '</a><br/>';
+		echo $this->dateTimeFormat($this->topic->time_created); ?>
+    </div>
+    <p><?php echo nl2br($this->topic['text_post']); ?></p>
+	<p>Категория: <a href="<?php echo $this->url(array('module' => 'default',
+                                                   'controller' => 'index',
+                                                       'action' => 'index',
+                                                         'page' => 1,
+                                                           'id' => $this->topic->category_id), 'category') ?>">
+	<?php echo $this->nameCategory[$this->topic->category_id]['name']; ?></a></p>
+    <p><?php $tag = $this->viewTags($this->topic->post_id);
+              if ($tag) echo $tag; ?></p>
+</div>
+</div>

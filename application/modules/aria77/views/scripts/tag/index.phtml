@@ -1,0 +1,48 @@
+<?php $this->headTitle('Управление тегами'); ?>
+
+<div id="strlist">
+    <div class="strecord">
+        <div class="theme">Управление тегами</div>
+        <p><table>
+        <tr>
+        <th>Метка</th>
+        <th>Количество</th>
+        <th></th>
+        <th></th>
+        </tr>
+        <?php $classTr = 'odd';
+        foreach ($this->paginator as $tag)
+        { ?>
+        <tr class="<?php echo $classTr ?>">
+        <td><?php echo $tag->name; ?></td>
+        <td><?php echo $tag->count; ?></td>
+        <td><a href="<?php echo $this->url(array('module' => 'aria77',
+                                                 'controller' => 'tag',
+                                                 'action' => 'edit',
+                                                 'id' => $tag->tag_id),
+                                               'editTag') ?>">Edit</a></td>
+        <?php if ($tag->count == 0) : ?>
+        <td><a href="<?php echo $this->url(array('module' => 'aria77',
+                                                 'controller' => 'tag',
+                                                 'action' => 'delete',
+                                                 'id' => $tag->tag_id),
+                                           'deleteTag') ?>">Delete</a></td>
+        <?php else : ?>
+        <td>Delete</td>
+        <?php endif; ?>
+        </tr>
+            
+        <?php if ($classTr == 'odd') :
+                $classTr = 'even';
+            else :
+                $classTr = 'odd';
+            endif;
+        } ?>
+        </table></p>
+        <p><a href="<?php echo $this->url(array('module' => 'aria77',
+                                                'controller' => 'tag',
+                                                'action' => 'add'),
+                               'addTag'); ?>" class="button">Создать тег</a></p>
+    </div>
+    <?php echo $this->paginationControl($this->paginator, 'Elastic', 'main_paginator.phtml'); ?>
+</div>

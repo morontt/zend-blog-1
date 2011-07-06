@@ -1,0 +1,21 @@
+<?php $this->headTitle('Login'); ?>
+
+<div id="strlist">
+<div class="strecord">
+    <div class="theme">Авторизация</div>
+    <div class="strloginform">
+    <?php
+    if (isset($this->errorMessage)) {
+        echo $this->errorMessage;
+    }
+    echo $this->form; ?>
+
+    <p><a href="<?php echo $this->url(array('module' => 'default',
+                                            'controller' => 'auth',
+                                            'action' => 'signin'), 'signin'); ?>">Ещё не зарегистрированы?</a></p>
+    <p><a href="<?php echo $this->url(array('module' => 'default',
+                                       'controller' => 'auth',
+                                       'action' => 'forgot'), 'forgot'); ?>">Забыли пароль?</a></p>
+    </div>
+</div>
+</div>
