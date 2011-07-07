@@ -105,7 +105,7 @@ tr.even
 	padding: 0px;
 	height: 262px;
 	background-color: #000000;
-	background-image: url("http://zadachnik.info/Logo.png");
+	background-image: url("/img/Logo.png");
 	background-repeat: no-repeat;
 	border: 1px solid #ffffff;
 }
