@@ -28,8 +28,13 @@ class IndexController extends Zend_Controller_Action
 		$page = $this->_getParam('page', 1);
 		
 	    $topics = new Application_Model_DbTable_Topics();
+        
+        $paginator = $topics->getTopicByCategoryId($id, $page, $this->_showHideTopic);
+        
+        if (count($paginator) < $page)
+            $this->_redirect('/error/404');
 		
-		$this->view->paginator = $topics->getTopicByCategoryId($id, $page, $this->_showHideTopic);
+		$this->view->paginator = $paginator;
     }
 
     public function topicAction()
@@ -44,10 +49,10 @@ class IndexController extends Zend_Controller_Action
             if (!$topicRow->hide || ($topicRow->hide && $this->_showHideTopic)) :
                 $this->view->topic = $topicRow;
             else :
-                $this->_redirect('404');
+                $this->_redirect('/error/404'); //сообщить, что доступ к записи закрыт
             endif;
 		else:
-		    $this->_redirect('404');
+		    $this->_redirect('/error/404');
 		endif;
 
     }
