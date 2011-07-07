@@ -2,7 +2,7 @@
 
 class Aria77_IndexController extends Zend_Controller_Action
 {
-    private $accessControl;
+    private $_accessControl;
     
     public function init()
     {
@@ -10,14 +10,14 @@ class Aria77_IndexController extends Zend_Controller_Action
         $acl = new My_Acl();
         $role = My_Acl::getUserType();
         
-        $this->accessControl = $acl->isAllowed($role,'controlPage','view');
+        $this->_accessControl = $acl->isAllowed($role,'controlPage','view');
         
         $this->view->editUser = $acl->isAllowed($role,'controlPage','editUser');
     }
 
     public function indexAction()
     {
-        if (!$this->accessControl)
+        if (!$this->_accessControl)
             $this->_redirect('aria77/index/denied');
     }
 

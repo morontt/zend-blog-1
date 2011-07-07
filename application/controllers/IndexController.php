@@ -3,7 +3,7 @@
 class IndexController extends Zend_Controller_Action
 {
 
-    private $showHideTopic = null;
+    private $_showHideTopic = null;
 
     public function init()
     {
@@ -11,7 +11,7 @@ class IndexController extends Zend_Controller_Action
         $acl = new My_Acl();
         $role = My_Acl::getUserType();
         
-        $this->showHideTopic = $acl->isAllowed($role,'showHideTopic','view');
+        $this->_showHideTopic = $acl->isAllowed($role,'showHideTopic','view');
 		
 		$category = new Application_Model_DbTable_Category();
 		$tags = new Application_Model_DbTable_Tags();
@@ -29,7 +29,7 @@ class IndexController extends Zend_Controller_Action
 		
 	    $topics = new Application_Model_DbTable_Topics();
 		
-		$this->view->paginator = $topics->getTopicByCategoryId($id, $page, $this->showHideTopic);
+		$this->view->paginator = $topics->getTopicByCategoryId($id, $page, $this->_showHideTopic);
     }
 
     public function topicAction()
@@ -41,7 +41,7 @@ class IndexController extends Zend_Controller_Action
 		$topicRow = $topic->getTopicById($id);
 		
         if ($topicRow):
-            if (!$topicRow->hide || ($topicRow->hide && $this->showHideTopic)) :
+            if (!$topicRow->hide || ($topicRow->hide && $this->_showHideTopic)) :
                 $this->view->topic = $topicRow;
             else :
                 $this->_redirect('404');
@@ -60,7 +60,7 @@ class IndexController extends Zend_Controller_Action
 	    $topics = new Application_Model_DbTable_Topics();
 		
         $this->view->userId = $id;
-		$this->view->paginator = $topics->getTopicByUserId($id, $page, $this->showHideTopic);
+		$this->view->paginator = $topics->getTopicByUserId($id, $page, $this->_showHideTopic);
         
     }
 
@@ -72,7 +72,7 @@ class IndexController extends Zend_Controller_Action
 	    $topics = new Application_Model_DbTable_Topics();
 		
         $this->view->tagId = $id;
-		$this->view->paginator = $topics->getTopicByTagId($id, $page, $this->showHideTopic);
+		$this->view->paginator = $topics->getTopicByTagId($id, $page, $this->_showHideTopic);
     }
 
 }
