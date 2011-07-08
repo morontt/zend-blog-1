@@ -72,29 +72,15 @@ class Application_Model_DbTable_Tags extends Zend_Db_Table_Abstract
             //}
         }
     }
-    
-    public function countPlus($dataArray)
+
+    public function setCountTags($dataArray, $delta)
     {
-        //сделать одним запросом...
         foreach($dataArray as $key => $value)
         {
             $count = $this->fetchRow('tag_id = '. $value)->count;
-            $count += 1;
+            $count += $delta;
             $data = array('count' => $count);
             $this->update($data, 'tag_id = ' . $value);
         }
     }
-    
-    public function countMinus($dataArray)
-    {
-        //сделать одним запросом...
-        foreach($dataArray as $key => $value)
-        {
-            $count = $this->fetchRow('tag_id = '. $value)->count;
-            $count -= 1;
-            $data = array('count' => $count);
-            $this->update($data, 'tag_id = ' . $value);
-        }
-    }
-    
 }

@@ -7,7 +7,7 @@ class Application_Model_DbTable_RelationTopicTag extends Zend_Db_Table_Abstract
     public function addRelation($data, $topicId)
     {
         $tags = new Application_Model_DbTable_Tags;
-        $tags->countPlus($data);
+        $tags->setCountTags($data, 1);
         
         foreach($data as $key => $value)
         {
@@ -27,7 +27,7 @@ class Application_Model_DbTable_RelationTopicTag extends Zend_Db_Table_Abstract
                 $data[] = $value['tag_id'];
             }
             $tags = new Application_Model_DbTable_Tags;
-            $tags->countMinus($data);
+            $tags->setCountTags($data, -1);
         }
         
         $this->delete('post_id = ' . $topicId);
