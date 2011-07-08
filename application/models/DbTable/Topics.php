@@ -179,7 +179,7 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         }
         
         $category = new Application_Model_DbTable_Category;
-        $category->countPlus($formData['category_id']);
+        $category->setCount($formData['category_id'], 1);
         
         return $topicId;
     }
@@ -207,8 +207,8 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $categoryId = $row->category_id;
         
         $category = new Application_Model_DbTable_Category;
-        $category->countMinus($categoryId);
-        $category->countPlus($formData['category_id']);
+        $category->setCount($categoryId, -1);
+        $category->setCount($formData['category_id'], 1);
         
         return $this->update($data, 'post_id = ' . (int)$id);
     }
@@ -219,7 +219,7 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $categoryId = $row->category_id;
         
         $category = new Application_Model_DbTable_Category;
-        $category->countMinus($categoryId);
+        $category->setCount($categoryId, -1);
         
         $del = $this->delete('post_id = ' . $id);
             

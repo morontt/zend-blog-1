@@ -100,39 +100,22 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
             $del = $this->delete('category_id = ' . $id);
         }
     }
-    
-    public function countPlus($id)
+
+    public function setCount($id, $delta)
     {
         $row = $this->fetchRow('category_id = '. $id);
         $count = $row->count;
         $parentId = $row->parent_id;
-        
-        $count += 1;
+
+        $count += $delta;
         $data = array('count' => $count);
         $this->update($data, 'category_id = ' . $id);
-        
+
         if ($parentId)
         {
-            $this->countPlus($parentId);
+            $this->setCount($parentId, $delta);
         }
-        
-    }
-    
-    public function countMinus($id)
-    {
-        $row = $this->fetchRow('category_id = '. $id);
-        $count = $row->count;
-        $parentId = $row->parent_id;
-        
-        $count -= 1;
-        $data = array('count' => $count);
-        $this->update($data, 'category_id = ' . $id);
-        
-        if ($parentId)
-        {
-            $this->countMinus($parentId);
-        }
-        
+
     }
     
 }
