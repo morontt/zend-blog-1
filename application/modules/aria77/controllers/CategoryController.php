@@ -59,13 +59,18 @@ class Aria77_CategoryController extends Zend_Controller_Action
             {
                 $formData = $form->getValues();
                 
-                $category->editCategory($id, $formData['name'], $formData['parent_id']);
+                $category->editCategory($id, $formData['name'],
+                                             $formData['parent_id'],
+                                             $formData['old_parent']);
             
                 $this->_redirect('aria77/category/index');
             }
         } else
         {
             $data = $category->getById($id)->toArray();
+
+            $oldParent = array('old_parent' => $data['parent_id']);
+            $data = array_merge($data, $oldParent);
             
             $form->populate($data);
         }

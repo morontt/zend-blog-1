@@ -9,6 +9,7 @@ class Application_Form_Category extends Zend_Form
         
         $name = new Zend_Form_Element_Text('name');
         $parent = new Zend_Form_Element_Select('parent_id');
+        $oldparent = new Zend_Form_Element_Hidden('old_parent');
         $submit = new Zend_Form_Element_Submit('submit');
         
         $name->setLabel('Категория:')
@@ -23,7 +24,7 @@ class Application_Form_Category extends Zend_Form
                ->addMultiOption(0, '...')
                ->addMultiOptions($nameCategory);
         
-        $this->addElements(array($name, $parent, $submit));
+        $this->addElements(array($name, $parent, $submit, $oldparent));
     }
 
 }

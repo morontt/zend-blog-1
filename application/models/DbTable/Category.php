@@ -71,7 +71,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
         $this->insert($data);
     }
     
-    public function editCategory($id, $name, $parent)
+    public function editCategory($id, $name, $parent, $oldparent)
     {
         if ($id == $parent)
             $parent = 0;
@@ -84,6 +84,12 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
           'parent_id' => $parent
         );
         $this->update($data, 'category_id = ' . $id);
+
+        if ($parent != $oldparent){
+            $delta = $this->fetchRow('category_id = ' . $id)->count;
+            $this->setCount($oldparent, - $delta);
+            $this->setCount($parent, $delta);
+            }
     }
     
     public function deleteCategory($id)
