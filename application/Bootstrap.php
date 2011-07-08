@@ -2,6 +2,16 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
+    protected function _initLayoute()
+    {
+        $layout = new Zend_Layout();
+        $config = new Zend_Config_Ini('../application/configs/application.ini','production');
+
+        $layout->title = $config->blog->title;
+        
+        return $layout;
+    }
+
     protected function _initRouters()
     {
         $controller = Zend_Controller_Front::getInstance();

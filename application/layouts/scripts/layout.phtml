@@ -9,7 +9,9 @@
 	<div id="container">
 		<div id="header">
 			<div id="sitename">
-                <a href="<?php echo $this->url(array('page' => 1), 'home'); ?>">Локальный блог</a>
+                <a href="<?php
+                            echo $this->url(array('page' => 1), 'home');
+                         ?>"><?php echo $this->layout()->title; ?></a>
 			</div>
 		</div>
         <?php 
