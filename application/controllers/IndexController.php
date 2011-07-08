@@ -25,7 +25,10 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $id = $this->_getParam('id', 0);
-		$page = $this->_getParam('page', 1);
+		$page = $this->_getParam('page');
+
+        if (!is_numeric($page))
+            $this->_redirect('/error/404');
 		
 	    $topics = new Application_Model_DbTable_Topics();
         
@@ -39,7 +42,7 @@ class IndexController extends Zend_Controller_Action
 
     public function topicAction()
     {
-		$id = $this->_getParam('id', 0);
+		$id = $this->_getParam('id');
 		
         $topic = new Application_Model_DbTable_Topics();
 		
@@ -59,25 +62,40 @@ class IndexController extends Zend_Controller_Action
 
     public function authorAction()
     {
-        $id = $this->_getParam('id', 0);
-		$page = $this->_getParam('page', 1);
+        $id = $this->_getParam('id');
+		$page = $this->_getParam('page');
+
+        if (!is_numeric($page))
+            $this->_redirect('/error/404');
 		
 	    $topics = new Application_Model_DbTable_Topics();
 		
         $this->view->userId = $id;
-		$this->view->paginator = $topics->getTopicByUserId($id, $page, $this->_showHideTopic);
-        
+		$paginator = $topics->getTopicByUserId($id, $page, $this->_showHideTopic);
+
+        if (count($paginator) < $page)
+            $this->_redirect('/error/404');
+
+		$this->view->paginator = $paginator;
     }
 
     public function tagAction()
     {
-        $id = $this->_getParam('id', 0);
-		$page = $this->_getParam('page', 1);
+        $id = $this->_getParam('id');
+		$page = $this->_getParam('page');
+
+        if (!is_numeric($page))
+            $this->_redirect('/error/404');
 		
 	    $topics = new Application_Model_DbTable_Topics();
 		
         $this->view->tagId = $id;
-		$this->view->paginator = $topics->getTopicByTagId($id, $page, $this->_showHideTopic);
+        $paginator = $topics->getTopicByTagId($id, $page, $this->_showHideTopic);
+
+        if (count($paginator) < $page)
+            $this->_redirect('/error/404');
+
+		$this->view->paginator = $paginator;
     }
 
 }

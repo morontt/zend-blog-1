@@ -2,46 +2,33 @@
 
 <div id="sidebar">
     <div class="title">Категории:</div>
-    <?php echo $this->partial('categoryNavigation.phtml', array('allCategory' => $this->nameCategory)); ?>
-    <div class="title">Теги:</div>    
+    <?php echo $this->partial('categoryNavigation.phtml', array('allCategory' => $this->nameCategory,
+                                                                    'baseUrl' => $this->baseUrl())); ?>
+    <div class="title">Теги:</div>
     <?php echo $this->listTags() ?>
 </div>
 <div id="strlist" class="left">
-<?php if (count($this->paginator) < 1) : ?>
-    <div class="strecord">
-    <p>Здесь пусто</p>
-	</div>
-<?php else : foreach ($this->paginator as $topic) : ?>
+<?php foreach ($this->paginator as $topic) : ?>
     <div class="strecord">
 	    <div class="theme">
             <?php if ($topic->hide)
                     echo 'Hidden: '; ?>
-		    <a href="<?php echo $this->url(array('module' => 'default',
-                                             'controller' => 'index',
-                                                 'action' => 'topic',
-                                                     'id' => $topic->post_id), 'topic') ?>">
+		    <a href="<?php echo $this->url(array('id' => $topic->post_id),
+                                                    'topic') ?>">
 			<?php echo $topic->title; ?></a>
 		</div>
 	    <div class="dateline">
-            Автор: <a href="<?php echo $this->url(array('module' => 'default',
-                                                    'controller' => 'index',
-                                                        'action' => 'author',
-                                                          'page' => 1,
-                                                            'id' => $topic->user_id), 'author');
-                        ?>"><?php echo $this->nameUser[$topic->user_id] . '</a><br/>';
-			echo $this->dateTimeFormat($topic->time_created); ?>
+            Автор: <a href="<?php echo $this->url(array('id' => $topic->user_id), 'author');
+                        ?>"><?php echo $this->nameUser[$topic->user_id]; ?></a><br/>
+			<?php echo $this->dateTimeFormat($topic->time_created); ?>
         </div>
 		<p><?php echo $this->topicPreview(nl2br($topic->text_post), $topic->post_id); ?></p>
-		<p>Категория: <a href="<?php echo $this->url(array('module' => 'default',
-                                                       'controller' => 'index',
-                                                           'action' => 'index',
-                                                             'page' => 1,
-                                                               'id' => $topic->category_id), 'category') ?>">
+		<p>Категория: <a href="<?php echo $this->url(array('id' => $topic->category_id), 'category') ?>">
 		<?php echo $this->nameCategory[$topic->category_id]['name']; ?></a></p>
         <p><?php $tag = $this->viewTags($topic->post_id);
                 if ($tag) echo $tag; ?></p>
 	</div>
-<?php endforeach; endif; ?>
+<?php endforeach; ?>
 
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'main_paginator.phtml'); ?>
 </div>

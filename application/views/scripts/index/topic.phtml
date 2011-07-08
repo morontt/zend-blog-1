@@ -2,7 +2,8 @@
 
 <div id="sidebar">
     <div class="title">Категории:</div>
-    <?php echo $this->partial('categoryNavigation.phtml', array('allCategory' => $this->nameCategory)); ?>
+    <?php echo $this->partial('categoryNavigation.phtml', array('allCategory' => $this->nameCategory,
+                                                                    'baseUrl' => $this->baseUrl())); ?>
     <div class="title">Теги:</div>    
     <?php echo $this->listTags() ?>
 </div>
@@ -14,20 +15,13 @@
 		<?php echo $this->topic->title; ?>
 	</div>
 	<div class="dateline">
-        Автор: <a href="<?php echo $this->url(array('module' => 'default',
-                                                'controller' => 'index',
-                                                    'action' => 'author',
-                                                      'page' => 1,
-                                                        'id' => $this->topic->user_id), 'author');
-                        ?>"><?php echo $this->nameUser[$this->topic->user_id] . '</a><br/>';
-		echo $this->dateTimeFormat($this->topic->time_created); ?>
+        Автор: <a href="<?php echo $this->url(array('id' => $this->topic->user_id),'author');
+                         ?>"><?php echo $this->nameUser[$this->topic->user_id]; ?> </a><br/>
+        <?php echo $this->dateTimeFormat($this->topic->time_created); ?>
     </div>
     <p><?php echo nl2br($this->topic['text_post']); ?></p>
-	<p>Категория: <a href="<?php echo $this->url(array('module' => 'default',
-                                                   'controller' => 'index',
-                                                       'action' => 'index',
-                                                         'page' => 1,
-                                                           'id' => $this->topic->category_id), 'category') ?>">
+	<p>Категория: <a href="<?php echo $this->url(array('id' => $this->topic->category_id),
+                                                'category') ?>">
 	<?php echo $this->nameCategory[$this->topic->category_id]['name']; ?></a></p>
     <p><?php $tag = $this->viewTags($this->topic->post_id);
               if ($tag) echo $tag; ?></p>

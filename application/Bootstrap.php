@@ -32,17 +32,20 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('category', new Zend_Controller_Router_Route('category/:id/page/:page',
                                                 array('module' => 'default',       
                                                       'controller' => 'index', 
-                                                      'action' => 'index')));
+                                                      'action' => 'index',
+                                                      'page' => 1)));
         
         $router->addRoute('tag', new Zend_Controller_Router_Route('tag/:id/page/:page',
                                                 array('module' => 'default',       
                                                       'controller' => 'index', 
-                                                      'action' => 'tag')));
+                                                      'action' => 'tag',
+                                                      'page' => 1)));
         
         $router->addRoute('author', new Zend_Controller_Router_Route('author/:id/page/:page',
                                                 array('module' => 'default',
                                                       'controller' => 'index', 
-                                                      'action' => 'author')));
+                                                      'action' => 'author',
+                                                      'page' => 1)));
         
         $router->addRoute('login', new Zend_Controller_Router_Route('login/',
                                                 array('module' => 'default',
