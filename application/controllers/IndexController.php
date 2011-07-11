@@ -34,7 +34,7 @@ class IndexController extends Zend_Controller_Action
         
         $paginator = $topics->getTopicByCategoryId($id, $page, $this->_showHideTopic);
         
-        if (count($paginator) < $page)
+        if (count($paginator) < $page || $page < 1)
             $this->_redirect('/error/404');
 		
 		$this->view->paginator = $paginator;
@@ -73,7 +73,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->userId = $id;
 		$paginator = $topics->getTopicByUserId($id, $page, $this->_showHideTopic);
 
-        if (count($paginator) < $page)
+        if (count($paginator) < $page || $page < 1)
             $this->_redirect('/error/404');
 
 		$this->view->paginator = $paginator;
@@ -92,7 +92,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->tagId = $id;
         $paginator = $topics->getTopicByTagId($id, $page, $this->_showHideTopic);
 
-        if (count($paginator) < $page)
+        if (count($paginator) < $page || $page < 1)
             $this->_redirect('/error/404');
 
 		$this->view->paginator = $paginator;
