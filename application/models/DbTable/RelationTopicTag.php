@@ -9,8 +9,7 @@ class Application_Model_DbTable_RelationTopicTag extends Zend_Db_Table_Abstract
         $tags = new Application_Model_DbTable_Tags;
         $tags->setCountTags($data, 1);
         
-        foreach($data as $key => $value)
-        {
+        foreach($data as $key => $value) {
             $row = array('post_id' => $topicId,
                           'tag_id' => $value);
             $this->insert($row);
@@ -21,9 +20,8 @@ class Application_Model_DbTable_RelationTopicTag extends Zend_Db_Table_Abstract
     {
         $temp = $this->fetchAll('post_id = ' . $topicId)->toArray();
         
-        if (!empty($temp)){
-            foreach($temp as $key => $value)
-            {
+        if (!empty($temp)) {
+            foreach($temp as $key => $value) {
                 $data[] = $value['tag_id'];
             }
             $tags = new Application_Model_DbTable_Tags;

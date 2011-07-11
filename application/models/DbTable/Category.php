@@ -8,8 +8,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 	{
 	    $data = $this->fetchAll();
 		
-		foreach($data as $value_cat)
-		{
+		foreach($data as $value_cat) {
 			$key = $value_cat->category_id;
 			$arrayName[$key] = $value_cat->name;
 		}
@@ -23,8 +22,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
         $stmt = $select->query();
         $data = $stmt->fetchAll();
         
-		foreach($data as $value_cat)
-		{
+		foreach($data as $value_cat) {
 			$key = $value_cat['category_id'];
 			$arrayName[$key] = array('name'      => $value_cat['name'],
                                      'parent_id' => $value_cat['parent_id']);
@@ -36,10 +34,6 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
     public function getById($id)
     {	
 		$row = $this->fetchRow('category_id = ' . $id);
-        //if (!$row)
-        //{
-        //    throw new Exception("Категория с заданным id = $id не обнаружена");
-        //}
         
         return $row;
     }
@@ -61,8 +55,9 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
     
     public function createNewCategory($name, $parent)
     {
-        if (!$parent)
+        if (!$parent) {
             unset($parent);
+        }
         
         $data = array(
                'name' => $name,
@@ -73,36 +68,36 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
     
     public function editCategory($id, $name, $parent, $oldparent)
     {
-        if ($id == $parent)
+        if ($id == $parent) {
             $parent = 0;
+        }
         
-        if (!$parent)
+        if (!$parent) {
             unset($parent);
+        }
         
         $data = array(
                'name'      => $name,
-               'parent_id' => $parent
-        );
+               'parent_id' => $parent);
+
         $this->update($data, 'category_id = ' . $id);
 
-        if ($parent != $oldparent){
+        if ($parent != $oldparent) {
             $delta = $this->fetchRow('category_id = ' . $id)->count;
             $this->setCount($oldparent, - $delta);
             $this->setCount($parent, $delta);
-            }
+        }
     }
     
     public function deleteCategory($id)
     {
         $row = $this->fetchRow('category_id = ' . $id);
 
-        if (($id == 1)||($row->count != 0))
-        {
+        if (($id == 1)||($row->count != 0)) {
             throw new Exception("Данную категорию удалить нельзя");
         }
         
-        if (($id != 1)&&($row->count == 0))
-        {
+        if (($id != 1)&&($row->count == 0)) {
             $del = $this->delete('category_id = ' . $id);
         }
     }
@@ -117,8 +112,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
         $data = array('count' => $count);
         $this->update($data, 'category_id = ' . $id);
 
-        if ($parentId)
-        {
+        if ($parentId) {
             $this->setCount($parentId, $delta);
         }
 

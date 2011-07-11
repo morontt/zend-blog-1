@@ -9,10 +9,7 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
     {
         $id = (int)$id;
         $row = $this->fetchRow('post_id = ' . $id);
-        //if (!$row) {
-            //var_dump($row);
-			//throw new Exception("Count not find row $id");
-        //}
+        
 		return $row;
     }
 	
@@ -23,18 +20,18 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         
         $select = $this->select();
         
-        if (!$showHidden)
+        if (!$showHidden) {
             $select = $select->where('hide <> 1');
+        }
             
-        if ($id)
+        if ($id) {
             $select = $select->where('category_id = ?', $id);
+        }
         
         $childCategory = $tree->allChild($id);
-        if (!empty($childCategory))
-        {
+        if (!empty($childCategory)) {
             $childArray = $childCategory;
-            foreach ($childArray as $key => $value)
-            {
+            foreach ($childArray as $key => $value) {
                 $select = $select->orWhere('category_id = ?', $value);
             }
         }
@@ -55,21 +52,22 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 	public function getTopicByUserId($id, $page, $showHidden)
     {	
 		$auth = Zend_Auth::getInstance();
-        if($auth->hasIdentity()) :
+        if($auth->hasIdentity()) {
             $user = $auth->getIdentity()->user_id;
-        else :
+        } else {
             $user = null;
-        endif;
+        }
+
         $show = $showHidden || ($user == $id);
         
-        if ($show) :
+        if ($show) {
             $select = $this->select()->where('user_id = ?', $id)
                                      ->order('time_created DESC');
-        else :
+        } else {
             $select = $this->select()->where('user_id = ?', $id)
                                      ->where('hide <> 1')
                                      ->order('time_created DESC');
-        endif;
+        }
         
 		$paginator = Zend_Paginator::factory($select);
 		
@@ -93,8 +91,9 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
                                ->join(array('relation' => 'relation_topictag'),
                                       'topics.post_id = relation.post_id');
         
-        if (!$showHidden)
+        if (!$showHidden) {
             $select = $select->where('topics.hide <> 1');
+        }
         
         $select->where('relation.tag_id = ?', $id)
                ->order('time_created DESC');
@@ -114,12 +113,12 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 		$auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
         
-        if ($identity->user_type == 'admin') :
+        if ($identity->user_type == 'admin') {
             $select = $this->select()->order('time_created DESC');
-        else :
+        } else {
             $select = $this->select()->where('user_id = ?', $identity->user_id)
                                      ->order('time_created DESC');
-        endif;
+        }
         
 		$paginator = Zend_Paginator::factory($select);
 		
@@ -146,8 +145,7 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
                               'height', 'title', 'target',
                               'alt', 'align', 'border');
         $filter = new Zend_Filter_StripTags(array('allowTags' => $allowTags,
-                                                  'allowAttribs' => $allowAttribs
-                                                   ));
+                                                  'allowAttribs' => $allowAttribs));
         $text = $filter->filter($text);
         
         $text = str_replace('30fefd0cd99b5', '<!-- cut -->', $text);
@@ -167,13 +165,11 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
                       'title'        => $formData['title'],
                       'text_post'    => $text,
                       'user_id'      => $userId,
-                      'time_created' => date('Y-m-d H:i:s'),
-        );
+                      'time_created' => date('Y-m-d H:i:s'));
         
         $topicId = $this->insert($data);
         
-        if (!empty($formData['tagSelect']))
-        {
+        if (!empty($formData['tagSelect'])) {
             $relation = new Application_Model_DbTable_RelationTopicTag();
             $relation->addRelation($formData['tagSelect'], $topicId);
         }
@@ -189,33 +185,30 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $text = $this->htmlFilter($formData['text_post']);
         
         $data = array('category_id' => $formData['category_id'],
-        'hide' => $formData['hide'],
-        'title' => $formData['title'],
-        'text_post' => $text
-        );
-        
+                      'hide'        => $formData['hide'],
+                      'title'       => $formData['title'],
+                      'text_post'   => $text);
         
         $relation = new Application_Model_DbTable_RelationTopicTag();
         $relation->deleteRelation($id);
                 
-        if (!empty($formData['tagSelect']))
-        {
+        if (!empty($formData['tagSelect'])) {
             $relation->addRelation($formData['tagSelect'], $id);
         }
         
-        $row = $this->fetchRow('post_id = '. $id);
+        $row = $this->fetchRow('post_id = ' . $id);
         $categoryId = $row->category_id;
         
         $category = new Application_Model_DbTable_Category;
         $category->setCount($categoryId, -1);
         $category->setCount($formData['category_id'], 1);
         
-        return $this->update($data, 'post_id = ' . (int)$id);
+        return $this->update($data, 'post_id = ' . $id);
     }
     
     public function deleteTopic($id)
     {
-        $row = $this->fetchRow('post_id = '. $id);
+        $row = $this->fetchRow('post_id = ' . $id);
         $categoryId = $row->category_id;
         
         $category = new Application_Model_DbTable_Category;
