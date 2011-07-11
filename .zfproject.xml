@@ -21,7 +21,7 @@
           <actionMethod actionName="signin"/>
           <actionMethod actionName="logout"/>
           <actionMethod actionName="forgot"/>
-          <actionMethod actionName="recoveryPassword"/>
+          <actionMethod actionName="recovery"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -162,7 +162,7 @@
             <viewScriptFile forActionName="tag"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Auth">
-            <viewScriptFile forActionName="recoveryPassword"/>
+            <viewScriptFile forActionName="recovery"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

@@ -66,6 +66,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                 array('module' => 'default',
                                                       'controller' => 'auth', 
                                                       'action' => 'forgot')));
+
+        $router->addRoute('recovery', new Zend_Controller_Router_Route('recovery/:id/:hash',
+                                                array('module' => 'default',
+                                                      'controller' => 'auth',
+                                                      'action' => 'recovery',
+                                                      'id' => 1,
+                                                      'hash' => 1)));
                                                       
         //ARIA77
         

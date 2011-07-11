@@ -106,9 +106,15 @@ class AuthController extends Zend_Controller_Action
         //$mail->send();
     }
 
-    public function recoveryPasswordAction()
+    public function recoveryAction()
     {
-        // action body
+        $id = $this->_getParam('id');
+        $hash = $this->_getParam('hash');
+
+        echo '<pre>';
+        var_dump($id);
+        var_dump($hash);
+        echo '</pre>';
     }
 
 
