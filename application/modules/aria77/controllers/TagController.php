@@ -20,7 +20,12 @@ class Aria77_TagController extends Zend_Controller_Action
         $tags = new Application_Model_DbTable_Tags();
 		
         $this->view->nameTags = $tags->getNameTags();
-		$this->view->paginator = $tags->getAllTags($page);
+
+        $paginator = $tags->getAllTags($page);
+        if (count($paginator) < $page || $page < 1)
+            $this->_redirect('/error/404');
+
+		$this->view->paginator = $paginator;
     }
 
     public function addAction()

@@ -20,7 +20,12 @@ class Aria77_CategoryController extends Zend_Controller_Action
         $category = new Application_Model_DbTable_Category();
 		
         $this->view->nameCategory = $category->getNameCategory();
-		$this->view->paginator = $category->getAllCategory($page);
+
+        $paginator = $category->getAllCategory($page);
+        if (count($paginator) < $page || $page < 1)
+            $this->_redirect('/error/404');
+
+		$this->view->paginator = $paginator;
     }
 
     public function addAction()

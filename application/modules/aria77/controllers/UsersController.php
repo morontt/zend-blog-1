@@ -17,10 +17,15 @@ class Aria77_UsersController extends Zend_Controller_Action
     {
         $page = $this->_getParam('page', 1);
         
-        $tags = new Application_Model_DbTable_Users();
+        $users = new Application_Model_DbTable_Users();
 		
-        $this->view->nameUsers = $tags->getNameUsers();
-		$this->view->paginator = $tags->getAllUsers($page);
+        $this->view->nameUsers = $users->getNameUsers();
+
+        $paginator = $users->getAllUsers($page);
+        if (count($paginator) < $page || $page < 1)
+            $this->_redirect('/error/404');
+
+		$this->view->paginator = $paginator;
     }
 
     public function editAction()

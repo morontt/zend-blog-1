@@ -27,8 +27,8 @@ class IndexController extends Zend_Controller_Action
         $id = $this->_getParam('id', 0);
 		$page = $this->_getParam('page');
 
-        if (!is_numeric($page))
-            $this->_redirect('/error/404');
+        //if (!is_numeric($page))
+        //    $this->_redirect('/error/404');
 		
 	    $topics = new Application_Model_DbTable_Topics();
         
@@ -65,8 +65,8 @@ class IndexController extends Zend_Controller_Action
         $id = $this->_getParam('id');
 		$page = $this->_getParam('page');
 
-        if (!is_numeric($page))
-            $this->_redirect('/error/404');
+        //if (!is_numeric($page))
+        //    $this->_redirect('/error/404');
 		
 	    $topics = new Application_Model_DbTable_Topics();
 		
@@ -84,8 +84,8 @@ class IndexController extends Zend_Controller_Action
         $id = $this->_getParam('id');
 		$page = $this->_getParam('page');
 
-        if (!is_numeric($page))
-            $this->_redirect('/error/404');
+        //if (!is_numeric($page))
+        //    $this->_redirect('/error/404');
 		
 	    $topics = new Application_Model_DbTable_Topics();
 		

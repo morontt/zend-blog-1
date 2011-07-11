@@ -162,12 +162,12 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         
         $text = $this->htmlFilter($formData['text_post']);
         
-        $data = array('category_id' => $formData['category_id'],
-                             'hide' => $formData['hide'],
-                            'title' => $formData['title'],
-                        'text_post' => $text,
-                          'user_id' => $userId,
-                     'time_created' => date('Y-m-d H:i:s'),
+        $data = array('category_id'  => $formData['category_id'],
+                      'hide'         => $formData['hide'],
+                      'title'        => $formData['title'],
+                      'text_post'    => $text,
+                      'user_id'      => $userId,
+                      'time_created' => date('Y-m-d H:i:s'),
         );
         
         $topicId = $this->insert($data);
