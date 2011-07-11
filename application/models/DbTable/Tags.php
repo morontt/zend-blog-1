@@ -21,9 +21,9 @@ class Application_Model_DbTable_Tags extends Zend_Db_Table_Abstract
     public function getById($id)
     {
         $row = $this->fetchRow('tag_id = '.$id);
-        if (!$row) {
-            throw new Exception("Count not find row $id");
-        }
+        //if (!$row) {
+        //    throw new Exception("Count not find row $id");
+        //}
         return $row;
     }
     

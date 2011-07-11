@@ -26,7 +26,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 		foreach($data as $value_cat)
 		{
 			$key = $value_cat['category_id'];
-			$arrayName[$key] = array('name' => $value_cat['name'],
+			$arrayName[$key] = array('name'      => $value_cat['name'],
                                      'parent_id' => $value_cat['parent_id']);
 		}
 		
@@ -36,10 +36,10 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
     public function getById($id)
     {	
 		$row = $this->fetchRow('category_id = ' . $id);
-        if (!$row)
-        {
-            throw new Exception("Категория с заданным id = $id не обнаружена");
-        }
+        //if (!$row)
+        //{
+        //    throw new Exception("Категория с заданным id = $id не обнаружена");
+        //}
         
         return $row;
     }
@@ -80,8 +80,8 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
             unset($parent);
         
         $data = array(
-               'name' => $name,
-          'parent_id' => $parent
+               'name'      => $name,
+               'parent_id' => $parent
         );
         $this->update($data, 'category_id = ' . $id);
 

@@ -19,10 +19,10 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
     
     public function getById($id)
     {
-		$row = $this->fetchRow('user_id = '.$id);
-        if (!$row) {
-            throw new Exception("Count not find row $id");
-        }
+		$row = $this->fetchRow('user_id = ' . $id);
+        //if (!$row) {
+        //    throw new Exception("Count not find row $id");
+        //}
         return $row;
     }
     

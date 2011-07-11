@@ -70,7 +70,11 @@ class Aria77_TagController extends Zend_Controller_Action
             }
         } else
         {
-            $data = $tag->getById($id)->toArray();
+            $data = $tag->getById($id);
+            if (!$data) {
+                $this->_redirect('error/404');
+                }
+            $data = $data->toArray();
             
             $form->populate($data);
         }
@@ -97,7 +101,11 @@ class Aria77_TagController extends Zend_Controller_Action
             
         } else
         {
-            $this->view->tag = $tag->getById($id);
+            $data = $tag->getById($id);
+            if (!$data) {
+                $this->_redirect('error/404');
+                }
+            $this->view->tag = $data;
         }
     }
     

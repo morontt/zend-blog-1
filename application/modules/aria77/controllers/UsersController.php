@@ -49,7 +49,11 @@ class Aria77_UsersController extends Zend_Controller_Action
             }
         } else
         {
-            $data = $users->getById($id)->toArray();
+            $data = $users->getById($id);
+            if (!$data) {
+                $this->_redirect('error/404');
+                }
+            $data = $data->toArray();
             
             $this->view->username = $data['username'];
             $form->populate($data);
@@ -77,7 +81,11 @@ class Aria77_UsersController extends Zend_Controller_Action
             
         } else
         {
-            $this->view->user = $users->getById($id);
+            $data = $users->getById($id);
+            if (!$data) {
+                $this->_redirect('error/404');
+                }
+            $this->view->user = $data;
         }
     }
 

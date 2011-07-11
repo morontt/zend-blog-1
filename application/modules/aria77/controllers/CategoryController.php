@@ -72,7 +72,11 @@ class Aria77_CategoryController extends Zend_Controller_Action
             }
         } else
         {
-            $data = $category->getById($id)->toArray();
+            $data = $category->getById($id);
+            if (!$data) {
+                $this->_redirect('error/404');
+                }
+            $data = $data->toArray();
 
             $oldParent = array('old_parent' => $data['parent_id']);
             $data = array_merge($data, $oldParent);
@@ -102,7 +106,11 @@ class Aria77_CategoryController extends Zend_Controller_Action
             
         } else
         {
-            $this->view->category = $category->getById($id);
+            $data = $category->getById($id);
+            if (!$data) {
+                $this->_redirect('error/404');
+                }
+            $this->view->category = $data;
         }
     }
 
