@@ -15,7 +15,7 @@ class Aria77_UsersController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $page = $this->_getParam('page', 1);
+        $page = $this->_getParam('page');
         
         $users = new Application_Model_DbTable_Users();
 		
@@ -45,7 +45,7 @@ class Aria77_UsersController extends Zend_Controller_Action
                 
                 $users->editUser($id, $formData['user_type']);
             
-                $this->_redirect('aria77/users/index');
+                $this->_redirect('aria77/users');
             }
         } else
         {
@@ -72,7 +72,7 @@ class Aria77_UsersController extends Zend_Controller_Action
                 $this->view->statusAction = 1;
             } else
             {
-                $this->_redirect('/aria77/users/index');
+                $this->_redirect('/aria77/users');
             }
             
         } else

@@ -91,7 +91,7 @@ class AuthController extends Zend_Controller_Action
 				
 				if ($pass) :
                     $this->view->message = "Новый пароль выслан на указанный email</br>
-                    Шутка, функция пока бутафорская, приносим свои извинения";
+                    Функция пока бутафорская, приносим свои извинения";
 				else :
                     $this->view->message = 'Указанный email в базе данных отсутствует';
                 endif;
@@ -106,8 +106,15 @@ class AuthController extends Zend_Controller_Action
         //$mail->send();
     }
 
+    public function recoveryPasswordAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 
 

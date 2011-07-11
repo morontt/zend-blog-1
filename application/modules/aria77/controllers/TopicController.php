@@ -15,7 +15,7 @@ class Aria77_TopicController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $page = $this->_getParam('page', 1);
+        $page = $this->_getParam('page');
         
         $category = new Application_Model_DbTable_Category();
         $topics = new Application_Model_DbTable_Topics();
@@ -44,7 +44,7 @@ class Aria77_TopicController extends Zend_Controller_Action
                 $topic = new Application_Model_DbTable_Topics();
                 $topicId = $topic->createNewTopic($formData);
                 
-                $this->_redirect('aria77/topic/index');
+                $this->_redirect('aria77/topic');
             }
         }
     }
@@ -65,7 +65,7 @@ class Aria77_TopicController extends Zend_Controller_Action
                 $formData = $form->getValues();
                 $topic->editTopic($formData, $id);
             
-                $this->_redirect('aria77/topic/index');
+                $this->_redirect('aria77/topic');
             }
         } else
         {
@@ -92,7 +92,7 @@ class Aria77_TopicController extends Zend_Controller_Action
                 $this->view->statusAction = 1;
             } else
             {
-                $this->_redirect('/aria77/topic/index');
+                $this->_redirect('/aria77/topic');
             }
             
         } else

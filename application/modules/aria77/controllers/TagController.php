@@ -15,7 +15,7 @@ class Aria77_TagController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $page = $this->_getParam('page', 1);
+        $page = $this->_getParam('page');
         
         $tags = new Application_Model_DbTable_Tags();
 		
@@ -43,7 +43,7 @@ class Aria77_TagController extends Zend_Controller_Action
                 $tag = new Application_Model_DbTable_Tags();
                 $tag->createNewTag($formData['name']);
             
-                $this->_redirect('aria77/tag/index');
+                $this->_redirect('aria77/tag');
             }
         }
     }
@@ -66,7 +66,7 @@ class Aria77_TagController extends Zend_Controller_Action
                 
                 $tag->editTag($id, $formData['name']);
             
-                $this->_redirect('aria77/tag/index');
+                $this->_redirect('aria77/tag');
             }
         } else
         {
@@ -92,7 +92,7 @@ class Aria77_TagController extends Zend_Controller_Action
                 $this->view->statusAction = 1;
             } else
             {
-                $this->_redirect('/aria77/tag/index');
+                $this->_redirect('/aria77/tag');
             }
             
         } else

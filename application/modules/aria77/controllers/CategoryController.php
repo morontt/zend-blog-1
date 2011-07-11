@@ -43,7 +43,7 @@ class Aria77_CategoryController extends Zend_Controller_Action
                 $category = new Application_Model_DbTable_Category();
                 $category->createNewCategory($formData['name'], $formData['parent_id']);
             
-                $this->_redirect('aria77/category/index');
+                $this->_redirect('aria77/category');
             }
         }
     }
@@ -68,7 +68,7 @@ class Aria77_CategoryController extends Zend_Controller_Action
                                              $formData['parent_id'],
                                              $formData['old_parent']);
             
-                $this->_redirect('aria77/category/index');
+                $this->_redirect('aria77/category');
             }
         } else
         {
@@ -97,7 +97,7 @@ class Aria77_CategoryController extends Zend_Controller_Action
                 $this->view->statusAction = 1;
             } else
             {
-                $this->_redirect('/aria77/category/index');
+                $this->_redirect('/aria77/category');
             }
             
         } else
