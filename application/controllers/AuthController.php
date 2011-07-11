@@ -86,15 +86,29 @@ class AuthController extends Zend_Controller_Action
             if ($form->isValid($_POST))
 			{
 			    $data = $form->getValues();
-                //$pass = $users->generateNewPassword($data['username']);
-                $pass = TRUE;
-				
-				if ($pass) :
-                    $this->view->message = "Новый пароль выслан на указанный email</br>
-                    Функция пока бутафорская, приносим свои извинения";
-				else :
+                $pass = $users->forgotPassword($data['username']);
+
+                /*
+                $request = Zend_Controller_Front::getInstance()->getRequest();
+                $url = $request->getScheme()
+                     . '://'
+                     . $request->getHttpHost(); */
+
+                //$url = $this->view->url(array('id' => 6),
+                //                                    'topic');
+
+                $url = $this->view->baseUrl();
+
+                echo '<pre>';
+                var_dump($url);
+                echo '</pre>';
+
+				if ($pass) {
+                    $this->view->message = 'Новый пароль выслан на указанный email';
+				} else {
                     $this->view->message = 'Указанный email в базе данных отсутствует';
-                endif;
+                }
+                
 			}
 		}
         

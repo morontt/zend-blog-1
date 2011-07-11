@@ -122,5 +122,19 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
         $data = array('time_last' => date('Y-m-d H:i:s'));
         $this->update($data, 'user_id = ' . $id);
     }
+
+    public function forgotPassword($login)
+    {
+        $row = $this->fetchRow($this->select()->where('login = ?', $login));
+
+        if ($row) {
+            $result = true;
+            $hash = md5(md5($row->login) . $row->password_salt);
+        } else {
+            $result = false;
+        }
+
+        return $result;
+    }
     
 }
