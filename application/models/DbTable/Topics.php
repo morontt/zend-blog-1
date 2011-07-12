@@ -84,7 +84,8 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
     {
         $config = new Zend_Config_Ini('../application/configs/application.ini','production');
         
-        $db = Zend_Db::factory($config->resources->db);
+        //$db = Zend_Db::factory($config->resources->db);
+        $db = Zend_Db_Table::getDefaultAdapter();
         $db->setFetchMode(Zend_Db::FETCH_OBJ);
         
         $select = $db->select()->from(array('topics' => 'blog_posts'))
