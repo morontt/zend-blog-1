@@ -5,6 +5,16 @@ class IndexController extends Zend_Controller_Action
 
     private $_showHideTopic = null;
 
+    protected function gotoError404()
+    {
+        $this->getResponse()->setHttpResponseCode(404);
+        $this->view->message = 'Страница не найдена';
+        $this->view->error404 = true;
+
+        return $this->_request->setControllerName('error')
+                              ->setActionName('error');
+    }
+
     public function init()
     {
         Zend_Loader::loadClass('My_Acl');
@@ -26,18 +36,13 @@ class IndexController extends Zend_Controller_Action
     {
         $id = $this->_getParam('id', 0);
 		$page = $this->_getParam('page');
-
-        //if (!is_numeric($page))
-        //    $this->_redirect('/error/404');
 		
 	    $topics = new Application_Model_DbTable_Topics();
         
         $paginator = $topics->getTopicByCategoryId($id, $page, $this->_showHideTopic);
         
         if (count($paginator) < $page || $page < 1) {
-            //$this->_redirect('/error/404');
-            $this->getResponse()->setHttpResponseCode(404);
-            return $this->_request->setControllerName('error')->setActionName('error');
+            $this->gotoError404();
         }
 		
 		$this->view->paginator = $paginator;
@@ -55,10 +60,10 @@ class IndexController extends Zend_Controller_Action
             if (!$topicRow->hide || ($topicRow->hide && $this->_showHideTopic)) :
                 $this->view->topic = $topicRow;
             else :
-                $this->_redirect('/error/404'); //сообщить, что доступ к записи закрыт
+                $this->gotoError404(); //сообщить, что доступ к записи закрыт
             endif;
 		else:
-		    $this->_redirect('/error/404');
+		    $this->gotoError404();
 		endif;
 
     }
@@ -77,7 +82,7 @@ class IndexController extends Zend_Controller_Action
 		$paginator = $topics->getTopicByUserId($id, $page, $this->_showHideTopic);
 
         if (count($paginator) < $page || $page < 1)
-            $this->_redirect('/error/404');
+            $this->gotoError404();
 
 		$this->view->paginator = $paginator;
     }
@@ -96,7 +101,7 @@ class IndexController extends Zend_Controller_Action
         $paginator = $topics->getTopicByTagId($id, $page, $this->_showHideTopic);
 
         if (count($paginator) < $page || $page < 1)
-            $this->_redirect('/error/404');
+            $this->gotoError404();
 
 		$this->view->paginator = $paginator;
     }
