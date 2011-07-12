@@ -34,8 +34,11 @@ class IndexController extends Zend_Controller_Action
         
         $paginator = $topics->getTopicByCategoryId($id, $page, $this->_showHideTopic);
         
-        if (count($paginator) < $page || $page < 1)
-            $this->_redirect('/error/404');
+        if (count($paginator) < $page || $page < 1) {
+            //$this->_redirect('/error/404');
+            $this->getResponse()->setHttpResponseCode(404);
+            return $this->_request->setControllerName('error')->setActionName('error');
+        }
 		
 		$this->view->paginator = $paginator;
     }
