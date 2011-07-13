@@ -38,18 +38,12 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
         return $row;
     }
 	
-    public function getAllCategory($page)
+    public function getAllCategory()
 	{
 		$select = $this->select()->order('name ASC');
         
         $paginator = Zend_Paginator::factory($select);
 		
-		$config = new Zend_Config_Ini('../application/configs/application.ini', 'production');
-		$itemPerPage = $config->category->per->page;
-		$paginator->setItemCountPerPage($itemPerPage);
-		
-		$paginator->SetCurrentPageNumber($page);
-        
 		return $paginator;
 	}
     

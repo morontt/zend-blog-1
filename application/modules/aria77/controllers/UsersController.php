@@ -21,7 +21,13 @@ class Aria77_UsersController extends Zend_Controller_Action
 		
         $this->view->nameUsers = $users->getNameUsers();
 
-        $paginator = $users->getAllUsers($page);
+        $paginator = $users->getAllUsers();
+
+        $config = $this->getInvokeArg('bootstrap')->getOptions();
+		$itemPerPage = $config['users']['per']['page'];
+		$paginator->setItemCountPerPage($itemPerPage);
+        $paginator->SetCurrentPageNumber($page);
+
         if (count($paginator) < $page || $page < 1)
             $this->_redirect('/error/404');
 

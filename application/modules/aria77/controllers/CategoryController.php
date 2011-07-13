@@ -21,7 +21,13 @@ class Aria77_CategoryController extends Zend_Controller_Action
 		
         $this->view->nameCategory = $category->getNameCategory();
 
-        $paginator = $category->getAllCategory($page);
+        $paginator = $category->getAllCategory();
+        
+        $config = $this->getInvokeArg('bootstrap')->getOptions();
+		$itemPerPage = $config['category']['per']['page'];
+		$paginator->setItemCountPerPage($itemPerPage);
+        $paginator->SetCurrentPageNumber($page);
+
         if (count($paginator) < $page || $page < 1)
             $this->_redirect('/error/404');
 

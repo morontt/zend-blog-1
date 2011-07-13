@@ -13,7 +13,7 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 		return $row;
     }
 	
-	public function getTopicByCategoryId($id, $page, $showHidden)
+	public function getTopicByCategoryId($id, $showHidden)
     {	
 		Zend_Loader::loadClass('My_TreeCategory');
         $tree = new My_TreeCategory;
@@ -40,16 +40,10 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 		
 		$paginator = Zend_Paginator::factory($select);
 		
-		$config = new Zend_Config_Ini('../application/configs/application.ini','production');
-		$itemPerPage = $config->items->per->page;
-		$paginator->setItemCountPerPage($itemPerPage);
-		
-		$paginator->SetCurrentPageNumber($page);
-		
 		return $paginator;
     }
 	
-	public function getTopicByUserId($id, $page, $showHidden)
+	public function getTopicByUserId($id, $showHidden)
     {	
 		$auth = Zend_Auth::getInstance();
         if($auth->hasIdentity()) {
@@ -70,21 +64,12 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         }
         
 		$paginator = Zend_Paginator::factory($select);
-		
-		$config = new Zend_Config_Ini('../application/configs/application.ini','production');
-		$itemPerPage = $config->items->per->page;
-		$paginator->setItemCountPerPage($itemPerPage);
-		
-		$paginator->SetCurrentPageNumber($page);
         
 		return $paginator;
     }
     
-    public function getTopicByTagId($id, $page, $showHidden)
+    public function getTopicByTagId($id, $showHidden)
     {
-        $config = new Zend_Config_Ini('../application/configs/application.ini','production');
-        
-        //$db = Zend_Db::factory($config->resources->db);
         $db = Zend_Db_Table::getDefaultAdapter();
         $db->setFetchMode(Zend_Db::FETCH_OBJ);
         
@@ -101,15 +86,10 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 		
 		$paginator = Zend_Paginator::factory($select);
 		
-		$itemPerPage = $config->items->per->page;
-		$paginator->setItemCountPerPage($itemPerPage);
-		
-		$paginator->SetCurrentPageNumber($page);
-		
 		return $paginator;
     }
     
-    public function getTopicForControl($page)
+    public function getTopicForControl()
     {	
 		$auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
@@ -123,12 +103,6 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         
 		$paginator = Zend_Paginator::factory($select);
 		
-		$config = new Zend_Config_Ini('../application/configs/application.ini','production');
-		$itemPerPage = $config->itemsControl->per->page;
-		$paginator->setItemCountPerPage($itemPerPage);
-		
-		$paginator->SetCurrentPageNumber($page);
-        
 		return $paginator;
     }
     

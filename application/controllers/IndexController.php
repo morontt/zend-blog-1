@@ -4,6 +4,7 @@ class IndexController extends Zend_Controller_Action
 {
 
     private $_showHideTopic = null;
+    private $_itemPerPage;
 
     protected function gotoError404()
     {
@@ -30,6 +31,9 @@ class IndexController extends Zend_Controller_Action
 		$this->view->nameCategory = $category->getNotEmpty();
 		$this->view->nameTags = $tags->getNameTags();
 		$this->view->nameUser = $users->getNameUsers();
+
+        $config = $this->getInvokeArg('bootstrap')->getOptions();
+		$this->_itemPerPage = $config['items']['per']['page'];
     }
 
     public function indexAction()
@@ -39,7 +43,9 @@ class IndexController extends Zend_Controller_Action
 		
 	    $topics = new Application_Model_DbTable_Topics();
         
-        $paginator = $topics->getTopicByCategoryId($id, $page, $this->_showHideTopic);
+        $paginator = $topics->getTopicByCategoryId($id, $this->_showHideTopic);
+        $paginator->setItemCountPerPage($this->_itemPerPage);
+        $paginator->SetCurrentPageNumber($page);
         
         if (count($paginator) < $page || $page < 1) {
             $this->gotoError404();
@@ -79,7 +85,9 @@ class IndexController extends Zend_Controller_Action
 	    $topics = new Application_Model_DbTable_Topics();
 		
         $this->view->userId = $id;
-		$paginator = $topics->getTopicByUserId($id, $page, $this->_showHideTopic);
+		$paginator = $topics->getTopicByUserId($id, $this->_showHideTopic);
+        $paginator->setItemCountPerPage($this->_itemPerPage);
+        $paginator->SetCurrentPageNumber($page);
 
         if (count($paginator) < $page || $page < 1)
             $this->gotoError404();
@@ -98,7 +106,9 @@ class IndexController extends Zend_Controller_Action
 	    $topics = new Application_Model_DbTable_Topics();
 		
         $this->view->tagId = $id;
-        $paginator = $topics->getTopicByTagId($id, $page, $this->_showHideTopic);
+        $paginator = $topics->getTopicByTagId($id, $this->_showHideTopic);
+        $paginator->setItemCountPerPage($this->_itemPerPage);
+        $paginator->SetCurrentPageNumber($page);
 
         if (count($paginator) < $page || $page < 1)
             $this->gotoError404();

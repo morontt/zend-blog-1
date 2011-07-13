@@ -21,7 +21,13 @@ class Aria77_TagController extends Zend_Controller_Action
 		
         $this->view->nameTags = $tags->getNameTags();
 
-        $paginator = $tags->getAllTags($page);
+        $paginator = $tags->getAllTags();
+
+        $config = $this->getInvokeArg('bootstrap')->getOptions();
+		$itemPerPage = $config['tags']['per']['page'];
+		$paginator->setItemCountPerPage($itemPerPage);
+        $paginator->SetCurrentPageNumber($page);
+
         if (count($paginator) < $page || $page < 1)
             $this->_redirect('/error/404');
 

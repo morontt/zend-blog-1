@@ -23,18 +23,12 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
         return $row;
     }
     
-    public function getAllUsers($page)
+    public function getAllUsers()
 	{
 		$select = $this->select()->order('username ASC');
         
         $paginator = Zend_Paginator::factory($select);
 		
-		$config = new Zend_Config_Ini('../application/configs/application.ini', 'production');
-		$itemPerPage = $config->users->per->page;
-		$paginator->setItemCountPerPage($itemPerPage);
-		
-		$paginator->SetCurrentPageNumber($page);
-        
 		return $paginator;
 	}
     
