@@ -117,13 +117,45 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
         $this->update($data, 'user_id = ' . $id);
     }
 
-    public function forgotPassword($login)
+    public function getHashByLogin($login)
     {
         $row = $this->fetchRow($this->select()->where('login = ?', $login));
 
         if ($row) {
-            $result = true;
             $hash = md5(md5($row->login) . $row->password_salt);
+            $userId = $row->user_id;
+            $result = array('id'   => $userId,
+                            'hash' => $hash);
+        } else {
+            $result = false;
+        }
+
+        return $result;
+    }
+
+    public function getHashById($id)
+    {
+        $row = $this->fetchRow($this->select()->where('user_id = ?', $id));
+
+        if ($row) {
+            $result = md5(md5($row->login) . $row->password_salt);
+        } else {
+            $result = false;
+        }
+
+        return $result;
+    }
+
+    public function recoveryPassword($id, $password)
+    {
+        $row = $this->fetchRow($this->select()->where('user_id = ?', $id));
+
+        if ($row) {
+            $salt = $row->password_salt;
+            $password = md5(md5($password) . $salt);
+            $data = array('password' => $password);
+            $this->update($data, "user_id = $id");
+            $result = TRUE;
         } else {
             $result = false;
         }

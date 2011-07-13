@@ -1,4 +1,14 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Auth</b> and script/action name <b>recoveryPassword</b></p>
+<?php $this->headTitle('Восстановление пароля'); ?>
+
+<div id="strlist">
+<div class="strecord">
+    <div class="theme">Восстановление пароля</div>
+    <div class="strsigninform">
+    <?php
+    if (isset($this->errorMessage)) {
+        echo $this->errorMessage;
+    }
+    echo $this->form; ?>
+    </div>
+</div>
 </div>

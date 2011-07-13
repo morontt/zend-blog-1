@@ -20,17 +20,13 @@ class AuthController extends Zend_Controller_Action
 		
         $this->view->form = $form;
 		
-        if ($this->getRequest()->isPost())
-		{
-            if ($form->isValid($_POST))
-			{
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
                 $data = $form->getValues();
                 $result = $users->loginUser($data);
-                if ($result)
-				{
+                if ($result) {
                     $this->_redirect('/');
-                } else
-				{
+                } else {
                     $this->view->errorMessage = 'Неверный логин или пароль';
                 }
             }
@@ -45,14 +41,11 @@ class AuthController extends Zend_Controller_Action
 		
         $this->view->form = $form;
 		
-		if ($this->getRequest()->isPost())
-		{
-            if ($form->isValid($_POST))
-			{
+		if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
 			    $data = $form->getValues();
 				
-				if ($data['password'] != $data['verifypassword'])
-				{
+				if ($data['password'] != $data['verifypassword']) {
                     $this->view->errorMessage = 'Введённые пароли не совпадают';
                     return;
                 }
@@ -81,34 +74,24 @@ class AuthController extends Zend_Controller_Action
 		
         $this->view->form = $form;
 		
-		if ($this->getRequest()->isPost())
-		{
-            if ($form->isValid($_POST))
-			{
+		if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
 			    $data = $form->getValues();
-                $pass = $users->forgotPassword($data['username']);
+                $hash = $users->getHashByLogin($data['username']);
 
-                /*
-                $request = Zend_Controller_Front::getInstance()->getRequest();
-                $url = $request->getScheme()
-                     . '://'
-                     . $request->getHttpHost(); */
-
-                //$url = $this->view->url(array('id' => 6),
-                //                                    'topic');
-
-                $url = $this->view->baseUrl();
-
-                echo '<pre>';
-                var_dump($url);
-                echo '</pre>';
-
-				if ($pass) {
+                if ($hash) {
                     $this->view->message = 'Новый пароль выслан на указанный email';
+                    $request = Zend_Controller_Front::getInstance()->getRequest();
+                    $url = $request->getScheme() . '://'
+                         . $request->getHttpHost()
+                         . $this->view->url(array('id' => $hash['id'],
+                                                  'hash' => $hash['hash']), 'recovery');
 				} else {
                     $this->view->message = 'Указанный email в базе данных отсутствует';
                 }
-                
+                echo '<pre>';
+                var_dump($url);
+                echo '</pre>';
 			}
 		}
         
@@ -124,9 +107,32 @@ class AuthController extends Zend_Controller_Action
     {
         $id = $this->_getParam('id');
         $hash = $this->_getParam('hash');
+        $users = new Application_Model_DbTable_Users;
+        $form = new Application_Form_RecoveryPassword;
+        
+        $rightHash = $users->getHashById($id);
+        if ($hash != $rightHash) {
+            $this->view->errorMessage = 'Неверная ссылка, изменение пароля невозможно';
+            $form->submit->setAttrib('disable', 'disable');
+        }
+        $this->view->form = $form;
+
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
+			    $data = $form->getValues();
+                if ($data['password'] != $data['verifypassword']) {
+                    $this->view->errorMessage = 'Введённые пароли не совпадают.</br>Попробуйте ещё раз.';
+                    return;
+                }
+                $newPassword = $users->recoveryPassword($id, $data['password']);
+                if ($newPassword) {
+                    $this->view->errorMessage = 'Новый пароль установлен';
+                }
+			}
+		}
 
         echo '<pre>';
-        var_dump($id);
+        var_dump($rightHash);
         var_dump($hash);
         echo '</pre>';
     }
