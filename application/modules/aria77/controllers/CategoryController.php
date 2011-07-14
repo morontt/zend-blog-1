@@ -5,7 +5,7 @@ class Aria77_CategoryController extends Zend_Controller_Action
 
     public function init()
     {
-        Zend_Loader::loadClass('My_Acl');
+        //Zend_Loader::loadClass('My_Acl');
         $acl = new My_Acl();
         $role = My_Acl::getUserType();
         

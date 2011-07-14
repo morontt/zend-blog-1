@@ -15,7 +15,7 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 	
 	public function getTopicByCategoryId($id, $showHidden)
     {	
-		Zend_Loader::loadClass('My_TreeCategory');
+		//Zend_Loader::loadClass('My_TreeCategory');
         $tree = new My_TreeCategory;
         
         $select = $this->select();
