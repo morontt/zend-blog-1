@@ -51,6 +51,9 @@ class Aria77_TopicController extends Zend_Controller_Action
             if ($form->isValid($_POST))
             {
                 $formData = $form->getValues();
+                if (empty($formData['title'])) {
+                    $formData['title'] = 'no subject';
+                }
                 
                 $topic = new Application_Model_DbTable_Topics();
                 $topicId = $topic->createNewTopic($formData);
@@ -76,6 +79,10 @@ class Aria77_TopicController extends Zend_Controller_Action
             if ($form->isValid($_POST))
             {
                 $formData = $form->getValues();
+                if (empty($formData['title'])) {
+                    $formData['title'] = 'no subject';
+                }
+
                 $topic->editTopic($formData, $id);
 
                 $this->_flashMessenger->addMessage('Запись успешно отредактирована');

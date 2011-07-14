@@ -16,7 +16,7 @@ class Application_Form_Topic extends Zend_Form
         $submit = new Zend_Form_Element_Submit('submit');
         
         $title->setLabel('Заголовок:')
-             ->setRequired(true)
+             //->setRequired(true)
              ->setAttrib('size', 96)
              ->addFilter('StripTags')
              ->addFilter('StringTrim')
