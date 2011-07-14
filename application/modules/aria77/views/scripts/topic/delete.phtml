@@ -3,18 +3,10 @@
 <div id="strlist">
     <div class="strecord">
         <div class="theme">Удаление записи</div>
-        <?php if (!$this->statusAction) : ?>
         <p>Вы действительно хотите удалить запись &laquo;<?php echo $this->topic->title; ?>&raquo;?</p>
         <form action="" method="post">
             <input type = "submit" name = "del" value="Да" />
             <input type = "submit" name = "del" value="Нет" />
         </form>
-        <?php else : ?>
-        <p>Запись удалена</p>
-        <p><a href="<?php echo $this->url(array('module' => 'aria77',
-                                            'controller' => 'topic',
-                                                'action' => 'index'
-                         ), 'topicControl'); ?>">Вернуться к управлению записями</a></p>
-        <?php endif; ?>
     </div>
 </div>

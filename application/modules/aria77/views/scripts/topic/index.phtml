@@ -3,6 +3,13 @@
 <div id="strlist">
     <div class="strecord">
         <div class="theme">Управление записями</div>
+        <?php if (!empty($this->messages)) { ?>
+        <div class="messages">
+            <?php foreach($this->messages as $message) {
+                    echo $message . '<br>';
+                } ?>
+        </div>
+        <?php } ?>
         <p><table>
         <tr>
         <th>Заголовок</th>

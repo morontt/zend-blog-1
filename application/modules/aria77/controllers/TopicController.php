@@ -2,7 +2,8 @@
 
 class Aria77_TopicController extends Zend_Controller_Action
 {
-
+    protected $_flashMessenger = null;
+    
     public function init()
     {
         //Zend_Loader::loadClass('My_Acl');
@@ -11,6 +12,8 @@ class Aria77_TopicController extends Zend_Controller_Action
         
         if (!$acl->isAllowed($role,'controlPage','view'))
             $this->_redirect('aria77/index/denied');
+
+        $this->_flashMessenger = $this->_helper->FlashMessenger;
     }
 
     public function indexAction()
@@ -23,6 +26,7 @@ class Aria77_TopicController extends Zend_Controller_Action
         $this->view->nameCategory = $category->getNameCategory();
 
         $paginator = $topics->getTopicForControl();
+
         $config = $this->getInvokeArg('bootstrap')->getOptions();
 		$itemPerPage = $config['itemsControl']['per']['page'];
 		$paginator->setItemCountPerPage($itemPerPage);
@@ -30,6 +34,8 @@ class Aria77_TopicController extends Zend_Controller_Action
 
         if (count($paginator) < $page || $page < 1)
             $this->_redirect('/error/404');
+        
+        $this->view->messages = $this->_flashMessenger->getMessages();
 
 		$this->view->paginator = $paginator;
     }
@@ -48,7 +54,9 @@ class Aria77_TopicController extends Zend_Controller_Action
                 
                 $topic = new Application_Model_DbTable_Topics();
                 $topicId = $topic->createNewTopic($formData);
-                
+
+                $this->_flashMessenger->addMessage('Запись успешно создана');
+
                 $this->_redirect('aria77/topic');
             }
         }
@@ -69,7 +77,9 @@ class Aria77_TopicController extends Zend_Controller_Action
             {
                 $formData = $form->getValues();
                 $topic->editTopic($formData, $id);
-            
+
+                $this->_flashMessenger->addMessage('Запись успешно отредактирована');
+                
                 $this->_redirect('aria77/topic');
             }
         } else
@@ -86,7 +96,6 @@ class Aria77_TopicController extends Zend_Controller_Action
         $id = $this->_getParam('id', 0);
         
         $topic = new Application_Model_DbTable_Topics();
-        $this->view->statusAction = 0;
         
         if ($this->getRequest()->isPost())
         {
@@ -94,7 +103,9 @@ class Aria77_TopicController extends Zend_Controller_Action
             if ($del == 'Да')
             {
                 $topic->deleteTopic($id);
-                $this->view->statusAction = 1;
+                $this->_flashMessenger->addMessage('Запись удалена');
+                
+                $this->_redirect('aria77/topic');
             } else
             {
                 $this->_redirect('/aria77/topic');
