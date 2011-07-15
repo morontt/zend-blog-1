@@ -144,10 +144,10 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         
         $topicId = $this->insert($data);
         
-//        if (!empty($formData['tagSelect'])) {
-//            $relation = new Application_Model_DbTable_RelationTopicTag();
-//            $relation->addRelation($formData['tagSelect'], $topicId);
-//        }
+        if (!empty($formData['tags'])) {
+            $relation = new Application_Model_DbTable_RelationTopicTag();
+            $relation->addRelation($formData['tags'], $topicId);
+        }
         
         $category = new Application_Model_DbTable_Category;
         $category->setCount($formData['category_id'], 1);
@@ -167,8 +167,8 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $relation = new Application_Model_DbTable_RelationTopicTag();
         $relation->deleteRelation($id);
                 
-        if (!empty($formData['tagSelect'])) {
-            $relation->addRelation($formData['tagSelect'], $id);
+        if (!empty($formData['tags'])) {
+            $relation->addRelation($formData['tags'], $id);
         }
         
         $row = $this->fetchRow('post_id = ' . $id);
