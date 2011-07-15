@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://zadachnik.info/
-LAST MODIFIED: July-14-2011
+LAST MODIFIED: July-15-2011
 *********************************************/
 
 /*******************
@@ -51,6 +51,7 @@ img
 
 table
 {
+    margin: 5px;
     border: 1px solid #333;
     text-align: left;
     border-spacing: 3px;
@@ -132,7 +133,7 @@ tr.even
 	margin: 10px 0 10px 0;
 	padding: 5px;
 	font-size: 14pt;
-	opacity: 0.8;
+	/* opacity: 0.8; */
 	/* filter: alpha(Opacity = 80); */
 	background-color: #000000;
 	border: 1px solid #ffffff;
@@ -349,7 +350,7 @@ div.messages
 	padding: 5px;
 	font-size: 10pt;
 	text-align: center;
-	opacity: 0.8;
+	/* opacity: 0.8; */
 	/* filter: alpha(Opacity = 80); */
 	background-color: #000000;
 	border: 1px solid #ffffff;
