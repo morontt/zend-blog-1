@@ -10,8 +10,9 @@ class Aria77_TopicController extends Zend_Controller_Action
         $acl = new My_Acl();
         $role = My_Acl::getUserType();
         
-        if (!$acl->isAllowed($role,'controlPage','view'))
+        if (!$acl->isAllowed($role,'controlPage','view')) {
             $this->_redirect('aria77/index/denied');
+        }
 
         $this->_flashMessenger = $this->_helper->FlashMessenger;
     }
@@ -32,8 +33,9 @@ class Aria77_TopicController extends Zend_Controller_Action
 		$paginator->setItemCountPerPage($itemPerPage);
         $paginator->SetCurrentPageNumber($page);
 
-        if (count($paginator) < $page || $page < 1)
+        if (count($paginator) < $page || $page < 1) {
             $this->_redirect('/error/404');
+        }
         
         $this->view->messages = $this->_flashMessenger->getMessages();
 
@@ -46,10 +48,8 @@ class Aria77_TopicController extends Zend_Controller_Action
 		$form->submit->setLabel('Создать запись');
         $this->view->form = $form;
         
-        if ($this->getRequest()->isPost())
-        {
-            if ($form->isValid($_POST))
-            {
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
                 $formData = $form->getValues();
                 if (empty($formData['title'])) {
                     $formData['title'] = 'no subject';
@@ -74,10 +74,8 @@ class Aria77_TopicController extends Zend_Controller_Action
 		$form->submit->setLabel('Изменить запись');
         $this->view->form = $form;
         
-        if ($this->getRequest()->isPost())
-        {
-            if ($form->isValid($_POST))
-            {
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
                 $formData = $form->getValues();
                 if (empty($formData['title'])) {
                     $formData['title'] = 'no subject';
@@ -89,8 +87,7 @@ class Aria77_TopicController extends Zend_Controller_Action
                 
                 $this->_redirect('aria77/topic');
             }
-        } else
-        {
+        } else {
             $data = $topic->getTopicById($id)->toArray();
             
             $form->populate($data);
@@ -104,22 +101,18 @@ class Aria77_TopicController extends Zend_Controller_Action
         
         $topic = new Application_Model_DbTable_Topics();
         
-        if ($this->getRequest()->isPost())
-        {
+        if ($this->getRequest()->isPost()) {
             $del = $this->getRequest()->getPost('del');
-            if ($del == 'Да')
-            {
+            if ($del == 'Да') {
                 $topic->deleteTopic($id);
                 $this->_flashMessenger->addMessage('Запись удалена');
                 
                 $this->_redirect('aria77/topic');
-            } else
-            {
+            } else {
                 $this->_redirect('/aria77/topic');
             }
             
-        } else
-        {
+        } else {
             $this->view->topic = $topic->getTopicById($id);
         }
         

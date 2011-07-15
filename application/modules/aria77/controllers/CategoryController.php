@@ -47,10 +47,8 @@ class Aria77_CategoryController extends Zend_Controller_Action
 		$form->submit->setLabel('Создать');
         $this->view->form = $form;
         
-        if ($this->getRequest()->isPost())
-        {
-            if ($form->isValid($_POST))
-            {
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
                 $formData = $form->getValues();
             
                 $category = new Application_Model_DbTable_Category();
@@ -73,10 +71,8 @@ class Aria77_CategoryController extends Zend_Controller_Action
         
         $category = new Application_Model_DbTable_Category();
         
-        if ($this->getRequest()->isPost())
-        {
-            if ($form->isValid($_POST))
-            {
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
                 $formData = $form->getValues();
                 
                 $result = $category->editCategory($id, $formData['name'],
@@ -90,8 +86,7 @@ class Aria77_CategoryController extends Zend_Controller_Action
 
                 $this->_redirect('aria77/category');
             }
-        } else
-        {
+        } else {
             $data = $category->getById($id);
             if (!$data) {
                 $this->_redirect('error/404');
@@ -111,11 +106,9 @@ class Aria77_CategoryController extends Zend_Controller_Action
         
         $category = new Application_Model_DbTable_Category();
         
-        if ($this->getRequest()->isPost())
-        {
+        if ($this->getRequest()->isPost()) {
             $del = $this->getRequest()->getPost('del');
-            if ($del == 'Да')
-            {
+            if ($del == 'Да') {
                 if ($category->deleteCategory($id)) {
                     $this->_flashMessenger->addMessage('Категория удалена');
                 } else {
@@ -123,13 +116,11 @@ class Aria77_CategoryController extends Zend_Controller_Action
                 }
 
                 $this->_redirect('/aria77/category');
-            } else
-            {
+            } else {
                 $this->_redirect('/aria77/category');
             }
             
-        } else
-        {
+        } else {
             $data = $category->getById($id);
             if (!$data) {
                 $this->_redirect('error/404');

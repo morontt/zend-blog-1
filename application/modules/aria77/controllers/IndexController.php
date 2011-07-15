@@ -17,8 +17,9 @@ class Aria77_IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        if (!$this->_accessControl)
+        if (!$this->_accessControl) {
             $this->_redirect('aria77/index/denied');
+        }
     }
 
     public function deniedAction()

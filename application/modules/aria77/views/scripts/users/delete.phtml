@@ -3,18 +3,10 @@
 <div id="strlist">
     <div class="strecord">
         <div class="theme">Удаление пользователя</div>
-        <?php if (!$this->statusAction) : ?>
         <p>Вы действительно хотите удалить пользователя &laquo;<?php echo $this->user->username; ?>&raquo;?</p>
         <form action="" method="post">
             <input type = "submit" name = "del" value="Да" />
             <input type = "submit" name = "del" value="Нет" />
         </form>
-        <?php else : ?>
-        <p>Пользователь удалён</p>
-        <p><a href="<?php echo $this->url(array('module' => 'aria77',
-                                            'controller' => 'users',
-                                                'action' => 'index'
-                         ), 'usersControl'); ?>">Вернуться к управлению пользователями</a></p>
-        <?php endif; ?>
     </div>
 </div>

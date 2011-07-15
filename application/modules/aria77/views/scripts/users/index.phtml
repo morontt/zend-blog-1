@@ -3,7 +3,14 @@
 <div id="strlist">
     <div class="strecord">
         <div class="theme">Управление пользователями</div>
-        <p><table>
+        <?php if (!empty($this->messages)) { ?>
+        <div class="messages">
+            <?php foreach($this->messages as $message) {
+                    echo $message . '<br>';
+                } ?>
+        </div>
+        <?php } ?>
+        <table>
         <tr>
         <th>Username</th>
         <th>Login</th>
@@ -46,7 +53,7 @@
                 $classTr = 'odd';
             endif;
         } ?>
-        </table></p>
+        </table>
     </div>
     <?php echo $this->paginationControl($this->paginator, 'Elastic', 'main_paginator.phtml'); ?>
 </div>

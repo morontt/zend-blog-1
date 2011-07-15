@@ -2,6 +2,7 @@
 
 class Aria77_UsersController extends Zend_Controller_Action
 {
+    protected $_flashMessenger = null;
 
     public function init()
     {
@@ -9,8 +10,11 @@ class Aria77_UsersController extends Zend_Controller_Action
         $acl = new My_Acl();
         $role = My_Acl::getUserType();
         
-        if (!$acl->isAllowed($role,'controlPage','editUser'))
+        if (!$acl->isAllowed($role,'controlPage','editUser')) {
             $this->_redirect('aria77/index/denied');
+        }
+
+        $this->_flashMessenger = $this->_helper->FlashMessenger;
     }
 
     public function indexAction()
@@ -28,9 +32,12 @@ class Aria77_UsersController extends Zend_Controller_Action
 		$paginator->setItemCountPerPage($itemPerPage);
         $paginator->SetCurrentPageNumber($page);
 
-        if (count($paginator) < $page || $page < 1)
+        if (count($paginator) < $page || $page < 1) {
             $this->_redirect('/error/404');
+        }
 
+        $this->view->messages = $this->_flashMessenger->getMessages();
+        
 		$this->view->paginator = $paginator;
     }
 
@@ -43,18 +50,17 @@ class Aria77_UsersController extends Zend_Controller_Action
         
         $users = new Application_Model_DbTable_Users();
         
-        if ($this->getRequest()->isPost())
-        {
-            if ($form->isValid($_POST))
-            {
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
                 $formData = $form->getValues();
                 
                 $users->editUser($id, $formData['user_type']);
+
+                $this->_flashMessenger->addMessage('Пользователь отредактирован');
             
                 $this->_redirect('aria77/users');
             }
-        } else
-        {
+        } else {
             $data = $users->getById($id);
             if (!$data) {
                 $this->_redirect('error/404');
@@ -71,22 +77,20 @@ class Aria77_UsersController extends Zend_Controller_Action
         $id = $this->_getParam('id', 0);
         
         $users = new Application_Model_DbTable_Users();
-        $this->view->statusAction = 0;
         
-        if ($this->getRequest()->isPost())
-        {
+        if ($this->getRequest()->isPost()) {
             $del = $this->getRequest()->getPost('del');
-            if ($del == 'Да')
-            {
+            if ($del == 'Да') {
                 $users->deleteUser($id);
-                $this->view->statusAction = 1;
-            } else
-            {
+
+                $this->_flashMessenger->addMessage('Пользователь удалён');
+
+                $this->_redirect('/aria77/users');
+            } else {
                 $this->_redirect('/aria77/users');
             }
             
-        } else
-        {
+        } else {
             $data = $users->getById($id);
             if (!$data) {
                 $this->_redirect('error/404');

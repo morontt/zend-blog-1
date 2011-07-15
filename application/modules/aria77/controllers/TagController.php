@@ -47,10 +47,8 @@ class Aria77_TagController extends Zend_Controller_Action
 		$form->submit->setLabel('Создать');
         $this->view->form = $form;
         
-        if ($this->getRequest()->isPost())
-        {
-            if ($form->isValid($_POST))
-            {
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
                 $formData = $form->getValues();
             
                 $tag = new Application_Model_DbTable_Tags();
@@ -73,10 +71,8 @@ class Aria77_TagController extends Zend_Controller_Action
         
         $tag = new Application_Model_DbTable_Tags();
         
-        if ($this->getRequest()->isPost())
-        {
-            if ($form->isValid($_POST))
-            {
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
                 $formData = $form->getValues();
                 
                 $tag->editTag($id, $formData['name']);
@@ -103,11 +99,9 @@ class Aria77_TagController extends Zend_Controller_Action
         
         $tag = new Application_Model_DbTable_Tags();
         
-        if ($this->getRequest()->isPost())
-        {
+        if ($this->getRequest()->isPost()) {
             $del = $this->getRequest()->getPost('del');
-            if ($del == 'Да')
-            {
+            if ($del == 'Да') {
                 $result = $tag->deleteTag($id);
 
                 if ($result) {
@@ -117,13 +111,11 @@ class Aria77_TagController extends Zend_Controller_Action
                 }
 
                 $this->_redirect('/aria77/tag');
-            } else
-            {
+            } else {
                 $this->_redirect('/aria77/tag');
             }
             
-        } else
-        {
+        } else {
             $data = $tag->getById($id);
             if (!$data) {
                 $this->_redirect('error/404');
