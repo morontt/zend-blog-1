@@ -51,10 +51,15 @@ class Application_Model_DbTable_Tags extends Zend_Db_Table_Abstract
     public function deleteTag($id)
     {
         $row = $this->fetchRow('tag_id = ' . $id);
-        
+
         if ($row->count == 0) {
             $del = $this->delete('tag_id = ' . $id);
+            $result = TRUE;
+        } else {
+            $result = FALSE;
         }
+        
+        return $result;
     }
 
     public function setCountTags($dataArray, $delta)

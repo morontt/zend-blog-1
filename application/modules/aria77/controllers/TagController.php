@@ -2,15 +2,19 @@
 
 class Aria77_TagController extends Zend_Controller_Action
 {
-
+    protected $_flashMessenger = null;
+    
     public function init()
     {
         //Zend_Loader::loadClass('My_Acl');
         $acl = new My_Acl();
         $role = My_Acl::getUserType();
         
-        if (!$acl->isAllowed($role,'controlPage','view'))
+        if (!$acl->isAllowed($role,'controlPage','view')) {
             $this->_redirect('aria77/index/denied');
+        }
+
+        $this->_flashMessenger = $this->_helper->FlashMessenger;
     }
 
     public function indexAction()
@@ -28,8 +32,11 @@ class Aria77_TagController extends Zend_Controller_Action
 		$paginator->setItemCountPerPage($itemPerPage);
         $paginator->SetCurrentPageNumber($page);
 
-        if (count($paginator) < $page || $page < 1)
+        if (count($paginator) < $page || $page < 1) {
             $this->_redirect('/error/404');
+        }
+
+        $this->view->messages = $this->_flashMessenger->getMessages();
 
 		$this->view->paginator = $paginator;
     }
@@ -48,6 +55,8 @@ class Aria77_TagController extends Zend_Controller_Action
             
                 $tag = new Application_Model_DbTable_Tags();
                 $tag->createNewTag($formData['name']);
+
+                $this->_flashMessenger->addMessage('Тег создан');
             
                 $this->_redirect('aria77/tag');
             }
@@ -71,15 +80,17 @@ class Aria77_TagController extends Zend_Controller_Action
                 $formData = $form->getValues();
                 
                 $tag->editTag($id, $formData['name']);
+
+                $this->_flashMessenger->addMessage('Тег отредактирован');
             
                 $this->_redirect('aria77/tag');
             }
-        } else
-        {
+        } else {
             $data = $tag->getById($id);
             if (!$data) {
                 $this->_redirect('error/404');
-                }
+            }
+            
             $data = $data->toArray();
             
             $form->populate($data);
@@ -91,15 +102,21 @@ class Aria77_TagController extends Zend_Controller_Action
         $id = $this->_getParam('id', 0);
         
         $tag = new Application_Model_DbTable_Tags();
-        $this->view->statusAction = 0;
         
         if ($this->getRequest()->isPost())
         {
             $del = $this->getRequest()->getPost('del');
             if ($del == 'Да')
             {
-                $tag->deleteTag($id);
-                $this->view->statusAction = 1;
+                $result = $tag->deleteTag($id);
+
+                if ($result) {
+                    $this->_flashMessenger->addMessage('Тег удалён');
+                } else {
+                    $this->_flashMessenger->addMessage('Тег не может быть удалён');
+                }
+
+                $this->_redirect('/aria77/tag');
             } else
             {
                 $this->_redirect('/aria77/tag');

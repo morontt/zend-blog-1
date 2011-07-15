@@ -32,8 +32,9 @@ class Aria77_CategoryController extends Zend_Controller_Action
 		$paginator->setItemCountPerPage($itemPerPage);
         $paginator->SetCurrentPageNumber($page);
 
-        if (count($paginator) < $page || $page < 1)
+        if (count($paginator) < $page || $page < 1) {
             $this->_redirect('/error/404');
+        }
 
         $this->view->messages = $this->_flashMessenger->getMessages();
 
