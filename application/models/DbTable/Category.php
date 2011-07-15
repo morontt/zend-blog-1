@@ -63,7 +63,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
     public function editCategory($id, $name, $parent, $oldparent)
     {
         if ($id == $parent) {
-            $parent = 0;
+            return FALSE;
         }
         
         if (!$parent) {
@@ -81,19 +81,25 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
             $this->setCount($oldparent, - $delta);
             $this->setCount($parent, $delta);
         }
+
+        return TRUE;
     }
     
     public function deleteCategory($id)
     {
         $row = $this->fetchRow('category_id = ' . $id);
 
-        if (($id == 1)||($row->count != 0)) {
-            throw new Exception("Данную категорию удалить нельзя");
+        if (($id == 1) || ($row->count != 0)) {
+            $result = FALSE;
+            //throw new Exception("Данную категорию удалить нельзя");
         }
         
         if (($id != 1)&&($row->count == 0)) {
             $del = $this->delete('category_id = ' . $id);
+            $result = TRUE;
         }
+        
+        return $result;
     }
 
     public function setCount($id, $delta)

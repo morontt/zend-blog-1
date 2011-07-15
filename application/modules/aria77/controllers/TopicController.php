@@ -58,7 +58,7 @@ class Aria77_TopicController extends Zend_Controller_Action
                 $topic = new Application_Model_DbTable_Topics();
                 $topicId = $topic->createNewTopic($formData);
 
-                $this->_flashMessenger->addMessage('Запись успешно создана');
+                $this->_flashMessenger->addMessage('Запись создана');
 
                 $this->_redirect('aria77/topic');
             }
@@ -85,7 +85,7 @@ class Aria77_TopicController extends Zend_Controller_Action
 
                 $topic->editTopic($formData, $id);
 
-                $this->_flashMessenger->addMessage('Запись успешно отредактирована');
+                $this->_flashMessenger->addMessage('Запись отредактирована');
                 
                 $this->_redirect('aria77/topic');
             }

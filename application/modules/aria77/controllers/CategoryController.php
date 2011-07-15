@@ -2,15 +2,19 @@
 
 class Aria77_CategoryController extends Zend_Controller_Action
 {
-
+    protected $_flashMessenger = null;
+    
     public function init()
     {
         //Zend_Loader::loadClass('My_Acl');
         $acl = new My_Acl();
         $role = My_Acl::getUserType();
         
-        if (!$acl->isAllowed($role,'controlPage','view'))
+        if (!$acl->isAllowed($role,'controlPage','view')) {
             $this->_redirect('aria77/index/denied');
+        }
+
+        $this->_flashMessenger = $this->_helper->FlashMessenger;
     }
 
     public function indexAction()
@@ -31,6 +35,8 @@ class Aria77_CategoryController extends Zend_Controller_Action
         if (count($paginator) < $page || $page < 1)
             $this->_redirect('/error/404');
 
+        $this->view->messages = $this->_flashMessenger->getMessages();
+
 		$this->view->paginator = $paginator;
     }
 
@@ -48,6 +54,8 @@ class Aria77_CategoryController extends Zend_Controller_Action
             
                 $category = new Application_Model_DbTable_Category();
                 $category->createNewCategory($formData['name'], $formData['parent_id']);
+
+                $this->_flashMessenger->addMessage('Категория создана');
             
                 $this->_redirect('aria77/category');
             }
@@ -70,10 +78,15 @@ class Aria77_CategoryController extends Zend_Controller_Action
             {
                 $formData = $form->getValues();
                 
-                $category->editCategory($id, $formData['name'],
-                                             $formData['parent_id'],
-                                             $formData['old_parent']);
-            
+                $result = $category->editCategory($id, $formData['name'],
+                                                       $formData['parent_id'],
+                                                       $formData['old_parent']);
+                if ($result) {
+                    $this->_flashMessenger->addMessage('Категория отредактирована');
+                } else {
+                    $this->_flashMessenger->addMessage('Категория не может быть отредактирована');
+                }
+
                 $this->_redirect('aria77/category');
             }
         } else
@@ -96,15 +109,19 @@ class Aria77_CategoryController extends Zend_Controller_Action
         $id = $this->_getParam('id', 0);
         
         $category = new Application_Model_DbTable_Category();
-        $this->view->statusAction = 0;
         
         if ($this->getRequest()->isPost())
         {
             $del = $this->getRequest()->getPost('del');
             if ($del == 'Да')
             {
-                $category->deleteCategory($id);
-                $this->view->statusAction = 1;
+                if ($category->deleteCategory($id)) {
+                    $this->_flashMessenger->addMessage('Категория удалена');
+                } else {
+                    $this->_flashMessenger->addMessage('Категория не можеть быть удалена');
+                }
+
+                $this->_redirect('/aria77/category');
             } else
             {
                 $this->_redirect('/aria77/category');
