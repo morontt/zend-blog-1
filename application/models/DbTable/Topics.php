@@ -144,10 +144,10 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         
         $topicId = $this->insert($data);
         
-        if (!empty($formData['tagSelect'])) {
-            $relation = new Application_Model_DbTable_RelationTopicTag();
-            $relation->addRelation($formData['tagSelect'], $topicId);
-        }
+//        if (!empty($formData['tagSelect'])) {
+//            $relation = new Application_Model_DbTable_RelationTopicTag();
+//            $relation->addRelation($formData['tagSelect'], $topicId);
+//        }
         
         $category = new Application_Model_DbTable_Category;
         $category->setCount($formData['category_id'], 1);
