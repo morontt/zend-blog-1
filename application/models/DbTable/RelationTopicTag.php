@@ -3,6 +3,11 @@
 class Application_Model_DbTable_RelationTopicTag extends Zend_Db_Table_Abstract
 {
     protected $_name = 'relation_topictag';
+
+    public function trimStringTag(&$item)
+    {
+        $item = trim($item);
+    }
 	
     public function addRelation($data, $topicId)
     {
@@ -16,9 +21,7 @@ class Application_Model_DbTable_RelationTopicTag extends Zend_Db_Table_Abstract
 //        }
         $tagsArray = explode(',', $data);
 
-        foreach ($tagsArray as $key => $value) {
-            $$value = trim($value);
-        }
+        array_walk($tagsArray, 'trimStringTag');
 
         Zend_Debug::dump($tagsArray);
         die;
