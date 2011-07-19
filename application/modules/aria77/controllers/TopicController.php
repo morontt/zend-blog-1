@@ -60,8 +60,7 @@ class Aria77_TopicController extends Zend_Controller_Action
 
                 $this->_flashMessenger->addMessage('Запись создана');
 
-                //Zend_Debug::dump($tagtagtag);
-                //$this->_redirect('aria77/topic');
+                $this->_redirect('aria77/topic');
             }
         }
     }
