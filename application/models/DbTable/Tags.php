@@ -23,6 +23,19 @@ class Application_Model_DbTable_Tags extends Zend_Db_Table_Abstract
         
         return $row;
     }
+
+    public function getByName($name)
+    {
+        $row = $this->fetchRow($this->select()->where('name = ?', $name));
+
+        if ($row) {
+            $result = $row->tag_id;
+        } else {
+            $result = FALSE;
+        }
+
+        return $result;
+    }
     
     public function getAllTags()
 	{
@@ -38,7 +51,9 @@ class Application_Model_DbTable_Tags extends Zend_Db_Table_Abstract
         $data = array('name'  => $name,
                       'count' => 0);
 
-        $this->insert($data);
+        $id = $this->insert($data);
+
+        return $id;
     }
     
     public function editTag($id, $name)

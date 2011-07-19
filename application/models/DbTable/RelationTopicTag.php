@@ -3,15 +3,10 @@
 class Application_Model_DbTable_RelationTopicTag extends Zend_Db_Table_Abstract
 {
     protected $_name = 'relation_topictag';
-
-    public function trimStringTag(&$item)
-    {
-        $item = trim($item);
-    }
 	
-    public function addRelation($data, $topicId)
+    public function addRelation($tagString, $topicId)
     {
-//        $tags = new Application_Model_DbTable_Tags;
+        $tags = new Application_Model_DbTable_Tags;
 //        $tags->setCountTags($data, 1);
 //
 //        foreach($data as $key => $value) {
@@ -19,12 +14,35 @@ class Application_Model_DbTable_RelationTopicTag extends Zend_Db_Table_Abstract
 //                          'tag_id' => $value);
 //            $this->insert($row);
 //        }
-        $tagsArray = explode(',', $data);
+        $tagsArray = explode(',', $tagString);
+
+        function trimStringTag(&$item)
+        {
+            $item = trim($item);
+        }
 
         array_walk($tagsArray, 'trimStringTag');
 
-        Zend_Debug::dump($tagsArray);
-        die;
+        $data = array();
+
+        foreach ($tagsArray as $value) {
+            $id = $tags->getByName($value);
+            if ($id) {
+                $data[] = $id;
+            } else {
+                $newId = $tags->createNewTag($value);
+                $data[] = $newId;
+            }
+        }
+
+        $tags->setCountTags($data, 1);
+
+        foreach($data as $key => $value) {
+            $row = array('post_id' => $topicId,
+                          'tag_id' => $value);
+            $this->insert($row);
+        }
+
     }
     
     public function deleteRelation($topicId)
