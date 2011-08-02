@@ -12,8 +12,7 @@ class Zend_View_Helper_siteMenu extends Zend_View_Helper_Abstract
                                             'home') . '">Home</a></li>' . PHP_EOL;
         
         $auth = Zend_Auth::getInstance();
-		if ($auth->hasIdentity())
-        {
+		if ($auth->hasIdentity()) {
             $identity = $auth->getIdentity();
             
             $rezult .= '<li class="user">' . $identity->username . '</li>' . PHP_EOL;
