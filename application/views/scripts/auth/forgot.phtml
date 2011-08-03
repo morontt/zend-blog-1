@@ -6,9 +6,7 @@
     <div class="strsigninform">
     <?php if (!empty($this->message)) { ?>
         <div class="messages">
-            <?php foreach($this->message as $message) {
-                    echo $message . '<br>';
-                } ?>
+            <?php echo $this->message; ?>
         </div>
     <?php } ?>
     Введите email-адрес, указанный вами при регистрации.

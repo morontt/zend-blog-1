@@ -2,11 +2,11 @@
 
 class AuthController extends Zend_Controller_Action
 {
-    protected $_flashMessenger = null;
+    //protected $_flashMessenger = null;
 
     public function init()
     {
-        $this->_flashMessenger = $this->_helper->FlashMessenger;
+        //$this->_flashMessenger = $this->_helper->FlashMessenger;
     }
 
     public function indexAction()
@@ -81,7 +81,8 @@ class AuthController extends Zend_Controller_Action
                 $hash = $users->getHashByLogin($data['username']);
 
                 if ($hash) {
-                    $this->_flashMessenger->addMessage('Новый пароль выслан на указанный email');
+                    //$this->_flashMessenger->addMessage('Новый пароль выслан на указанный email');
+                    $this->view->message = 'Новый пароль выслан на указанный email';
                     $request = Zend_Controller_Front::getInstance()->getRequest();
                     $url = $request->getScheme() . '://'
                          . $request->getHttpHost()
@@ -91,7 +92,8 @@ class AuthController extends Zend_Controller_Action
                     $mail = new Application_Model_MailClass();
                     echo $mail->forgotPasswordMail();
 				} else {
-                    $this->_flashMessenger->addMessage('Указанный email в базе данных отсутствует');
+                    //$this->_flashMessenger->addMessage('Указанный email в базе данных отсутствует');
+                    $this->view->message = 'Указанный email в базе данных отсутствует';
                 }
                 echo '<pre>';
                 var_dump($url);
@@ -99,7 +101,7 @@ class AuthController extends Zend_Controller_Action
 			}
 		}
 
-        $this->view->message = $this->_flashMessenger->getMessages();
+        //$this->view->message = $this->_flashMessenger->getMessages();
     }
 
     public function recoveryAction()
