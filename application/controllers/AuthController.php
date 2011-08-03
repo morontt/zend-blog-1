@@ -81,7 +81,6 @@ class AuthController extends Zend_Controller_Action
                 $hash = $users->getHashByLogin($data['username']);
 
                 if ($hash) {
-                    //$this->_flashMessenger->addMessage('Новый пароль выслан на указанный email');
                     $this->view->message = 'Новый пароль выслан на указанный email';
                     $request = Zend_Controller_Front::getInstance()->getRequest();
                     $url = $request->getScheme() . '://'
@@ -90,18 +89,15 @@ class AuthController extends Zend_Controller_Action
                                                   'hash' => $hash['hash']), 'recovery');
 
                     $mail = new Application_Model_MailClass();
-                    echo $mail->forgotPasswordMail();
+                    $mail->forgotPasswordMail($request->getHttpHost(), $url);
+                    
 				} else {
-                    //$this->_flashMessenger->addMessage('Указанный email в базе данных отсутствует');
                     $this->view->message = 'Указанный email в базе данных отсутствует';
                 }
-                echo '<pre>';
-                var_dump($url);
-                echo '</pre>';
+                
 			}
 		}
 
-        //$this->view->message = $this->_flashMessenger->getMessages();
     }
 
     public function recoveryAction()
@@ -132,10 +128,6 @@ class AuthController extends Zend_Controller_Action
 			}
 		}
 
-        echo '<pre>';
-        var_dump($rightHash);
-        var_dump($hash);
-        echo '</pre>';
     }
 
 

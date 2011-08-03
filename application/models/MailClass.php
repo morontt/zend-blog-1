@@ -2,14 +2,22 @@
 
 class Application_Model_MailClass
 {
-    public function forgotPasswordMail()
+    public function forgotPasswordMail($host, $url)
     {
-        //$mail = new Zend_Mail();
-        //$mail->setBodyText('This is the text of the mail.');
-        //$mail->setFrom('support@zadachnik.info', 'Forgot');
-        //$mail->addTo('morontt@list.ru', 'Some Recipient');
-        //$mail->setSubject('TestSubject');
-        //$mail->send();
+
+$bodyText = <<<TEXT
+Здравствуйте. На ваш адрес отправлена ссылка для восстановления пароля на сайте http://$host
+Если письмо попало к вам случайно, то не предпринимайте ничего.
+
+Ссылка для восстановления пароля - $url
+TEXT;
+   
+        $mail = new Zend_Mail('UTF-8');
+        $mail->setBodyText($bodyText);
+        $mail->setFrom('support@' . $host, 'support@' . $host);
+        $mail->addTo('morontt@list.ru', 'morontt@list.ru');
+        $mail->setSubject($host . ' - Forgot Password');
+        $mail->send();
 
         return 'test';
     }
