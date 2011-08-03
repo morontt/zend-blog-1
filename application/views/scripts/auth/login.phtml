@@ -4,11 +4,19 @@
 <div class="strecord">
     <div class="theme">Авторизация</div>
     <div class="strloginform">
+    <?php if (!empty($this->messages)) { ?>
+        <div class="messages">
+            <?php foreach($this->messages as $message) {
+                    echo $message . '<br>';
+                } ?>
+        </div>
+    <?php } ?>
     <?php
-    if (isset($this->errorMessage)) {
-        echo $this->errorMessage;
-    }
-    echo $this->form; ?>
+        if (isset($this->errorMessage)) {
+            echo $this->errorMessage;
+        }
+        echo $this->form;
+    ?>
 
     <p><a href="<?php echo $this->url(array('module' => 'default',
                                             'controller' => 'auth',

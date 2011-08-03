@@ -2,11 +2,11 @@
 
 class AuthController extends Zend_Controller_Action
 {
-    //protected $_flashMessenger = null;
+    protected $_flashMessenger = null;
 
     public function init()
     {
-        //$this->_flashMessenger = $this->_helper->FlashMessenger;
+        $this->_flashMessenger = $this->_helper->FlashMessenger;
     }
 
     public function indexAction()
@@ -20,6 +20,8 @@ class AuthController extends Zend_Controller_Action
         $form = new Application_Form_LoginForm;
 		
         $this->view->form = $form;
+        
+        $this->view->messages = $this->_flashMessenger->getMessages();
 		
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
@@ -52,6 +54,11 @@ class AuthController extends Zend_Controller_Action
                 }
 				
 				$users->signinNewUser($data);
+                $this->_flashMessenger->addMessage('Вы успешно зарегистрировались.<br />
+                                    Используйте свой логин и пароль для входа в систему');
+
+                $mail = new Application_Model_MailClass();
+                $mail->RegistrationMail($data['username'], $data['password']);
 				
 				$this->_redirect('auth/login');
 			}
@@ -118,7 +125,7 @@ class AuthController extends Zend_Controller_Action
             if ($form->isValid($_POST)) {
 			    $data = $form->getValues();
                 if ($data['password'] != $data['verifypassword']) {
-                    $this->view->errorMessage = 'Введённые пароли не совпадают.</br>Попробуйте ещё раз.';
+                    $this->view->errorMessage = 'Введённые пароли не совпадают.<br />Попробуйте ещё раз.';
                     return;
                 }
                 $newPassword = $users->recoveryPassword($id, $data['password']);
