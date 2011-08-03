@@ -47,18 +47,22 @@ class IndexController extends Zend_Controller_Action
         //extract of all records
         if ($fetch == 'index') {
             $paginator = $topics->getAllTopic($this->_showHideTopic);
+            $this->view->browsertitle = ' - Cтраница ' . $page;
         }
         //extract of records by category
         if ($fetch == 'category') {
             $paginator = $topics->getTopicByCategoryId($id, $this->_showHideTopic);
+            $this->view->browsertitle = ' - Категория';
         }
         //extract of records by tag
         if ($fetch == 'tag') {
             $paginator = $topics->getTopicByTagId($id, $this->_showHideTopic);
+            $this->view->browsertitle = ' - Тег';
         }
         //extract of records by author
         if ($fetch == 'author') {
             $paginator = $topics->getTopicByUserId($id, $this->_showHideTopic);
+            $this->view->browsertitle = ' - Автор';
         }
         
         $paginator->setItemCountPerPage($this->_itemPerPage);
