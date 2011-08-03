@@ -89,7 +89,7 @@ class AuthController extends Zend_Controller_Action
                                                   'hash' => $hash['hash']), 'recovery');
 
                     $mail = new Application_Model_MailClass();
-                    $mail->forgotPasswordMail($request->getHttpHost(), $url);
+                    $mail->forgotPasswordMail($data['username'], $url);
                     
 				} else {
                     $this->view->message = 'Указанный email в базе данных отсутствует';
