@@ -38,12 +38,29 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $id = $this->_getParam('id', 0);
+        $id = $this->_getParam('id');
 		$page = $this->_getParam('page');
+        $fetch = $this->_getParam('fetch');
 		
 	    $topics = new Application_Model_DbTable_Topics();
+
+        //extract of all records
+        if ($fetch == 'index') {
+            $paginator = $topics->getAllTopic($this->_showHideTopic);
+        }
+        //extract of records by category
+        if ($fetch == 'category') {
+            $paginator = $topics->getTopicByCategoryId($id, $this->_showHideTopic);
+        }
+        //extract of records by tag
+        if ($fetch == 'tag') {
+            $paginator = $topics->getTopicByTagId($id, $this->_showHideTopic);
+        }
+        //extract of records by author
+        if ($fetch == 'author') {
+            $paginator = $topics->getTopicByUserId($id, $this->_showHideTopic);
+        }
         
-        $paginator = $topics->getTopicByCategoryId($id, $this->_showHideTopic);
         $paginator->setItemCountPerPage($this->_itemPerPage);
         $paginator->SetCurrentPageNumber($page);
         
@@ -72,48 +89,6 @@ class IndexController extends Zend_Controller_Action
 		    $this->gotoError404();
 		endif;
 
-    }
-
-    public function authorAction()
-    {
-        $id = $this->_getParam('id');
-		$page = $this->_getParam('page');
-
-        //if (!is_numeric($page))
-        //    $this->_redirect('/error/404');
-		
-	    $topics = new Application_Model_DbTable_Topics();
-		
-        $this->view->userId = $id;
-		$paginator = $topics->getTopicByUserId($id, $this->_showHideTopic);
-        $paginator->setItemCountPerPage($this->_itemPerPage);
-        $paginator->SetCurrentPageNumber($page);
-
-        if (count($paginator) < $page || $page < 1)
-            $this->gotoError404();
-
-		$this->view->paginator = $paginator;
-    }
-
-    public function tagAction()
-    {
-        $id = $this->_getParam('id');
-		$page = $this->_getParam('page');
-
-        //if (!is_numeric($page))
-        //    $this->_redirect('/error/404');
-		
-	    $topics = new Application_Model_DbTable_Topics();
-		
-        $this->view->tagId = $id;
-        $paginator = $topics->getTopicByTagId($id, $this->_showHideTopic);
-        $paginator->setItemCountPerPage($this->_itemPerPage);
-        $paginator->SetCurrentPageNumber($page);
-
-        if (count($paginator) < $page || $page < 1)
-            $this->gotoError404();
-
-		$this->view->paginator = $paginator;
     }
 
 }

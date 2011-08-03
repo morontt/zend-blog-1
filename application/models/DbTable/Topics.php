@@ -12,10 +12,22 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         
 		return $row;
     }
-	
+
+    public function getAllTopic($showHidden)
+    {
+        $select = $this->select();
+
+        if (!$showHidden) {
+            $select = $select->where('hide <> 1');
+        }
+
+        $select = $select->order('time_created DESC');
+
+		return Zend_Paginator::factory($select);
+    }
+
 	public function getTopicByCategoryId($id, $showHidden)
     {	
-		//Zend_Loader::loadClass('My_TreeCategory');
         $tree = new My_TreeCategory;
         
         $select = $this->select();
@@ -23,10 +35,8 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         if (!$showHidden) {
             $select = $select->where('hide <> 1');
         }
-            
-        if ($id) {
-            $select = $select->where('category_id = ?', $id);
-        }
+
+        $select = $select->where('category_id = ?', $id);
         
         $childCategory = $tree->allChild($id);
         if (!empty($childCategory)) {

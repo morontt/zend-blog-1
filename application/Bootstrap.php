@@ -22,7 +22,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                 array('module' => 'default',
                                                       'controller' => 'index', 
                                                       'action' => 'index',
-                                                      'page' => 1)));
+                                                      'page' => 1,
+                                                      'fetch' => 'index')));
         
         $router->addRoute('topic', new Zend_Controller_Router_Route('topic/:id',
                                                 array('module' => 'default',
@@ -33,19 +34,22 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                 array('module' => 'default',       
                                                       'controller' => 'index', 
                                                       'action' => 'index',
-                                                      'page' => 1)));
+                                                      'page' => 1,
+                                                      'fetch' => 'category')));
         
         $router->addRoute('tag', new Zend_Controller_Router_Route('tag/:id/page/:page',
                                                 array('module' => 'default',       
                                                       'controller' => 'index', 
-                                                      'action' => 'tag',
-                                                      'page' => 1)));
+                                                      'action' => 'index',
+                                                      'page' => 1,
+                                                      'fetch' => 'tag')));
         
         $router->addRoute('author', new Zend_Controller_Router_Route('author/:id/page/:page',
                                                 array('module' => 'default',
                                                       'controller' => 'index', 
-                                                      'action' => 'author',
-                                                      'page' => 1)));
+                                                      'action' => 'index',
+                                                      'page' => 1,
+                                                      'fetch' => 'author')));
         
         $router->addRoute('login', new Zend_Controller_Router_Route('login/',
                                                 array('module' => 'default',
