@@ -6,7 +6,7 @@ class Zend_View_Helper_ViewTags extends Zend_View_Helper_Abstract
 	{
 	    $result = NULL;
         $tags = new Application_Model_DbTable_RelationTopicTag();
-        $rows = $tags->getTags($topicId);
+        $rows = $tags->getArrayTags($topicId);
         
         if(!empty($rows))
         {

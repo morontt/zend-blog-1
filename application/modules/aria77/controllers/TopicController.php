@@ -70,6 +70,7 @@ class Aria77_TopicController extends Zend_Controller_Action
         $id = $this->_getParam('id', 0);
         
         $topic = new Application_Model_DbTable_Topics();
+        $tags = new Application_Model_DbTable_RelationTopicTag();
         $form = new Application_Form_Topic;
 		$form->submit->setLabel('Изменить запись');
         $this->view->form = $form;
@@ -89,6 +90,7 @@ class Aria77_TopicController extends Zend_Controller_Action
             }
         } else {
             $data = $topic->getTopicById($id)->toArray();
+            $data['tags'] = $tags->getStringTags($id);
             
             $form->populate($data);
         }

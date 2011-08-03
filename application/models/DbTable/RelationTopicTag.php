@@ -7,13 +7,7 @@ class Application_Model_DbTable_RelationTopicTag extends Zend_Db_Table_Abstract
     public function addRelation($tagString, $topicId)
     {
         $tags = new Application_Model_DbTable_Tags;
-//        $tags->setCountTags($data, 1);
-//
-//        foreach($data as $key => $value) {
-//            $row = array('post_id' => $topicId,
-//                          'tag_id' => $value);
-//            $this->insert($row);
-//        }
+        
         $tagsArray = explode(',', $tagString);
 
         function trimStringTag(&$item)
@@ -60,11 +54,27 @@ class Application_Model_DbTable_RelationTopicTag extends Zend_Db_Table_Abstract
         $this->delete('post_id = ' . $topicId);
     }
     
-    public function getTags($topicId)
+    public function getArrayTags($topicId)
     {
         $row = $this->fetchAll('post_id = ' . $topicId);
         
         return $row->toArray();
+    }
+
+    public function getStringTags($topicId)
+    {
+        $tags = new Application_Model_DbTable_Tags();
+        
+        $row = $this->fetchAll('post_id = ' . $topicId)->toArray();
+
+        $temp = array();
+        foreach ($row as $value) {
+            $temp[] = $tags->getById($value['tag_id'])->name;
+        }
+
+        $stringTags = implode(', ', $temp);
+
+        return $stringTags;
     }
     
 }
