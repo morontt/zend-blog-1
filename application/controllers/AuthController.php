@@ -2,10 +2,11 @@
 
 class AuthController extends Zend_Controller_Action
 {
+    protected $_flashMessenger = null;
 
     public function init()
     {
-    
+        $this->_flashMessenger = $this->_helper->FlashMessenger;
     }
 
     public function indexAction()
@@ -73,34 +74,32 @@ class AuthController extends Zend_Controller_Action
         $form = new Application_Form_ForgotPassword;
 		
         $this->view->form = $form;
-		
+
 		if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
 			    $data = $form->getValues();
                 $hash = $users->getHashByLogin($data['username']);
 
                 if ($hash) {
-                    $this->view->message = 'Новый пароль выслан на указанный email';
+                    $this->_flashMessenger->addMessage('Новый пароль выслан на указанный email');
                     $request = Zend_Controller_Front::getInstance()->getRequest();
                     $url = $request->getScheme() . '://'
                          . $request->getHttpHost()
                          . $this->view->url(array('id' => $hash['id'],
                                                   'hash' => $hash['hash']), 'recovery');
+
+                    $mail = new Application_Model_MailClass();
+                    echo $mail->forgotPasswordMail();
 				} else {
-                    $this->view->message = 'Указанный email в базе данных отсутствует';
+                    $this->_flashMessenger->addMessage('Указанный email в базе данных отсутствует');
                 }
                 echo '<pre>';
                 var_dump($url);
                 echo '</pre>';
 			}
 		}
-        
-        //$mail = new Zend_Mail();
-        //$mail->setBodyText('This is the text of the mail.');
-        //$mail->setFrom('support@zadachnik.info', 'Forgot');
-        //$mail->addTo('morontt@list.ru', 'Some Recipient');
-        //$mail->setSubject('TestSubject');
-        //$mail->send();
+
+        $this->view->message = $this->_flashMessenger->getMessages();
     }
 
     public function recoveryAction()

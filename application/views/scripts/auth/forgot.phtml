@@ -4,14 +4,15 @@
 <div class="strecord">
     <div class="theme">Восстановление пароля</div>
     <div class="strsigninform">
-    <?php if (!isset($this->message)) : ?>
+    <?php if (!empty($this->message)) { ?>
+        <div class="messages">
+            <?php foreach($this->message as $message) {
+                    echo $message . '<br>';
+                } ?>
+        </div>
+    <?php } ?>
     Введите email-адрес, указанный вами при регистрации.
-    <?php
-    endif;
-    if (isset($this->message)) {
-        echo $this->message;
-    }
-    echo $this->form; ?>
+    <?php echo $this->form; ?>
     </div>
 </div>
 </div>

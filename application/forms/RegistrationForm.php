@@ -32,7 +32,7 @@ class Application_Form_RegistrationForm extends Zend_Form
             'label' => 'Подтвердите, что вы не робот:',
             'captcha' => array(
                 'captcha' => 'Figlet',
-                'wordLen' => 4,
+                'wordLen' => 5,
                 'timeout' => 300)
             ));
         
