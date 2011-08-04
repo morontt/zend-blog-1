@@ -16,9 +16,6 @@ class My_TreeCategory
                 $childArray[$value->parent_id][] = $value->category_id;
         }
         
-        //echo '<pre>';
-        //echo print_r($childArray);
-        //echo '</pre>';
         $this->child = $childArray;
 
     }
