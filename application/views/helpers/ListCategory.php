@@ -3,19 +3,28 @@
 class Zend_View_Helper_ListCategory extends Zend_View_Helper_Abstract
 {
     public function listCategory()
-	{
-	    $result = '<div class="title">Категории:</div><p>';
-		
-		foreach ($this->view->nameCategory as $key => $value)
-		{
-		    $result .= '<a href="'.$this->view->url(array('module' => 'default',
-                                                      'controller' => 'index',
-                                                          'action' => 'index',
-                                                            'page' => 1,
-                                                              'id' => $key), 'category') . '">' . $value . '</a><br />';
+    {
+	    $arrayLinks = array();
+
+        foreach ($this->view->nameCategory as $key => $value) {
+            $link = '<a href="' . $this->view->url(array('id' => $key), 'category')
+                                . '">' . $value['name'] . '</a>';
+
+            $arrayLinks[] = array('id' => $key,
+                                  'parent_id' => $value['parent_id'],
+                                  'link' => $link);
         }
-		$result .= '</p>';
+
+        Zend_Debug::dump($arrayLinks); die;
+
+        $result = '<ul class="My_Navigation">' . PHP_EOL;
+
+        foreach ($arrayLinks as $value) {
+            $result .= '<li>' . $value['link'] . '</li>' . PHP_EOL;
+        }
+
+        $result .= '</ul>' . PHP_EOL;
 		
-		return $result;
-	}
+        return $result;
+    }
 }

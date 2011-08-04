@@ -2,27 +2,28 @@
 
 <div id="sidebar">
     <div class="title">Категории:</div>
-    <?php echo $this->partial('categoryNavigation.phtml', array('allCategory' => $this->nameCategory,
-                                                                    'baseUrl' => $this->baseUrl())); ?>
-    <div class="title">Теги:</div>    
+    <?php /*echo $this->partial('categoryNavigation.phtml', array('allCategory' => $this->nameCategory,
+                                                                    'baseUrl' => $this->baseUrl())); */ ?>
+    <?php echo $this->listCategory(); ?>
+    <div class="title">Теги:</div>
     <?php echo $this->listTags() ?>
 </div>
 <div id="strlist" class="left">
 <div class="strecord">
-	<div class="theme">
+    <div class="theme">
         <?php if ($this->topic->hide)
                     echo 'Hidden: '; ?>
-		<?php echo $this->topic->title; ?>
-	</div>
-	<div class="dateline">
+        <?php echo $this->topic->title; ?>
+    </div>
+    <div class="dateline">
         Автор: <a href="<?php echo $this->url(array('id' => $this->topic->user_id),'author');
-                         ?>"><?php echo $this->nameUser[$this->topic->user_id]; ?> </a><br/>
+                         ?>"><?php echo $this->nameUser[$this->topic->user_id]; ?></a><br/>
         <?php echo $this->dateTimeFormat($this->topic->time_created); ?>
     </div>
     <p><?php echo nl2br($this->topicPreview($this->topic['text_post'], 0, FALSE)); ?></p>
-	<p>Категория: <a href="<?php echo $this->url(array('id' => $this->topic->category_id),
+    <p>Категория: <a href="<?php echo $this->url(array('id' => $this->topic->category_id),
                                                 'category') ?>">
-	<?php echo $this->nameCategory[$this->topic->category_id]['name']; ?></a></p>
+    <?php echo $this->nameCategory[$this->topic->category_id]['name']; ?></a></p>
     <p><?php $tag = $this->viewTags($this->topic->post_id);
               if ($tag) echo $tag; ?></p>
 </div>
