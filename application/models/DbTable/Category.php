@@ -23,12 +23,12 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
         $data = $stmt->fetchAll();
         
 		foreach($data as $value_cat) {
-			$key = $value_cat['category_id'];
-			$arrayName[$key] = array('name'      => $value_cat['name'],
+            $key = $value_cat['category_id'];
+            $arrayName[$key] = array('name'      => $value_cat['name'],
                                      'parent_id' => $value_cat['parent_id']);
 		}
 		
-		return $arrayName;
+        return $arrayName;
 	}
 
     public function getById($id)

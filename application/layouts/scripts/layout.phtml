@@ -2,30 +2,29 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<?php echo $this->headTitle() . PHP_EOL; ?>
-	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/main_s.css'); ?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="morontt" />
+<?php echo $this->headTitle() . PHP_EOL; ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/main_s.css') . PHP_EOL; ?>
     
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<div id="sitename">
+    <div id="container">
+        <div id="header">
+            <div id="sitename">
                 <a href="<?php
                             echo $this->url(array('page' => 1), 'home');
                          ?>"><?php echo $this->layout()->title; ?></a>
-			</div>
-		</div>
-        <?php 
+            </div>
+        </div>
+        <?php
             echo $this->siteMenu();
             echo $this->layout()->content;
 		?>
         <div class="clearfoot"></div>
-		<?php //Zend_Debug::dump($_SERVER, $label=null, $echo=true); ?>
-		<div id="footer">
-		&copy; 2011 <a href="<?php echo $this->url(array('page' => 1), 'home'); ?>"><?php echo $this->layout()->title; ?></a>: Footer
-		</div>
-	</div>
+        <div id="footer">
+            &copy; 2011 <a href="<?php echo $this->url(array('page' => 1), 'home'); ?>"><?php echo $this->layout()->title; ?></a>: Footer
+        </div>
+    </div>
 </body>
 </html>
-
