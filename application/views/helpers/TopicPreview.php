@@ -4,7 +4,7 @@ class Zend_View_Helper_TopicPreview extends Zend_View_Helper_Abstract
 {
     public function LinksView($text)
     {
-        $text = preg_replace("#(^|[\s])((https?|ftp)://\S+[^\s.,>)\];'\"!?])#",'<a href="\\2">\\2</a>',$text);
+        $text = preg_replace("#(^|[\s])((https?|ftp)://\S+[^\s.,>)\];'\"!?])#",'\\1<a href="\\2">\\2</a>',$text);
         
         return $text;
     }
