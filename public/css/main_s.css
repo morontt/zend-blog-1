@@ -328,9 +328,16 @@ ul.Zend_Tag_Cloud li
     display: inline;
 }
 
-div.clearfoot
+div.comments
 {
-    clear: both;
+    position: relative;
+    top: 12px;
+    margin: 0 5px;
+	padding: 5px 10px;
+	background-color: #000000;
+	font-family: 'Consolas', monospace;
+    font-size: 12pt;
+	text-align: right;
 }
 
 div.messages

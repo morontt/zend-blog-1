@@ -15,7 +15,7 @@ class Zend_View_Helper_ListCategory extends Zend_View_Helper_Abstract
                                   'link' => $link);
         }
 
-        Zend_Debug::dump($arrayLinks); die;
+        //Zend_Debug::dump($arrayLinks); die;
 
         $result = '<ul class="My_Navigation">' . PHP_EOL;
 

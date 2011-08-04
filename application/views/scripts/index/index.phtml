@@ -9,25 +9,23 @@
 </div>
 <div id="strlist" class="left">
 <?php foreach ($this->paginator as $topic) : ?>
-    <div class="strecord">
-	    <div class="theme">
-            <?php if ($topic->hide)
-                    echo 'Hidden: '; ?>
-		    <a href="<?php echo $this->url(array('id' => $topic->post_id),
-                                                    'topic') ?>">
-			<?php echo $topic->title; ?></a>
-		</div>
-	    <div class="dateline">
-            Автор: <a href="<?php echo $this->url(array('id' => $topic->user_id), 'author');
-                        ?>"><?php echo $this->nameUser[$topic->user_id]; ?></a><br/>
-			<?php echo $this->dateTimeFormat($topic->time_created); ?>
-        </div>
-		<p><?php echo nl2br($this->topicPreview($topic->text_post, $topic->post_id, TRUE)); ?></p>
-		<p>Категория: <a href="<?php echo $this->url(array('id' => $topic->category_id), 'category') ?>">
-		<?php echo $this->nameCategory[$topic->category_id]['name']; ?></a></p>
-        <p><?php $tag = $this->viewTags($topic->post_id);
-                if ($tag) echo $tag; ?></p>
-	</div>
+<div class="strecord">
+    <div class="theme"><?php if ($topic->hide) echo 'Hidden: '; ?>
+        <a href="<?php echo $this->url(array('id' => $topic->post_id),
+                                                'topic') ?>"><?php echo $topic->title; ?></a>
+    </div>
+    <div class="dateline">
+        Автор: <a href="<?php echo $this->url(array('id' => $topic->user_id), 'author');
+                    ?>"><?php echo $this->nameUser[$topic->user_id]; ?></a><br/>
+        <?php echo $this->dateTimeFormat($topic->time_created); ?>
+    </div>
+    <p><?php echo nl2br($this->topicPreview($topic->text_post, $topic->post_id, TRUE)); ?></p>
+    <p>Категория: <a href="<?php echo $this->url(array('id' => $topic->category_id), 'category') ?>">
+    <?php echo $this->nameCategory[$topic->category_id]['name']; ?></a></p>
+    <p><?php $tag = $this->viewTags($topic->post_id);
+            if ($tag) echo $tag; ?></p>
+    <div class="comments"><a>0 комментариев</a> | <a>Оставить комментарий</a></div>
+</div>
 <?php endforeach; ?>
 
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'main_paginator.phtml'); ?>
