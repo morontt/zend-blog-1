@@ -4,17 +4,21 @@ class Zend_View_Helper_TopicPreview extends Zend_View_Helper_Abstract
 {
     public function LinksView($text)
     {
-        $text = preg_replace("#(https?|ftp)://\S+[^\s.,>)\];'\"!?]#",'<a href="\\0">\\0</a>',$text);
+        $text = preg_replace("#(^|[\s])((https?|ftp)://\S+[^\s.,>)\];'\"!?])#",'<a href="\\2">\\2</a>',$text);
         
         return $text;
     }
 
-    public function TopicPreview($topic, $topicId)
+    public function TopicPreview($topic, $topicId, $cut)
 	{
-		//$topic = $this->LinksView($topic);
+		$topic = $this->LinksView($topic);
 
-        $preview = explode('<!-- cut -->',$topic);
-		$newTopic = $preview[0];
+        if ($cut) {
+            $preview = explode('<!-- cut -->',$topic);
+            $newTopic = $preview[0];
+        } else {
+            $newTopic = $topic;
+        }
 		
 		if (isset($preview[1]))
 		{

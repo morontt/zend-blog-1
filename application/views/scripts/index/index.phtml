@@ -22,7 +22,7 @@
                         ?>"><?php echo $this->nameUser[$topic->user_id]; ?></a><br/>
 			<?php echo $this->dateTimeFormat($topic->time_created); ?>
         </div>
-		<p><?php echo $this->topicPreview(nl2br($topic->text_post), $topic->post_id); ?></p>
+		<p><?php echo nl2br($this->topicPreview($topic->text_post, $topic->post_id, TRUE)); ?></p>
 		<p>Категория: <a href="<?php echo $this->url(array('id' => $topic->category_id), 'category') ?>">
 		<?php echo $this->nameCategory[$topic->category_id]['name']; ?></a></p>
         <p><?php $tag = $this->viewTags($topic->post_id);
