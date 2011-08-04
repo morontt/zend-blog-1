@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
-WEBSITE:       http://zadachnik.info/
-LAST MODIFIED: July-15-2011
+WEBSITE:       http://morontt.info/
+LAST MODIFIED: Aug-04-2011
 *********************************************/
 
 /*******************
@@ -313,7 +313,7 @@ ul.My_Navigation
 {
     list-style-type: none;
     margin: 0;
-    padding: 0 0 0 15px;
+    padding: 0 0 0 10px;
 }
 
 ul.Zend_Tag_Cloud
