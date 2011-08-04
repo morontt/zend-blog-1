@@ -52,17 +52,17 @@ class IndexController extends Zend_Controller_Action
         //extract of records by category
         if ($fetch == 'category') {
             $paginator = $topics->getTopicByCategoryId($id, $this->_showHideTopic);
-            $this->view->browsertitle = ' - Категория';
+            $this->view->browsertitle = ' - Категория: ' . $this->view->nameCategory[$id]['name'];
         }
         //extract of records by tag
         if ($fetch == 'tag') {
             $paginator = $topics->getTopicByTagId($id, $this->_showHideTopic);
-            $this->view->browsertitle = ' - Тег';
+            $this->view->browsertitle = ' - Тег: ' . $this->view->nameTags[$id]['name'];
         }
         //extract of records by author
         if ($fetch == 'author') {
             $paginator = $topics->getTopicByUserId($id, $this->_showHideTopic);
-            $this->view->browsertitle = ' - Автор';
+            $this->view->browsertitle = ' - Автор: ' . $this->view->nameUser[$id];
         }
         
         $paginator->setItemCountPerPage($this->_itemPerPage);
