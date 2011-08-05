@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Aug-04-2011
+LAST MODIFIED: Aug-05-2011
 *********************************************/
 
 /*******************
@@ -263,13 +263,13 @@ div.dateline
 
 div.dateline a
 {
-	color: #ffcc33;
+	color: #FC3;
 	font-weight: bold
 }
 
 div.dateline a:hover
 {
-	color: #ff9933;
+	color: #F93;
 }
 
 div.theme
@@ -333,13 +333,23 @@ div.comments
     position: relative;
     top: 12px;
     margin: 0 5px;
-	padding: 5px 10px;
+	padding: 2px 10px;
 	background-color: #000000;
 	font-family: 'Consolas', monospace;
-    font-size: 12pt;
+    font-size: 11pt;
 	text-align: right;
 }
+/*
+div.comments a
+{
+    color: #FC3;
+}
 
+div.comments a:hover
+{
+    color: #F93;
+}
+*/
 div.messages
 {
     margin: 10px;

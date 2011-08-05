@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS `blog_posts2` (
   `post_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` mediumint(8) unsigned NOT NULL,
   `category_id` mediumint(8) unsigned NOT NULL,
-  `url` varchar(255) NOT NULL,
   `time_created` datetime NOT NULL,
   `hide` tinyint(1) NOT NULL,
   `title` varchar(255) NOT NULL,
