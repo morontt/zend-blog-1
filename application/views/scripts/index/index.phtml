@@ -2,8 +2,7 @@
 
 <div id="sidebar">
     <div class="title">Категории:</div>
-    <?php echo $this->partial('categoryNavigation.phtml', array('allCategory' => $this->nameCategory,
-                                                                    'baseUrl' => $this->baseUrl())); ?>
+    <?php echo $this->listCategory(); ?>
     <div class="title">Теги:</div>    
     <?php echo $this->listTags() ?>
 </div>
