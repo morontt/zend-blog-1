@@ -11,9 +11,11 @@
 <div id="strlist" class="left">
 <div class="strecord">
     <div class="theme">
-        <?php if ($this->topic->hide)
-                    echo 'Hidden: '; ?>
-        <?php echo $this->topic->title; ?>
+        <?php
+            if ($this->topic->hide) {
+                echo 'Hidden: ';
+            }
+            echo $this->topic->title . PHP_EOL; ?>
     </div>
     <div class="dateline">
         Автор: <a href="<?php echo $this->url(array('id' => $this->topic->user_id),'author');

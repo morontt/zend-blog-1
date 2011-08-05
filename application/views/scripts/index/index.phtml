@@ -10,8 +10,9 @@
 <div id="strlist" class="left">
 <?php foreach ($this->paginator as $topic) : ?>
 <div class="strecord">
-    <div class="theme"><?php if ($topic->hide) echo 'Hidden: '; ?>
-        <a href="<?php echo $this->url(array('id' => $topic->post_id),
+    <div class="theme">
+        <?php if ($topic->hide) echo 'Hidden: '; ?><a href="<?php
+                echo $this->url(array('id' => $topic->post_id),
                                                 'topic') ?>"><?php echo $topic->title; ?></a>
     </div>
     <div class="dateline">
