@@ -79,19 +79,38 @@ class IndexController extends Zend_Controller_Action
 		$id = $this->_getParam('id');
 		
         $topic = new Application_Model_DbTable_Topics();
+        $comments = new Application_Model_DbTable_Comments();
+        $form = new Application_Form_CommentForm;
 		
-		$topicRow = $topic->getTopicById($id);
+		$form->topicId->setValue($id);
+        
+        $topicRow = $topic->getTopicById($id);
 		
-        if ($topicRow):
-            if (!$topicRow->hide || ($topicRow->hide && $this->_showHideTopic)) :
+        if ($topicRow) {
+            if (!$topicRow->hide || ($topicRow->hide && $this->_showHideTopic)) {
                 $this->view->topic = $topicRow;
-            else :
+                $this->view->comments = $comments->getByTopicId($id);
+                $this->view->form = $form;
+            } else {
                 $this->gotoError404(); //сообщить, что доступ к записи закрыт
-            endif;
-		else:
+            }
+		} else {
 		    $this->gotoError404();
-		endif;
+		}
+    }
 
+    public function addcommentAction()
+    {
+        $comments = new Application_Model_DbTable_Comments();
+        $form = new Application_Form_CommentForm;
+
+		if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
+                $data = $form->getValues();
+                $this->view->data = $data;
+                $comments->saveComment($data);
+            }
+        }
     }
 
 }

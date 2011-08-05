@@ -24,14 +24,14 @@ class Application_Model_Acl extends Zend_Acl {
     public static function getUserType()
     {
         $auth = Zend_Auth::getInstance();
-        if($auth->hasIdentity()) :
+        if($auth->hasIdentity()) {
             $role = $auth->getIdentity()->user_type;
 
             $user = new Application_Model_DbTable_Users;
             $user->latestActivity($auth->getIdentity()->user_id);
-        else :
+        } else {
             $role = 'guest';
-        endif;
+        }
 
         return $role;
     }

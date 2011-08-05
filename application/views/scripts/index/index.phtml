@@ -1,4 +1,6 @@
-<?php $this->headTitle($this->layout()->title . $this->browsertitle); ?>
+<?php
+    $this->headTitle($this->layout()->title . $this->browsertitle);
+?>
 
 <div id="sidebar">
     <div class="title">Категории:</div>
@@ -7,12 +9,13 @@
     <?php echo $this->listTags() ?>
 </div>
 <div id="strlist" class="left">
-<?php foreach ($this->paginator as $topic) : ?>
+<?php
+    foreach ($this->paginator as $topic) {
+        $linkTopic = $this->url(array('id' => $topic->post_id), 'topic'); ?>
 <div class="strecord">
     <div class="theme">
         <?php if ($topic->hide) echo 'Hidden: '; ?><a href="<?php
-                echo $this->url(array('id' => $topic->post_id),
-                                                'topic') ?>"><?php echo $topic->title; ?></a>
+                echo $linkTopic; ?>"><?php echo $topic->title; ?></a>
     </div>
     <div class="dateline">
         Автор: <a href="<?php echo $this->url(array('id' => $topic->user_id), 'author');
@@ -24,9 +27,9 @@
     <?php echo $this->nameCategory[$topic->category_id]['name']; ?></a></p>
     <p><?php $tag = $this->viewTags($topic->post_id);
             if ($tag) echo $tag; ?></p>
-    <div class="comments"><a>0 комментариев</a> | <a>Оставить комментарий</a></div>
+    <div class="comments_link">0 комментариев | <a href="<?php echo $linkTopic . '#comment_add'; ?>">Оставить комментарий</a></div>
 </div>
-<?php endforeach; ?>
+<?php } ?>
 
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'main_paginator.phtml'); ?>
 </div>

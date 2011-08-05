@@ -1,0 +1,1 @@
+ALTER TABLE `blog_posts` ADD `count_comments` INT UNSIGNED NULL DEFAULT NULL;

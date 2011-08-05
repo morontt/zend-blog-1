@@ -26,6 +26,26 @@
     <?php echo $this->nameCategory[$this->topic->category_id]['name']; ?></a></p>
     <p><?php $tag = $this->viewTags($this->topic->post_id);
               if ($tag) echo $tag; ?></p>
-    <div class="comments"><a>0 комментариев</a> | <a>Оставить комментарий</a></div>
+    <div class="comments_link">0 комментариев | <a href="<?php
+        echo $this->url(array('id' => $this->topic->post_id), 'topic') . '/#comment_add'; ?>">Оставить комментарий</a></div>
 </div>
+</div>
+<div id="comment_box">
+    <div class="comment_item">
+        <div class="comment_title">123</div>
+        123
+    </div>
+    <div class="comment_item">
+        <div class="comment_title">546</div>
+        546
+    </div>
+    <div class="comment_item">
+        <div class="comment_title">789</div>
+        789
+    </div>
+    <?php Zend_Debug::dump(count($this->comments)); ?>
+    <div id="comment_add">
+    Добавить свой комментарий:
+    <?php echo $this->form; ?>
+    </div>
 </div>
