@@ -28,7 +28,7 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 
 	public function getTopicByCategoryId($id, $showHidden)
     {	
-        $tree = new My_TreeCategory;
+        $tree = new Application_Model_TreeCategory;
         
         $select = $this->select();
         
