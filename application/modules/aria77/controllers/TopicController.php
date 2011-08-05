@@ -6,9 +6,8 @@ class Aria77_TopicController extends Zend_Controller_Action
     
     public function init()
     {
-        //Zend_Loader::loadClass('My_Acl');
-        $acl = new My_Acl();
-        $role = My_Acl::getUserType();
+        $acl = new Application_Model_Acl();
+        $role = Application_Model_Acl::getUserType();
         
         if (!$acl->isAllowed($role,'controlPage','view')) {
             $this->_redirect('aria77/index/denied');

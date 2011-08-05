@@ -18,9 +18,8 @@ class IndexController extends Zend_Controller_Action
 
     public function init()
     {
-        //Zend_Loader::loadClass('My_Acl');
-        $acl = new My_Acl();
-        $role = My_Acl::getUserType();
+        $acl = new Application_Model_Acl();
+        $role = Application_Model_Acl::getUserType();
         
         $this->_showHideTopic = $acl->isAllowed($role,'showHideTopic','view');
 		
