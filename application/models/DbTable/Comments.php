@@ -60,6 +60,7 @@ class Application_Model_DbTable_Comments extends Zend_Db_Table_Abstract
                       'website'      => $formData['website'] ,
                       'text'         => $text,
                       'user_id'      => $userId,
+                      'ip_addr'      => $_SERVER['REMOTE_ADDR'],
                       'time_created' => date('Y-m-d H:i:s'));
 
         $commentId = $this->insert($data);

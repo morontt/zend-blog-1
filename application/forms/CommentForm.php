@@ -42,8 +42,8 @@ class Application_Form_CommentForm extends Zend_Form
         $textarea = new Zend_Form_Element_Textarea('comment_text');
         $textarea->setLabel('Текст комментария:')
                  ->setRequired(true)
-                 ->setAttribs(array('cols' => 76,
-                                    'rows' => 20,
+                 ->setAttribs(array('cols' => 66,
+                                    'rows' => 10,
                                     'wrap' => 'soft'))
                  ->addFilter('StringTrim');
         $this->addElement($textarea);

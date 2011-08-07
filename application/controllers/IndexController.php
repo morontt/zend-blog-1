@@ -46,7 +46,7 @@ class IndexController extends Zend_Controller_Action
         //extract of all records
         if ($fetch == 'index') {
             $paginator = $topics->getAllTopic($this->_showHideTopic);
-            $this->view->browsertitle = ' - Cтраница ' . $page;
+            //$this->view->browsertitle = ' - Cтраница ' . $page;
         }
         //extract of records by category
         if ($fetch == 'category') {

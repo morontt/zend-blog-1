@@ -31,19 +31,21 @@
 </div>
 </div>
 <div id="comment_box">
-    <div class="comment_item">
-        <div class="comment_title">123</div>
-        123
-    </div>
-    <div class="comment_item">
-        <div class="comment_title">546</div>
-        546
-    </div>
-    <div class="comment_item">
-        <div class="comment_title">789</div>
-        789
-    </div>
-    <?php Zend_Debug::dump(count($this->comments)); ?>
+    <?php if (count($this->comments)) { ?>
+    <?php   foreach ($this->comments as $comment) { ?>
+        <div class="comment_item">
+        <div class="comment_title"><?php
+            if (!empty($comment->user_id)) {
+                echo $this->nameUser[$comment->user_id];
+            } else {
+                echo $comment->name;
+            }
+            ?>
+        </div>
+            <?php echo $comment->text; ?>
+        </div>
+    <?php   } ?>
+    <?php } ?>
     <div id="comment_add">
     Добавить свой комментарий:
     <?php echo $this->form; ?>
