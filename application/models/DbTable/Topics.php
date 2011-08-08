@@ -204,5 +204,15 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $relation = new Application_Model_DbTable_RelationTopicTag();
         $relation->deleteRelation($id);
     }
-    
+
+    public function setCount($id, $delta)
+    {
+        $row = $this->fetchRow('post_id = '. $id);
+        $count = $row->count_comments;
+
+        $count += $delta;
+        $data = array('count_comments' => $count);
+        $this->update($data, 'post_id = ' . $id);
+
+    }
 }

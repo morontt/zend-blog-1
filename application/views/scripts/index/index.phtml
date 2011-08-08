@@ -27,7 +27,8 @@
     <?php echo $this->nameCategory[$topic->category_id]['name']; ?></a></p>
     <p><?php $tag = $this->viewTags($topic->post_id);
             if ($tag) echo $tag; ?></p>
-    <div class="comments_link">0 комментариев | <a href="<?php echo $linkTopic . '#comment_add'; ?>">Оставить комментарий</a></div>
+    <div class="comments_link"><?php echo $this->numberOfComments($topic->count_comments); ?> | <a href="<?php
+        echo $linkTopic . '#comment_add'; ?>">Оставить комментарий</a></div>
 </div>
 <?php } ?>
 
