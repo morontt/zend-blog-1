@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Aug-05-2011
+LAST MODIFIED: Aug-08-2011
 *********************************************/
 
 /*******************
@@ -362,10 +362,45 @@ div.comment_title
 	margin: 0;
 	padding: 5px;
 	background-color: #000;
-	/* font-size: 14pt;
+	font-size: 10pt;
 	font-family: "Georgia", serif;
-	font-style: italic; */
+	font-style: italic;
 	text-align: left;
+}
+
+div.comment_title a
+{
+	color: #FC3;
+	font-weight: bold
+}
+
+div.comment_title a:hover
+{
+	color: #F93;
+}
+
+div.comment_title a.notregistered
+{
+	color: #9C0;
+	font-weight: bold
+}
+
+div.comment_title a.notregistered:hover
+{
+	color: #690;
+}
+
+div.comment_datetime
+{
+	/* font-size: 10pt;
+    font-family: 'Georgia', serif;
+    font-style: italic; */
+    text-align: right;
+}
+
+div.comment_text
+{
+	margin: 10px 5px;
 }
 
 #comment_add

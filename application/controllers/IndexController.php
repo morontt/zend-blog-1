@@ -4,7 +4,7 @@ class IndexController extends Zend_Controller_Action
 {
 
     private $_showHideTopic = null;
-    private $_itemPerPage;
+    private $_config;
 
     protected function gotoError404()
     {
@@ -31,8 +31,8 @@ class IndexController extends Zend_Controller_Action
 		$this->view->nameTags = $tags->getNameTags();
 		$this->view->nameUser = $users->getNameUsers();
 
-        $config = $this->getInvokeArg('bootstrap')->getOptions();
-		$this->_itemPerPage = $config['items']['per']['page'];
+        $this->_config = $this->getInvokeArg('bootstrap')->getOptions();
+		//$this->_itemPerPage = $config['items']['per']['page'];
     }
 
     public function indexAction()
@@ -64,7 +64,7 @@ class IndexController extends Zend_Controller_Action
             $this->view->browsertitle = ' - Автор: ' . $this->view->nameUser[$id];
         }
         
-        $paginator->setItemCountPerPage($this->_itemPerPage);
+        $paginator->setItemCountPerPage($this->_config['items']['per']['page']);
         $paginator->SetCurrentPageNumber($page);
         
         if (count($paginator) < $page || $page < 1) {
@@ -77,6 +77,7 @@ class IndexController extends Zend_Controller_Action
     public function topicAction()
     {
 		$id = $this->_getParam('id');
+        $page = $this->_getParam('page');
 		
         $topic = new Application_Model_DbTable_Topics();
         $comments = new Application_Model_DbTable_Comments();
@@ -89,7 +90,12 @@ class IndexController extends Zend_Controller_Action
         if ($topicRow) {
             if (!$topicRow->hide || ($topicRow->hide && $this->_showHideTopic)) {
                 $this->view->topic = $topicRow;
-                $this->view->comments = $comments->getByTopicId($id);
+
+                $paginator = $comments->getByTopicId($id);
+                $paginator->setItemCountPerPage($this->_config['comments']['per']['page']);
+                $paginator->SetCurrentPageNumber($page);
+                $this->view->comments = $paginator;
+
                 $this->view->form = $form;
             } else {
                 $this->gotoError404(); //сообщить, что доступ к записи закрыт
@@ -111,6 +117,10 @@ class IndexController extends Zend_Controller_Action
                 $comments->saveComment($data);
             }
         }
+
+        $topicId = $this->_getParam('topicId');
+        $link = $this->view->url(array('id' => $topicId), 'topic');
+        $this->_redirect($link);
     }
 
 }

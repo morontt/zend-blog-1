@@ -31,21 +31,31 @@
 </div>
 </div>
 <div id="comment_box">
+    <?php echo $this->paginationControl($this->comments, 'Elastic', 'main_paginator.phtml'); ?>
     <?php if (count($this->comments)) { ?>
     <?php   foreach ($this->comments as $comment) { ?>
         <div class="comment_item">
         <div class="comment_title"><?php
-            if (!empty($comment->user_id)) {
-                echo $this->nameUser[$comment->user_id];
-            } else {
-                echo $comment->name;
+            if (!empty($comment->user_id)) { ?>
+                <a href="<?php echo $this->url(array('id' => $comment->user_id),'author'); ?>"><?php
+                        echo $this->nameUser[$comment->user_id]; ?></a>
+            <?php } else {
+                if (empty($comment->website)) {
+                    echo '<b>' . $comment->name . '</b>';
+                } else {
+                    echo '<a class="notregistered" href="' . $comment->website . '">' . $comment->name . '</a>';
+                }
             }
-            ?>
+            echo ' : '; ?>
+            <div class="comment_datetime"><?php echo $this->dateTimeFormat($comment->time_created); ?></div>
         </div>
+            <div class="comment_text">
             <?php echo $comment->text; ?>
+            </div>
         </div>
     <?php   } ?>
     <?php } ?>
+    <?php echo $this->paginationControl($this->comments, 'Elastic', 'main_paginator.phtml'); ?>
     <div id="comment_add">
     Добавить свой комментарий:
     <?php echo $this->form; ?>

@@ -25,10 +25,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                       'page' => 1,
                                                       'fetch' => 'index')));
         
-        $router->addRoute('topic', new Zend_Controller_Router_Route('topic/:id',
+        $router->addRoute('topic', new Zend_Controller_Router_Route('topic/:id/:page',
                                                 array('module' => 'default',
                                                       'controller' => 'index', 
-                                                      'action' => 'topic')));
+                                                      'action' => 'topic',
+                                                      'page' => 1)));
         
         $router->addRoute('category', new Zend_Controller_Router_Route('category/:id/page/:page',
                                                 array('module' => 'default',       
