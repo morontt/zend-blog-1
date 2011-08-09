@@ -27,7 +27,7 @@ class Application_Form_CommentForm extends Zend_Form
 
             $this->addElement('text', 'mail', array(
                 'label'      => 'E-mail:',
-                'required'   => true,
+                //'required'   => true,
                 'validators' => array('EmailAddress'),
                 'filters'    => array('StripTags', 'StringTrim')));
 

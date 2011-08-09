@@ -15,7 +15,7 @@ class Application_Model_DbTable_Comments extends Zend_Db_Table_Abstract
         $allowAttribs = array('src', 'href', 'width',
                               'height', 'title', 'target',
                               'alt', 'align', 'border', 'style');
-        $filter = new Zend_Filter_StripTags(array('allowTags' => $allowTags,
+        $filter = new Zend_Filter_StripTags(array('allowTags'    => $allowTags,
                                                   'allowAttribs' => $allowAttribs));
         $text = $filter->filter($text);
 
