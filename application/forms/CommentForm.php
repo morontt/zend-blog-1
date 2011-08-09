@@ -56,7 +56,7 @@ class Application_Form_CommentForm extends Zend_Form
             'captcha' => array(
                 'captcha' => 'Figlet',
                 'wordLen' => 4,
-                'timeout' => 300)
+                'timeout' => 1200)
             ));
 
         if (!$userReg) {

@@ -32,7 +32,6 @@ class IndexController extends Zend_Controller_Action
 		$this->view->nameUser = $users->getNameUsers();
 
         $this->_config = $this->getInvokeArg('bootstrap')->getOptions();
-		//$this->_itemPerPage = $config['items']['per']['page'];
     }
 
     public function indexAction()
@@ -78,6 +77,7 @@ class IndexController extends Zend_Controller_Action
     {
 		$id = $this->_getParam('id');
         $page = $this->_getParam('page');
+        $formData = $this->_getParam('formData');
 		
         $topic = new Application_Model_DbTable_Topics();
         $comments = new Application_Model_DbTable_Comments();
@@ -86,16 +86,18 @@ class IndexController extends Zend_Controller_Action
 		$form->topicId->setValue($id);
         
         $topicRow = $topic->getTopicById($id);
-		
+
+        if (!empty($formData)) {
+            $form->isValid($formData);
+        }
+
         if ($topicRow) {
             if (!$topicRow->hide || ($topicRow->hide && $this->_showHideTopic)) {
-                $this->view->topic = $topicRow;
-
                 $paginator = $comments->getByTopicId($id);
                 $paginator->setItemCountPerPage($this->_config['comments']['per']['page']);
                 $paginator->SetCurrentPageNumber($page);
+                $this->view->topic = $topicRow;
                 $this->view->comments = $paginator;
-
                 $this->view->form = $form;
             } else {
                 $this->gotoError404(); //сообщить, что доступ к записи закрыт
@@ -107,20 +109,23 @@ class IndexController extends Zend_Controller_Action
 
     public function addcommentAction()
     {
+        $topicId = $this->_getParam('topicId');
+
         $comments = new Application_Model_DbTable_Comments();
         $form = new Application_Form_CommentForm;
 
 		if ($this->getRequest()->isPost()) {
+            $data = $form->getValues();
             if ($form->isValid($_POST)) {
-                $data = $form->getValues();
                 $this->view->data = $data;
                 $comments->saveComment($data);
+                
+                $this->_redirect($this->view->url(array('id' => $topicId), 'topic'));
+            } else {
+                Zend_Controller_Action::_forward('topic', 'index', 'default', array('id'       => $topicId,
+                                                                                    'formData' => $data));
             }
         }
-
-        $topicId = $this->_getParam('topicId');
-        $link = $this->view->url(array('id' => $topicId), 'topic');
-        $this->_redirect($link);
     }
 
 }
