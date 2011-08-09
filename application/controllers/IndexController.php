@@ -87,6 +87,7 @@ class IndexController extends Zend_Controller_Action
         
         $topicRow = $topic->getTopicById($id);
 
+        Zend_Debug::dump($this->getRequest());
         if (!empty($formData)) {
             $form->isValid($formData);
         }
@@ -115,13 +116,14 @@ class IndexController extends Zend_Controller_Action
         $form = new Application_Form_CommentForm;
 
 		if ($this->getRequest()->isPost()) {
-            $data = $form->getValues();
             if ($form->isValid($_POST)) {
+                $data = $form->getValues();
                 $this->view->data = $data;
                 $comments->saveComment($data);
                 
                 $this->_redirect($this->view->url(array('id' => $topicId), 'topic'));
             } else {
+                $data = $form->getValues();
                 Zend_Controller_Action::_forward('topic', 'index', 'default', array('id'       => $topicId,
                                                                                     'formData' => $data));
             }
