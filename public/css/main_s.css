@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Aug-08-2011
+LAST MODIFIED: Aug-09-2011
 *********************************************/
 
 /*******************
@@ -421,6 +421,14 @@ div.messages
     color: #FFF;
 	background-color: #36C;
 	border: 1px solid #FFF;
+}
+
+#comment_add label.required
+{
+    background-image: url("/img/req_asterisk.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 24px;
 }
 
 #footer
