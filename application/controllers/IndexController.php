@@ -87,7 +87,6 @@ class IndexController extends Zend_Controller_Action
         
         $topicRow = $topic->getTopicById($id);
 
-        Zend_Debug::dump($this->getRequest());
         if (!empty($formData)) {
             $form->isValid($formData);
         }
