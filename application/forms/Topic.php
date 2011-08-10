@@ -27,8 +27,7 @@ class Application_Form_Topic extends Zend_Form
         $textarea->setLabel('Текст записи:')
                  ->setRequired(true)
                  ->setAttribs(array('cols' => 76,
-                                    'rows' => 20,
-                                    'wrap' => 'soft'))
+                                    'rows' => 20))
                  //->addFilter('StripTags')
                  ->addFilter('StringTrim');
 

@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Aug-09-2011
+LAST MODIFIED: Aug-10-2011
 *********************************************/
 
 /*******************
@@ -421,6 +421,13 @@ div.messages
     color: #FFF;
 	background-color: #36C;
 	border: 1px solid #FFF;
+}
+
+div.form_note
+{
+    padding: 10px 5px 15px 5px;
+    border-top: 1px dashed #FFF;
+    font-size: 11pt;
 }
 
 #comment_add label.required
