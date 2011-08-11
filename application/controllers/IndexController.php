@@ -89,6 +89,9 @@ class IndexController extends Zend_Controller_Action
 
         if (!empty($formData)) {
             $form->isValid($formData);
+            $this->view->formValid = 'false';
+        } else {
+            $this->view->formValid = 'true';
         }
 
         if ($topicRow) {

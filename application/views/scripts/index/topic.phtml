@@ -1,5 +1,11 @@
-<?php $this->headTitle($this->layout()->title . ' - ' . $this->topic->title); ?>
-
+<?php
+    $this->headTitle($this->layout()->title . ' - ' . $this->topic->title);
+    $this->headScript()->appendFile('/scripts/jquery-1.6.2.js',
+                                    'text/javascript', array());
+?>
+<div id="no-JavaScript">
+    Для корректной работы этой страницы требуется поддержка JavaScript в браузере.
+</div>
 <div id="sidebar">
     <div class="title">Категории:</div>
     <?php echo $this->listCategory(); ?>
@@ -59,12 +65,25 @@
     <?php   } ?>
     <?php } ?>
     <?php echo $this->paginationControl($this->comments, 'Elastic', 'main_paginator.phtml'); ?>
-    <div id="comment_add">
+    <div id="toggle_comment_add">
     Добавить свой комментарий:
-    <?php echo $this->form; ?>
-    <div class="form_note">
+    </div>
+    <div id="comment_add">
+        <?php echo $this->form; ?>
+        <div class="form_note">
         Поля, помеченные <img src="/img/req_asterisk.png" alt="asterisk" class="no-style" />, обязательны для заполнения.<br />
         Адрес электронной почты нигде не отображается, необходим только для обратной связи.
-    </div>
+        </div>
     </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#no-JavaScript').remove();
+    if (<?php echo $this->formValid; ?>) {
+        $('#comment_add').hide();
+    }
+    $('#toggle_comment_add').click(function() {
+        $('#comment_add').toggle();
+    });
+});
+</script>

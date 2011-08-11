@@ -54,9 +54,11 @@ class Application_Form_CommentForm extends Zend_Form
             'label' => 'Подтвердите, что вы не робот:',
             'captcha' => array(
                 'captcha' => 'Figlet',
-                'wordLen' => 4,
+                'wordLen' => 5,
+                //'useNumbers' => false,
                 'timeout' => 1200)
             ));
+        //Zend_Debug::dump($captcha); die;
 
         if (!$userReg) {
             $this->addElement($captcha);

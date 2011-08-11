@@ -12,10 +12,8 @@
     $this->headLink(array('rel'  => 'favicon',
                           'href' => '/img/favicon.ico',
                           'type' => 'image/x-icon'));
-    echo $this->headLink() . PHP_EOL; ?>
-<?php echo $this->headScript()->appendFile('/scripts/jquery-1.6.2.js',
-                                           'text/javascript',
-                                           array()) . PHP_EOL; ?>
+    echo $this->headLink() . PHP_EOL;
+    echo $this->headScript() . PHP_EOL; ?>
 </head>
 <body>
     <div id="container">
