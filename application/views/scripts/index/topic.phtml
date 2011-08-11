@@ -79,9 +79,9 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#no-JavaScript').remove();
-    if (<?php echo $this->formValid; ?>) {
-        $('#comment_add').hide();
-    }
+<?php if ($this->formHide) { ?>
+    $('#comment_add').hide();
+<?php } ?>
     $('#toggle_comment_add').click(function() {
         $('#comment_add').toggle();
     });

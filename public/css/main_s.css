@@ -445,6 +445,11 @@ div.comment_text
     font-size: 6pt;
 }
 
+#captcha-element .errors
+{
+    font-size: 12pt;
+}
+
 div.messages
 {
     margin: 10px;
