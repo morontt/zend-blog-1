@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Aug-10-2011
+LAST MODIFIED: Aug-11-2011
 *********************************************/
 
 /*******************
@@ -410,6 +410,11 @@ div.comment_text
 	background-color: #333;
 	text-align: left;
 	border: 1px solid #FFF;
+}
+
+#captcha-element
+{
+    font-size: 6pt;
 }
 
 div.messages
