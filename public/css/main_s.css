@@ -49,6 +49,12 @@ img
 	margin: 0 0 5px 10px;
 }
 
+img.no-style
+{
+    border: none;
+    background-color: transparent;
+}
+
 table
 {
     margin: 5px;
