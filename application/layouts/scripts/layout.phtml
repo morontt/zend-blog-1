@@ -2,12 +2,20 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="morontt" />
-<?php echo $this->headTitle() . PHP_EOL; ?>
-<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/main_s.css') . PHP_EOL; ?>
-<link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
-    
+<?php
+    $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')
+                     ->appendHttpEquiv('Content-Language', 'RU')
+                     ->appendName('author', 'morontt');
+    echo $this->headMeta() . PHP_EOL;
+    echo $this->headTitle() . PHP_EOL;
+    $this->headLink()->prependStylesheet('/css/main_s.css');
+    $this->headLink(array('rel'  => 'favicon',
+                          'href' => '/img/favicon.ico',
+                          'type' => 'image/x-icon'));
+    echo $this->headLink() . PHP_EOL; ?>
+<?php echo $this->headScript()->appendFile('/scripts/jquery-1.6.2.js',
+                                           'text/javascript',
+                                           array()) . PHP_EOL; ?>
 </head>
 <body>
     <div id="container">
