@@ -10,6 +10,7 @@
                 } ?>
         </div>
         <?php } ?>
+        <?php if (count($this->paginator)) { ?>
         <table>
         <tr>
             <th>Заголовок</th>
@@ -44,6 +45,9 @@
             $classTr = ($classTr == 'odd') ? 'even' : 'odd';
         } ?>
         </table>
+        <?php } else { ?>
+        <p>У вас ещё нет записей</p>
+        <?php } ?>
         <p><a href="<?php
                         echo $this->url(array(), 'addTopic');
                     ?>" class="button">Создать новую запись</a></p>

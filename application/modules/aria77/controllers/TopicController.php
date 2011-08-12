@@ -32,8 +32,16 @@ class Aria77_TopicController extends Zend_Controller_Action
 		$paginator->setItemCountPerPage($itemPerPage);
         $paginator->SetCurrentPageNumber($page);
 
-        if (count($paginator) < $page || $page < 1) {
-            $this->_redirect('/error/404');
+        if ((count($paginator) < $page && count($paginator) != 0) ||
+                $page < 1 ||
+                (count($paginator) == 0 && $page > 1)) {
+            $this->getResponse()->setHttpResponseCode(404);
+            $this->view->message = 'Страница не найдена';
+            $this->view->error404 = true;
+
+            return $this->_request->setModuleName('default')
+                                  ->setControllerName('error')
+                                  ->setActionName('error');
         }
         
         $this->view->messages = $this->_flashMessenger->getMessages();
@@ -108,7 +116,7 @@ class Aria77_TopicController extends Zend_Controller_Action
                 $topic->deleteTopic($id);
                 $this->_flashMessenger->addMessage('Запись удалена');
                 
-                $this->_redirect('aria77/topic');
+                $this->_redirect('/aria77/topic');
             } else {
                 $this->_redirect('/aria77/topic');
             }
