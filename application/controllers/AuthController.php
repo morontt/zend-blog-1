@@ -11,7 +11,7 @@ class AuthController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->_redirect('auth/login');
+        $this->_redirect($this->view->url(array(), 'login'));
     }
 
     public function loginAction()
@@ -60,7 +60,7 @@ class AuthController extends Zend_Controller_Action
                 $mail = new Application_Model_MailClass();
                 $mail->RegistrationMail($data['username'], $data['password']);
 				
-				$this->_redirect('auth/login');
+				$this->_redirect($this->view->url(array(), 'login'));
 			}
 		}
     }
@@ -72,7 +72,7 @@ class AuthController extends Zend_Controller_Action
 		
 		Zend_Auth::getInstance()->clearIdentity();
 		
-        $this->_redirect('auth/login');
+        $this->_redirect($this->view->url(array(), 'login'));
     }
 
     public function forgotAction()

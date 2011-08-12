@@ -2,10 +2,10 @@
     <div class="strecord">
     <div class="theme">Панель управления</div>
         <center><p>Доступ к странице запрещён</p>
-        <p><a href="<?php echo $this->url(array('module' => 'default',
-                                                'controller' => 'auth',
-                                                'action' => 'login'), 'login');
-                    ?>">Пройдите процедуру авторизации</a>
-        </p></center>
+        <?php if (!Zend_Auth::getInstance()->hasIdentity()) { ?>
+        <p><a href="<?php echo $this->url(array(), 'login');
+                    ?>">Пройдите процедуру авторизации</a></p>
+        <?php } ?>
+        </center>
     </div>
 </div>

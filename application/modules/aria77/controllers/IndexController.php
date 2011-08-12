@@ -12,6 +12,7 @@ class Aria77_IndexController extends Zend_Controller_Action
         $this->_accessControl = $acl->isAllowed($role,'controlPage','view');
         
         $this->view->editUser = $acl->isAllowed($role,'controlPage','editUser');
+        $this->view->edit = $acl->isAllowed($role,'controlPage','edit');
     }
 
     public function indexAction()

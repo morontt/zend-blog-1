@@ -4,23 +4,15 @@
     <div class="strecord">
         <div class="theme">Панель управления</div>
         <p><ul>
-            <li><a href="<?php echo $this->url(array('module' => 'aria77',
-                                                     'controller' => 'topic',
-                                                     'action' => 'index'), 'topicControl', TRUE);
+            <li><a href="<?php echo $this->url(array(), 'topicControl', TRUE);
                          ?>">Управление записями</a></li>
-            <li><a href="<?php echo $this->url(array('module' => 'aria77',
-                                                     'controller' => 'category',
-                                                     'action' => 'index'), 'categoryControl', TRUE);
+            <?php if ($this->edit) { ?><li><a href="<?php echo $this->url(array(), 'categoryControl', TRUE);
                          ?>">Управление категориями</a></li>
-            <li><a href="<?php echo $this->url(array('module' => 'aria77',
-                                                     'controller' => 'tag',
-                                                     'action' => 'index'), 'tagsControl', TRUE);
-                         ?>">Управление тегами</a></li>
-            <?php if ($this->editUser) : ?><li><a href="<?php
-                               echo $this->url(array('module' => 'aria77',
-                                                     'controller' => 'users',
-                                                     'action' => 'index'), 'usersControl', TRUE);
-                         ?>">Управление пользователями</a></li><?php endif; ?>
+            <li><a href="<?php echo $this->url(array(), 'tagsControl', TRUE);
+                         ?>">Управление тегами</a></li><?php } ?>
+            <?php if ($this->editUser) { ?><li><a href="<?php
+                               echo $this->url(array(), 'usersControl', TRUE);
+                         ?>">Управление пользователями</a></li><?php } ?>
         </ul></p>
     </div>
 </div>

@@ -7,7 +7,8 @@ class Application_Model_Acl extends Zend_Acl {
         $this->addRole(new Zend_Acl_Role('guest'));
         $this->addRole(new Zend_Acl_Role('member'), 'guest');
         $this->addRole(new Zend_Acl_Role('author'), 'member');
-        $this->addRole(new Zend_Acl_Role('admin'), 'author');
+        $this->addRole(new Zend_Acl_Role('redactor'), 'author');
+        $this->addRole(new Zend_Acl_Role('admin'), 'redactor');
 
         $this->add(new Zend_Acl_Resource('page'));
         $this->add(new Zend_Acl_Resource('controlPage'), 'page');
@@ -17,6 +18,8 @@ class Application_Model_Acl extends Zend_Acl {
         $this->allow('member', 'controlPage', 'view');
         $this->deny('guest', 'controlPage', 'editUser');
         $this->allow('admin', 'controlPage', 'editUser');
+        $this->deny('guest', 'controlPage', 'edit');
+        $this->allow('redactor', 'controlPage', 'edit');
         $this->deny('guest', 'showHideTopic', 'view');
         $this->allow('author', 'showHideTopic', 'view');
     }

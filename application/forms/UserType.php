@@ -12,7 +12,8 @@ class Application_Form_UserType extends Zend_Form
 
         $type->setLabel('Тип пользователя:')
              ->addMultiOptions(array('admin' => 'admin',
-                                    'member' => 'member',
+                                     'redactor' => 'redactor',
+                                     'member' => 'member',
                                      'guest' => 'guest'));
                                 
         $submit->setLabel('Отправить');

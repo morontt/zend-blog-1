@@ -9,7 +9,7 @@ class Aria77_TagController extends Zend_Controller_Action
         $acl = new Application_Model_Acl();
         $role = Application_Model_Acl::getUserType();
         
-        if (!$acl->isAllowed($role,'controlPage','view')) {
+        if (!$acl->isAllowed($role,'controlPage','edit')) {
             $this->_redirect('aria77/index/denied');
         }
 
