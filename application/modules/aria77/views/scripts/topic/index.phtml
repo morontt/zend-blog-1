@@ -20,10 +20,12 @@
         <th></th>
         </tr>
         <?php $classTr = 'odd';
-        foreach ($this->paginator as $topic)
-        { ?>
+        foreach ($this->paginator as $topic) { ?>
         <tr class="<?php echo $classTr; ?>">
-        <td><?php echo $topic->title; ?></td>
+        <td style="background-color: #222;"><a href="<?php
+            echo $this->url(array('id' => $topic->post_id), 'topic');
+        ?>"><?php
+            echo $topic->title; ?></a></td>
         <td><?php echo $this->nameCategory[$topic->category_id]; ?></td>
         <?php if ($topic->hide) : ?>
         <td>Да</td>

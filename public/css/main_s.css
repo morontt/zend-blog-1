@@ -273,13 +273,17 @@ div.dateline
 	text-align: right;
 }
 
-div.dateline a
+a.author
 {
-	color: #FC3;
+	font-size: 10pt;
+    font-family: "Georgia", serif;
+	font-style: italic;
+	text-align: right;
+    color: #FC3;
 	font-weight: bold
 }
 
-div.dateline a:hover
+a.author:hover
 {
 	color: #F93;
 }

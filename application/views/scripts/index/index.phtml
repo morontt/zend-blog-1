@@ -19,7 +19,7 @@
     </div>
     <div class="dateline">
         Автор: <a href="<?php echo $this->url(array('id' => $topic->user_id), 'author');
-                    ?>"><?php echo $this->nameUser[$topic->user_id]; ?></a><br/>
+                    ?>" class="author"><?php echo $this->nameUser[$topic->user_id]; ?></a><br/>
         <?php echo $this->dateTimeFormat($topic->time_created); ?>
     </div>
     <div class="topic-text">

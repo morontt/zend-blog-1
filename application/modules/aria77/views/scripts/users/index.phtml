@@ -25,22 +25,19 @@
         foreach ($this->paginator as $user)
         { ?>
         <tr class="<?php echo $classTr ?>">
-        <td><?php echo $user->username ?></td>
+            <td style="background-color: #222;"><a href="<?php
+            echo $this->url(array('id' => $user->user_id), 'author');
+        ?>" class="author"><?php
+            echo $user->username ?></a></td>
         <td><?php echo $user->login ?></td>
         <td><?php echo $user->user_type ?></td>
         <td><?php echo $this->dateTimeFormat($user->time_created) ?></td>
         <td><?php echo $this->dateTimeFormat($user->time_last) ?></td>
-        <td><a href="<?php echo $this->url(array('module' => 'aria77',
-                                                 'controller' => 'users',
-                                                 'action' => 'edit',
-                                                 'id' => $user->user_id),
+        <td><a href="<?php echo $this->url(array('id' => $user->user_id),
                                            'editUser'); ?>">Edit</a></td>
             
         <?php if ($user->user_id != 1) : ?>
-        <td><a href="<?php echo $this->url(array('module' => 'aria77',
-                                                 'controller' => 'users',
-                                                 'action' => 'delete',
-                                                 'id' => $user->user_id),
+        <td><a href="<?php echo $this->url(array('id' => $user->user_id),
                                           'deleteUser') ?>">Delete</a></td>
         <?php else : ?>
         <td>Delete</td>
