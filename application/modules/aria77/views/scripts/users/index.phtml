@@ -24,11 +24,16 @@
         $classTr = 'odd';
         foreach ($this->paginator as $user)
         { ?>
-        <tr class="<?php echo $classTr ?>">
+        <tr class="<?php echo $classTr ?>"><?php
+            if (isset($this->distinctUser[$user->user_id])) {
+            ?>
             <td style="background-color: #222;"><a href="<?php
             echo $this->url(array('id' => $user->user_id), 'author');
         ?>" class="author"><?php
             echo $user->username ?></a></td>
+            <?php } else { ?>
+            <td style="background-color: #222;"><?php echo $user->username ?></td>
+            <?php } ?>
         <td><?php echo $user->login ?></td>
         <td><?php echo $user->user_type ?></td>
         <td><?php echo $this->dateTimeFormat($user->time_created) ?></td>

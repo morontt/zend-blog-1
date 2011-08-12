@@ -116,6 +116,21 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 		return $paginator;
     }
     
+    public function getDistinctUser()
+    {
+        $data = $this->fetchAll($this->select()
+                                     ->distinct()
+                                     ->from($this->_name, 'user_id')
+                                );
+        
+        foreach ($data as $value) {
+            $result[] = $value['user_id'];
+        }
+        $result = array_flip($result);
+        
+        return $result;
+    }
+    
     public function htmlFilter($text)
     {
         $text = str_replace('<!-- cut -->', '30fefd0cd99b5', $text);

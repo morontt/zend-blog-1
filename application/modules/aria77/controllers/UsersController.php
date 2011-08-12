@@ -21,8 +21,10 @@ class Aria77_UsersController extends Zend_Controller_Action
         $page = $this->_getParam('page');
         
         $users = new Application_Model_DbTable_Users();
-		
-        $this->view->nameUsers = $users->getNameUsers();
+        $topics = new Application_Model_DbTable_Topics();
+        
+        $distinctUser = $topics->getDistinctUser();
+        $this->view->distinctUser = $distinctUser;
 
         $paginator = $users->getAllUsers();
 
