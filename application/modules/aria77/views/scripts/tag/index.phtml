@@ -39,11 +39,8 @@
         <?php endif; ?>
         </tr>
             
-        <?php if ($classTr == 'odd') :
-                $classTr = 'even';
-            else :
-                $classTr = 'odd';
-            endif;
+        <?php
+            $classTr = ($classTr == 'odd') ? 'even' : 'odd';
         } ?>
         </table>
         <p><a href="<?php echo $this->url(array('module' => 'aria77',

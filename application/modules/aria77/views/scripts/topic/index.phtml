@@ -12,53 +12,41 @@
         <?php } ?>
         <table>
         <tr>
-        <th>Заголовок</th>
-        <th>Категория</th>
-        <th>Скрытие</th>
-        <th>Дата создания</th>
-        <th></th>
-        <th></th>
+            <th>Заголовок</th>
+            <th>Категория</th>
+            <th>Скрытие</th>
+            <th>Дата создания</th>
+            <th></th>
+            <th></th>
         </tr>
         <?php $classTr = 'odd';
         foreach ($this->paginator as $topic) { ?>
-        <tr class="<?php echo $classTr; ?>">
-        <td style="background-color: #222;"><a href="<?php
-            echo $this->url(array('id' => $topic->post_id), 'topic');
-        ?>"><?php
+            <tr class="<?php echo $classTr; ?>">
+            <td style="background-color: #222;"><a href="<?php
+                echo $this->url(array('id' => $topic->post_id), 'topic');
+            ?>"><?php
             echo $topic->title; ?></a></td>
-        <td><?php echo $this->nameCategory[$topic->category_id]; ?></td>
-        <?php if ($topic->hide) : ?>
-        <td>Да</td>
-        <?php else : ?>
-        <td></td>
-        <?php endif; ?>
-        <td><?php echo $this->dateTimeFormat($topic->time_created); ?></td>
-        <td><a href="<?php echo $this->url(array('module' => 'aria77',
-                                                 'controller' => 'topic',
-                                                 'action' => 'edit',
-                                                 'id' => $topic->post_id),
-                                             'editTopic');
-                                            ?>">Edit</a></td>
-        <td><a href="<?php echo $this->url(array('module' => 'aria77',
-                                                 'controller' => 'topic',
-                                                 'action' => 'delete',
-                                                 'id' => $topic->post_id),
-                                             'deleteTopic');
-                                  ?>">Delete</a></td>
-        </tr>
+            <td><?php echo $this->nameCategory[$topic->category_id]; ?></td>
+            <?php if ($topic->hide) { ?>
+                <td>Да</td>
+            <?php } else { ?>
+                <td></td>
+            <?php } ?>
+            <td><?php echo $this->dateTimeFormat($topic->time_created); ?></td>
+            <td><a href="<?php
+                                echo $this->url(array('id' => $topic->post_id), 'editTopic');
+                         ?>">Edit</a></td>
+            <td><a href="<?php
+                            echo $this->url(array('id' => $topic->post_id), 'deleteTopic');
+                         ?>">Delete</a></td>
+            </tr>
         <?php
-            if ($classTr == 'odd') :
-                $classTr = 'even';
-            else :
-                $classTr = 'odd';
-            endif;
+            $classTr = ($classTr == 'odd') ? 'even' : 'odd';
         } ?>
         </table>
-        <p><a href="<?php echo $this->url(array('module' => 'aria77',
-                                                'controller' => 'topic',
-                                                'action' => 'add'),
-                                            'addTopic');
-                                            ?>" class="button">Создать новую запись</a></p>
+        <p><a href="<?php
+                        echo $this->url(array(), 'addTopic');
+                    ?>" class="button">Создать новую запись</a></p>
     </div>
     <?php echo $this->paginationControl($this->paginator, 'Elastic', 'main_paginator.phtml'); ?>
 </div>

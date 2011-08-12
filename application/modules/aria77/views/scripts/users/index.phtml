@@ -49,11 +49,7 @@
         <?php endif; ?>
         </tr>
         <?php
-            if ($classTr == 'odd') :
-                $classTr = 'even';
-            else :
-                $classTr = 'odd';
-            endif;
+            $classTr = ($classTr == 'odd') ? 'even' : 'odd';
         } ?>
         </table>
     </div>
