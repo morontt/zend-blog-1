@@ -77,6 +77,7 @@ class IndexController extends Zend_Controller_Action
     {
 		$id = $this->_getParam('id');
         $page = $this->_getParam('page');
+        $hide = $this->_getParam('hide');
         $formData = $this->_getParam('formData');
 		
         $topic = new Application_Model_DbTable_Topics();
@@ -91,7 +92,7 @@ class IndexController extends Zend_Controller_Action
             $form->isValid($formData);
             $this->view->formHide = FALSE;
         } else {
-            $this->view->formHide = TRUE;
+            $this->view->formHide = ($hide == 'hide') ? TRUE : FALSE;
         }
 
         if ($topicRow) {
