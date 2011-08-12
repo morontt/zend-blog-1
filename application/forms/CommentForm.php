@@ -35,7 +35,8 @@ class Application_Form_CommentForm extends Zend_Form
             $website->setLabel('Website:')
                     ->setRequired(false)
                     ->addFilter('StripTags')
-                    ->addFilter('StringTrim');
+                    ->addFilter('StringTrim')
+                    ->addValidator(new Application_Model_UriValidate());
             $this->addElement($website);
         }
 
