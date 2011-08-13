@@ -110,9 +110,9 @@ tr.even
 {
 	margin: 0px;
 	padding: 0px;
-	height: 262px;
+	height: 200px;
 	background-color: #000;
-	background-image: url("/img/Logo.png");
+	background-image: url("/img/Logotype.png");
 	background-repeat: no-repeat;
 	border: 1px solid #FFF;
 }
