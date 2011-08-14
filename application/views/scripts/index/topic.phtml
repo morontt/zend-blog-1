@@ -6,6 +6,9 @@
 <div id="no-JavaScript">
     Для корректной работы этой страницы требуется поддержка JavaScript в браузере.
 </div>
+<script type="text/javascript">
+    $('#no-JavaScript').remove();
+</script>
 <div id="sidebar">
     <div class="title">Категории:</div>
     <?php echo $this->listCategory(); ?>
@@ -79,7 +82,6 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#no-JavaScript').remove();
 <?php if ($this->formHide) { ?>
     $('#comment_add').hide();
 <?php } ?>
