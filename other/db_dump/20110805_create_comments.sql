@@ -9,4 +9,4 @@ CREATE TABLE `comments` (
 `ip_addr` VARCHAR( 15 ) NULL ,
 `time_created` DATETIME NOT NULL ,
 PRIMARY KEY ( `id` )
-) ENGINE = InnoDB;
+) ENGINE = MyISAM;
