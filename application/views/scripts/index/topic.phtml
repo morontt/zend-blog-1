@@ -8,7 +8,7 @@
     Для корректной работы этой страницы требуется поддержка JavaScript в браузере.
 </div>
 <script type="text/javascript">
-    $('#no-JavaScript').remove();
+    jQuery('#no-JavaScript').remove();
 </script>
 <div id="sidebar">
     <div class="title">Категории:</div>
@@ -86,12 +86,12 @@
     </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function() {
+jQuery(document).ready(function() {
 <?php if ($this->formHide) { ?>
-    $('#comment_add').hide();
+    jQuery('#comment_add').hide();
 <?php } ?>
-    $('#toggle_comment_add').click(function() {
-        $('#comment_add').slideToggle('slow');
+    jQuery('#toggle_comment_add').click(function() {
+        jQuery('#comment_add').slideToggle('slow');
     });
 });
 </script>
