@@ -6,16 +6,6 @@ class IndexController extends Zend_Controller_Action
     private $_showHideTopic = null;
     private $_config;
 
-    protected function gotoError404()
-    {
-        $this->getResponse()->setHttpResponseCode(404);
-        $this->view->message = 'Страница не найдена';
-        $this->view->error404 = true;
-
-        return $this->_request->setControllerName('error')
-                              ->setActionName('error');
-    }
-
     public function init()
     {
         $acl = new Application_Model_Acl();
@@ -32,6 +22,16 @@ class IndexController extends Zend_Controller_Action
 		$this->view->nameUser = $users->getNameUsers();
 
         $this->_config = $this->getInvokeArg('bootstrap')->getOptions();
+    }
+    
+    protected function gotoError404()
+    {
+        $this->getResponse()->setHttpResponseCode(404);
+        $this->view->message = 'Страница не найдена';
+        $this->view->error404 = true;
+
+        return $this->_request->setControllerName('error')
+                              ->setActionName('error');
     }
 
     public function indexAction()
