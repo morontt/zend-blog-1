@@ -96,7 +96,7 @@ class IndexController extends Zend_Controller_Action
         }
 
         if ($topicRow) {
-            if (!$topicRow->hide || ($topicRow->hide && $this->_showHideTopic)) {
+            if (!$topicRow->hide || $this->_showHideTopic) {
                 $paginator = $comments->getByTopicId($id);
                 $paginator->setItemCountPerPage($this->_config['comments']['per']['page']);
                 $paginator->SetCurrentPageNumber($page);
