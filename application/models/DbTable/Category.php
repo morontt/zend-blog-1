@@ -18,9 +18,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
     
     public function getNotEmpty()
 	{
-	    $select = $this->select()->where('count <> 0');
-        $stmt = $select->query();
-        $data = $stmt->fetchAll();
+        $data = $this->fetchAll($this->select()->where('count <> 0'));
         
 		foreach($data as $value_cat) {
             $key = $value_cat['category_id'];
@@ -58,6 +56,8 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
                'count' => 0,
                'parent_id' => $parent);
         $this->insert($data);
+        
+        $this->clearCacheCategory();
     }
     
     public function editCategory($id, $name, $parent, $oldparent)
@@ -81,6 +81,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
             $this->setCount($oldparent, - $delta);
             $this->setCount($parent, $delta);
         }
+        $this->clearCacheCategory();
 
         return TRUE;
     }
@@ -98,6 +99,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
             $del = $this->delete('category_id = ' . $id);
             $result = TRUE;
         }
+        $this->clearCacheCategory();
         
         return $result;
     }
@@ -115,7 +117,13 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
         if ($parentId) {
             $this->setCount($parentId, $delta);
         }
-
+        $this->clearCacheCategory();
+    }
+    
+    public function clearCacheCategory()
+    {
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache->remove('nameCategory');
     }
     
 }

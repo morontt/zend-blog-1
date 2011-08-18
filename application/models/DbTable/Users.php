@@ -94,7 +94,8 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 					         'user_type'     => 'member',
                              'ip_addr'       => $_SERVER['REMOTE_ADDR'],
                              'time_created'  => date('Y-m-d H:i:s'));
-				
+		$this->clearCacheUsers();
+        
         return $this->insert($newRecordDb);
 	}
 
@@ -111,6 +112,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
         if ($id != 1) {
             $del = $this->delete('user_id = ' . $id);
         }
+        $this->clearCacheUsers();
     }
     
     public function latestActivity($id)
@@ -164,6 +166,12 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
         }
 
         return $result;
+    }
+    
+    public function clearCacheUsers()
+    {
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache->remove('nameUsers');
     }
     
 }

@@ -13,9 +13,7 @@ class IndexController extends Zend_Controller_Action
         
         $this->_showHideTopic = $acl->isAllowed($role,'showHideTopic','view');
         
-        /*
-         * 
-        $frontendOptions = array('lifetime' => 7200,
+        $frontendOptions = array('lifetime' => NULL,
                                  'automatic_serialization' => true);
         $backendOptions = array('cache_dir' => '../cache/');
         $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
@@ -26,17 +24,22 @@ class IndexController extends Zend_Controller_Action
             $cacheNameTags = $tags->getNameTags();
             $cache->save($cacheNameTags, 'nameTags');
         }
-        *
-        */
-		
-		$category = new Application_Model_DbTable_Category();
-		$tags = new Application_Model_DbTable_Tags();
-		$users = new Application_Model_DbTable_Users();
-		
-		$this->view->nameCategory = $category->getNotEmpty();
-		$this->view->nameTags = $tags->getNameTags();
-        //$this->view->nameTags = $cacheNameTags;
-		$this->view->nameUser = $users->getNameUsers();
+        $cacheNameCategory = $cache->load('nameCategory');
+        if (!$cacheNameCategory) {
+            $category = new Application_Model_DbTable_Category();
+            $cacheNameCategory = $category->getNotEmpty();
+            $cache->save($cacheNameCategory, 'nameCategory');
+        }
+        $cacheNameUsers = $cache->load('nameUsers');
+        if (!$cacheNameUsers) {
+            $users = new Application_Model_DbTable_Users();
+            $cacheNameUsers = $users->getNameUsers();
+            $cache->save($cacheNameUsers, 'nameUsers');
+        }
+
+        $this->view->nameCategory = $cacheNameCategory;
+        $this->view->nameTags = $cacheNameTags;
+        $this->view->nameUser = $cacheNameUsers;
 
         $this->_config = $this->getInvokeArg('bootstrap')->getOptions();
     }
