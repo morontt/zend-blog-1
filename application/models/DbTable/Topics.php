@@ -187,7 +187,8 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $data = array('category_id' => $formData['category_id'],
                       'hide'        => $formData['hide'],
                       'title'       => $formData['title'],
-                      'text_post'   => $text);
+                      'text_post'   => $text,
+                      'last_update' => date('Y-m-d H:i:s'));
         
         $relation = new Application_Model_DbTable_RelationTopicTag();
         $relation->deleteRelation($id);
