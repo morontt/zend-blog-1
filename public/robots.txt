@@ -2,3 +2,4 @@ User-agent: *
 Disallow: /aria77/
 Disallow: /tag/
 Disallow: /category/
+Disallow: /author/
