@@ -14,6 +14,9 @@ class Aria77_TagController extends Zend_Controller_Action
         }
 
         $this->_flashMessenger = $this->_helper->FlashMessenger;
+        
+        //$cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        //$cache->remove('nameTags');
     }
 
     public function indexAction()

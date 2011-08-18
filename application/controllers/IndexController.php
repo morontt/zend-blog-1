@@ -12,6 +12,22 @@ class IndexController extends Zend_Controller_Action
         $role = Application_Model_Acl::getUserType();
         
         $this->_showHideTopic = $acl->isAllowed($role,'showHideTopic','view');
+        
+        /*
+         * 
+        $frontendOptions = array('lifetime' => 7200,
+                                 'automatic_serialization' => true);
+        $backendOptions = array('cache_dir' => '../cache/');
+        $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
+        
+        $cacheNameTags = $cache->load('nameTags');
+        if (!$cacheNameTags) {
+            $tags = new Application_Model_DbTable_Tags();
+            $cacheNameTags = $tags->getNameTags();
+            $cache->save($cacheNameTags, 'nameTags');
+        }
+        *
+        */
 		
 		$category = new Application_Model_DbTable_Category();
 		$tags = new Application_Model_DbTable_Tags();
@@ -19,6 +35,7 @@ class IndexController extends Zend_Controller_Action
 		
 		$this->view->nameCategory = $category->getNotEmpty();
 		$this->view->nameTags = $tags->getNameTags();
+        //$this->view->nameTags = $cacheNameTags;
 		$this->view->nameUser = $users->getNameUsers();
 
         $this->_config = $this->getInvokeArg('bootstrap')->getOptions();
