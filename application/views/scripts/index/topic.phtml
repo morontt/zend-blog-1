@@ -16,9 +16,13 @@
     <div class="title">Теги:</div>
     <?php echo $this->listTags() ?>
     <div class="title">Статистика:</div>
+    <?php if (getenv('APPLICATION_ENV') != 'development') { ?>
     <a href="http://s09.flagcounter.com/more/D9g3">
         <img src="http://s09.flagcounter.com/count/D9g3/bg_000000/txt_FFFFFF/border_FFFFFF/columns_2/maxflags_12/viewers_3/labels_1/pageviews_1/" alt="free counters" border="0" class="no-style">
     </a>
+    <?php } else { ?>
+    development
+    <?php } ?>
 </div>
 <div id="strlist" class="left">
 <div class="strecord">
