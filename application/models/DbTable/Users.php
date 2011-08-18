@@ -92,6 +92,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
                              'password_salt' => $dynamicSalt,
                              'password'      => $password,
 					         'user_type'     => 'member',
+                             'ip_addr'       => $_SERVER['REMOTE_ADDR'],
                              'time_created'  => date('Y-m-d H:i:s'));
 				
         return $this->insert($newRecordDb);
@@ -114,7 +115,8 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
     
     public function latestActivity($id)
     {
-        $data = array('time_last' => date('Y-m-d H:i:s'));
+        $data = array('time_last' => date('Y-m-d H:i:s'),
+                      'ip_last'   => $_SERVER['REMOTE_ADDR']);
         $this->update($data, 'user_id = ' . $id);
     }
 
