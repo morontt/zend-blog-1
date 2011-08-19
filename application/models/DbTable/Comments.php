@@ -4,24 +4,6 @@ class Application_Model_DbTable_Comments extends Zend_Db_Table_Abstract
 {
     protected $_name = 'comments';
 
-    public function htmlFilter($text)
-    {
-        $allowTags = array('a', 'b', 'i', 'u',
-                           's', 'p', 'img', 'br',
-                           'table', 'tr', 'td', 'th',
-                           'pre', 'center', 'ul',
-                           'ol', 'li', 'dl',
-                           'dt', 'dd', 'div');
-        $allowAttribs = array('src', 'href', 'width',
-                              'height', 'title', 'target',
-                              'alt', 'align', 'border', 'style');
-        $filter = new Zend_Filter_StripTags(array('allowTags'    => $allowTags,
-                                                  'allowAttribs' => $allowAttribs));
-        $text = $filter->filter($text);
-
-        return $text;
-    }
-
     public function getByTopicId($id)
     {
         $select = $this->select()
@@ -42,7 +24,9 @@ class Application_Model_DbTable_Comments extends Zend_Db_Table_Abstract
             $userId = NULL;
         }
 
-        $text = $this->htmlFilter($formData['comment_text']);
+        $filter = new Application_Model_HtmlFilterClass();
+        
+        $text = $filter->htmlFilter($formData['comment_text']);
 
         if (empty($formData['name'])) {
             $formData['name'] = NULL;

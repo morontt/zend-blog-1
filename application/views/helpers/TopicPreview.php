@@ -28,7 +28,7 @@ class Zend_View_Helper_TopicPreview extends Zend_View_Helper_Abstract
 			$newTopic .= $addUrl;
 		}
         
-        $newTopic = nl2br($newTopic);
+        //$newTopic = nl2br($newTopic);
         
 		return $newTopic;
 	}

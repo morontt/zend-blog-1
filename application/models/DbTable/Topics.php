@@ -135,19 +135,9 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
     {
         $text = str_replace('<!-- cut -->', '30fefd0cd99b5', $text);
         
-        $allowTags = array('a', 'b', 'i', 'u',
-                           's', 'p', 'img', 'br',
-                           'table', 'tr', 'td', 'th',
-                           'pre', 'center', 'ul',
-                           'ol', 'li', 'dl',
-                           'dt', 'dd', 'div', 'span');
-        $allowAttribs = array('src', 'href', 'width',
-                              'height', 'title', 'target',
-                              'alt', 'align', 'border',
-                              'style', 'class');
-        $filter = new Zend_Filter_StripTags(array('allowTags' => $allowTags,
-                                                  'allowAttribs' => $allowAttribs));
-        $text = $filter->filter($text);
+        $filter = new Application_Model_HtmlFilterClass();
+        
+        $text = $filter->htmlFilter($text);
         
         $text = str_replace('30fefd0cd99b5', '<!-- cut -->', $text);
         
