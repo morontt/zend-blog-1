@@ -40,6 +40,8 @@ class IndexController extends Zend_Controller_Action
         $this->view->nameCategory = $cacheNameCategory;
         $this->view->nameTags = $cacheNameTags;
         $this->view->nameUser = $cacheNameUsers;
+        
+        $this->view->showIpAddres = $acl->isAllowed($role, 'page', 'showIpAddres');
 
         $this->_config = $this->getInvokeArg('bootstrap')->getOptions();
     }

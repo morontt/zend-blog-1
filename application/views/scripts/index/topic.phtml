@@ -69,7 +69,10 @@
                     echo '<a class="notregistered" href="' . $comment->website . '">' . $comment->name . '</a>';
                 }
             }
-            echo ' : '; ?>
+            echo ' : ';
+            if ($this->showIpAddres) {
+                echo $comment->ip_addr;
+            } ?>
             <div class="comment_datetime"><?php echo $this->dateTimeFormat($comment->time_created); ?></div>
         </div>
             <div class="comment_text">
@@ -86,7 +89,8 @@
         <?php echo $this->form; ?>
         <div class="form_note">
         Поля, помеченные <img src="/img/req_asterisk.png" alt="asterisk" class="no-style" />, обязательны для заполнения.<br />
-        Адрес электронной почты нигде не отображается, необходим только для обратной связи.
+        Адрес электронной почты нигде не отображается, необходим только для обратной связи.<br/>
+        Веб-сайт вводите в формате http://example.org, при желании, конечно.
         </div>
     </div>
 </div>

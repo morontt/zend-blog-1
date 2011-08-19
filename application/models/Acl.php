@@ -22,6 +22,8 @@ class Application_Model_Acl extends Zend_Acl {
         $this->allow('redactor', 'controlPage', 'edit');
         $this->deny('guest', 'showHideTopic', 'view');
         $this->allow('author', 'showHideTopic', 'view');
+        $this->deny('guest', 'page', 'showIpAddres');
+        $this->allow('author', 'page', 'showIpAddres');
     }
 
     public static function getUserType()
