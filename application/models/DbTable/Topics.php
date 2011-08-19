@@ -140,10 +140,11 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
                            'table', 'tr', 'td', 'th',
                            'pre', 'center', 'ul',
                            'ol', 'li', 'dl',
-                           'dt', 'dd', 'div');
+                           'dt', 'dd', 'div', 'span');
         $allowAttribs = array('src', 'href', 'width',
                               'height', 'title', 'target',
-                              'alt', 'align', 'border', 'style');
+                              'alt', 'align', 'border',
+                              'style', 'class');
         $filter = new Zend_Filter_StripTags(array('allowTags' => $allowTags,
                                                   'allowAttribs' => $allowAttribs));
         $text = $filter->filter($text);
