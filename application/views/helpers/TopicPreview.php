@@ -22,13 +22,14 @@ class Zend_View_Helper_TopicPreview extends Zend_View_Helper_Abstract
 		
 		if (isset($preview[1]))
 		{
-		    $addUrl = '(<a href="' . $this->view->url(array('module' => 'default',
-                                                        'controller' => 'index',
-                                                            'action' => 'topic',
-                                                                'id' => $topicId), 'topic') . '">Читать далее...</a>)';
+		    $addUrl = '(<a href="' . $this->view->url(array('id' => $topicId),
+                                                        'topic') . '">Читать далее...</a>)';
 		    $newTopic .= '<br />';
 			$newTopic .= $addUrl;
 		}
+        
+        $newTopic = nl2br($newTopic);
+        
 		return $newTopic;
 	}
 }

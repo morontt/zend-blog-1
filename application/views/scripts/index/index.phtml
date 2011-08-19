@@ -32,7 +32,7 @@
         <?php echo $this->dateTimeFormat($topic->time_created); ?>
     </div>
     <div class="topic-text">
-        <?php echo nl2br($this->topicPreview($topic->text_post, $topic->post_id, TRUE)); ?>
+        <?php echo $this->topicPreview($topic->text_post, $topic->post_id, TRUE); ?>
     </div>
     <p>Категория: <a href="<?php echo $this->url(array('id' => $topic->category_id), 'category') ?>">
     <?php echo $this->nameCategory[$topic->category_id]['name']; ?></a></p>
