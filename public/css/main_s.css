@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Aug-12-2011
+LAST MODIFIED: Aug-19-2011
 *********************************************/
 
 /*******************
@@ -19,6 +19,7 @@ body
 	background-image: url("/img/blackgreenpatt.png");
 	background-repeat: repeat;
 	background-position: top left;
+    background-attachment: fixed;
 }
 
 a
