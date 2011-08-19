@@ -90,6 +90,17 @@
         </div>
     </div>
 </div>
+<?php if ($this->topic['syntax'] == 1) {
+        $this->headScript()->appendFile('/scripts/syntaxhighlighter/shCore.js',
+                                        'text/javascript', array())
+                           ->appendFile('/scripts/syntaxhighlighter/shBrushPhp.js',
+                                        'text/javascript', array());
+        $this->headLink()->appendStylesheet('/scripts/syntaxhighlighter/style/shCoreRDark.css')
+                         ->appendStylesheet('/scripts/syntaxhighlighter/style/shThemeRDark.css'); ?>
+<script type="text/javascript">
+    SyntaxHighlighter.all()
+</script>
+<?php } ?>
 <script type="text/javascript">
 jQuery(document).ready(function() {
 <?php if ($this->formHide) { ?>
