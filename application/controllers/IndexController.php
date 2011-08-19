@@ -13,7 +13,7 @@ class IndexController extends Zend_Controller_Action
         
         $this->_showHideTopic = $acl->isAllowed($role,'showHideTopic','view');
         
-        $frontendOptions = array('lifetime' => NULL,
+        $frontendOptions = array('lifetime' => 86400,
                                  'automatic_serialization' => true);
         $backendOptions = array('cache_dir' => '../cache/');
         $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);

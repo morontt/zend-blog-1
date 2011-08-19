@@ -33,21 +33,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                       'hide' => 'hide'),
                                                 array('hide' => '(hide|reply)')));
         
-        $router->addRoute('category', new Zend_Controller_Router_Route('category/:id/page/:page',
+        $router->addRoute('category', new Zend_Controller_Router_Route('category/:id/:page',
                                                 array('module' => 'default',       
                                                       'controller' => 'index', 
                                                       'action' => 'index',
                                                       'page' => 1,
                                                       'fetch' => 'category')));
         
-        $router->addRoute('tag', new Zend_Controller_Router_Route('tag/:id/page/:page',
+        $router->addRoute('tag', new Zend_Controller_Router_Route('tag/:id/:page',
                                                 array('module' => 'default',       
                                                       'controller' => 'index', 
                                                       'action' => 'index',
                                                       'page' => 1,
                                                       'fetch' => 'tag')));
         
-        $router->addRoute('author', new Zend_Controller_Router_Route('author/:id/page/:page',
+        $router->addRoute('author', new Zend_Controller_Router_Route('author/:id/:page',
                                                 array('module' => 'default',
                                                       'controller' => 'index', 
                                                       'action' => 'index',

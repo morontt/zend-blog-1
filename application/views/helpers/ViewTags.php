@@ -4,28 +4,37 @@ class Zend_View_Helper_ViewTags extends Zend_View_Helper_Abstract
 {
     public function viewTags($topicId)
 	{
-	    $result = NULL;
-        $tags = new Application_Model_DbTable_RelationTopicTag();
-        $rows = $tags->getArrayTags($topicId);
+	    $frontendOptions = array('lifetime' => 86400,
+                                 'automatic_serialization' => true);
+        $backendOptions = array('cache_dir' => '../cache/');
+        $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
         
-        if(!empty($rows))
-        {
-            $result = 'Теги: ';
-            foreach($rows as $key => $value)
+        $result = $cache->load('tagsByTopic_' . $topicId);
+        if (!$result) {
+            $result = 'empty';
+            $tags = new Application_Model_DbTable_RelationTopicTag();
+            $rows = $tags->getArrayTags($topicId);
+        
+            if(!empty($rows))
             {
-                $result .= '<a href="' . $this->view->url(array(
-                                        'module' => 'default',
-                                        'controller' => 'index',
-                                        'action' => 'tag',
-                                        'id' => $value['tag_id'],
-                                        'page' => 1), 'tag')
-                        . '">' . $this->view->nameTags[$value['tag_id']]['name'] . '</a>, ';
+                $linkTag = array();
+                $arrayTagCache = array();
+                foreach($rows as $key => $value)
+                {
+                    $linkTag[] = '<a href="' . $this->view->url(array('id' => $value['tag_id']), 'tag')
+                               . '">' . $this->view->nameTags[$value['tag_id']]['name'] . '</a>';
+                    $arrayTagCache[] = 'tag_id_' . $value['tag_id'];
+                }
+                $result = 'Теги: ' . implode(', ', $linkTag);
             }
-            
+            if ($result == 'empty') {
+                $cache->save($result, 'tagsByTopic_' . $topicId);
+            } else {
+                $cache->save($result, 'tagsByTopic_' . $topicId, $arrayTagCache);
+            }
         }
         
-        $length = strlen($result);
-        $result = substr($result, 0, $length - 2);
+        if ($result == 'empty') $result = NULL;
         
         return $result;
 	}

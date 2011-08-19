@@ -197,6 +197,8 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $category->setCount($categoryId, -1);
         $category->setCount($formData['category_id'], 1);
         
+        $this->clearCacheTagByTopic($id);
+        
         return $this->update($data, 'post_id = ' . $id);
     }
     
@@ -212,6 +214,8 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
             
         $relation = new Application_Model_DbTable_RelationTopicTag();
         $relation->deleteRelation($id);
+        
+        $this->clearCacheTagByTopic($id);
     }
 
     public function setCount($id, $delta)
@@ -222,6 +226,12 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $count += $delta;
         $data = array('count_comments' => $count);
         $this->update($data, 'post_id = ' . $id);
-
     }
+    
+    public function clearCacheTagByTopic($id)
+    {
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache->remove('tagsByTopic_' . $id);
+    }
+    
 }
