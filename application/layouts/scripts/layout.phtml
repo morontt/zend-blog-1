@@ -14,7 +14,7 @@
                           'type' => 'image/x-icon'));
     echo $this->headLink() . PHP_EOL;
     echo $this->headScript() . PHP_EOL; ?>
-<?php if (getenv('APPLICATION_ENV') != 'development') { ?>
+<?php if ((getenv('APPLICATION_ENV') != 'development') && $this->showGoogleAnalytic) { ?>
 <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-21476757-2']);
