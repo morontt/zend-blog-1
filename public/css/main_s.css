@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Aug-19-2011
+LAST MODIFIED: Aug-22-2011
 *********************************************/
 
 /*******************
@@ -36,7 +36,7 @@ a:hover
 p
 {
 	/* text-align: justify; */
-	margin: 5px 5px 10px 5px;
+	margin: 5px 0 10px 0;
     padding: 5px 0 0 0;
 }
 
@@ -47,7 +47,7 @@ img
 	background-color: #DAF29F;
 	border: 3px solid #4C6F0F;
 	padding: 3px;
-	margin: 0 0 5px 10px;
+/*	margin: 0 0 5px 10px; */
 }
 
 img.no-style
