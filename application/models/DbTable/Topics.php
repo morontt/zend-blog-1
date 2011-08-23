@@ -10,6 +10,11 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $id = (int)$id;
         $row = $this->fetchRow('post_id = ' . $id);
         
+        $countViews = $row->views;
+        
+        $data = array('views' => $countViews + 1);
+        $upd = $this->update($data, 'post_id = ' . $id);
+        
 		return $row;
     }
 
