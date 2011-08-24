@@ -63,4 +63,35 @@ REG;
 
         return 'test';
     }
+    
+    public function commentMail($topicId, $userId)
+    {   
+        $topics = new Application_Model_DbTable_Topics();
+        $row = $topics->fetchRow('post_id = ' . $topicId);
+        $author = $row->user_id;
+        
+        if ($author != $userId) {
+            $host = $this->_host;
+            $mailAddress = $this->_mailAddress;
+            $sender = $this->_sender;
+
+$bodyText = <<<TT
+Здравствуйте. Кто-то оставил комментарий в вашей записи.
+
+URL-записи: $host/topic/$topicId
+TT;
+            $users = new Application_Model_DbTable_Users();
+            $login = $users->getById($author)->login;
+
+            $mail = new Zend_Mail('UTF-8');
+            $mail->setBodyText($bodyText);
+            $mail->setFrom($mailAddress, $sender);
+            $mail->addTo($login, $login);
+            $mail->setSubject('Получен комментарий');
+            $mail->send();
+        }
+        
+        return 'test';
+    }
+    
 }

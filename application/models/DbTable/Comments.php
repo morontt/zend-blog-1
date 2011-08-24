@@ -15,7 +15,7 @@ class Application_Model_DbTable_Comments extends Zend_Db_Table_Abstract
 		return $paginator;
     }
 
-    public function saveComment($formData)
+    public function saveComment($formData, $mailSend)
     {
         $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity()) {
@@ -52,6 +52,11 @@ class Application_Model_DbTable_Comments extends Zend_Db_Table_Abstract
         if ($commentId) {
             $topic = new Application_Model_DbTable_Topics();
             $topic->setCount((int)$formData['topicId'], 1);
+        }
+        
+        if ($mailSend) {
+            $mail = new Application_Model_MailClass();
+            $mail->commentMail($formData['topicId'], $userId);
         }
 
         return $commentId;

@@ -148,7 +148,7 @@ class IndexController extends Zend_Controller_Action
             if ($form->isValid($_POST)) {
                 $data = $form->getValues();
                 $this->view->data = $data;
-                $comments->saveComment($data);
+                $comments->saveComment($data, $this->_config['comments']['sendmail']);
                 
                 $this->_redirect($this->view->url(array('id' => $topicId), 'topic'));
             } else {
