@@ -79,15 +79,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                       'controller' => 'auth',
                                                       'action' => 'recovery',
                                                       'id' => 1,
-                                                      'hash' => 1)));
-                                                      
+                                                      'hash' => 1)));                                      
         //ARIA77
-        
         $router->addRoute('aria77', new Zend_Controller_Router_Route('aria77/',
                                                 array('module' => 'aria77',
                                                       'controller' => 'index', 
                                                       'action' => 'index')));
-
         //ARIA77/TOPIC
         $router->addRoute('topicControl', new Zend_Controller_Router_Route('aria77/topic/:page',
                                                 array('module' => 'aria77',
@@ -109,7 +106,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                 array('module' => 'aria77',
                                                       'controller' => 'topic',
                                                       'action' => 'delete')));
-
         //ARIA77/CATEGORY
         $router->addRoute('categoryControl', new Zend_Controller_Router_Route('aria77/category/:page',
                                                 array('module' => 'aria77',
@@ -131,7 +127,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                 array('module' => 'aria77',
                                                       'controller' => 'category',
                                                       'action' => 'delete')));
-
         //ARIA77/TAGS
         $router->addRoute('tagsControl', new Zend_Controller_Router_Route('aria77/tag/:page',
                                                 array('module' => 'aria77',
@@ -153,7 +148,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                 array('module' => 'aria77',
                                                       'controller' => 'tag',
                                                       'action' => 'delete')));
-
         //ARIA77/USER
         $router->addRoute('usersControl', new Zend_Controller_Router_Route('aria77/users/:page',
                                                 array('module' => 'aria77',
@@ -170,6 +164,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                 array('module' => 'aria77',
                                                       'controller' => 'users',
                                                       'action' => 'delete')));
+        //FEEDS
+        $router->addRoute('feeds', new Zend_Controller_Router_Route('feed/:feed',
+                                                array('module' => 'default',
+                                                      'controller' => 'index', 
+                                                      'action' => 'feed',
+                                                      'feed' => 'rss'),
+                                                array('feed' => '(rss|atom)')));
         
         $controller->setRouter($router);
         
