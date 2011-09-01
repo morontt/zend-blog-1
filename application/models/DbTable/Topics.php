@@ -121,6 +121,21 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 		return $paginator;
     }
     
+    public function getFeedData()
+    {	
+        $result = array('title'       => 'Новые статьи',
+                        'link'        => $base_url . 'rss/recent-articles/',
+                        'description' => 'Новые статьи, добавленные на сайте.',
+                        'language'    => 'ru-ru',
+                        'charset'     => 'utf-8',
+                        'pubDate'     => $pubDate,
+                        'generator'   => '1000 specially trained monkeys',
+                        'entries'     => array()
+                );
+		
+		return $result;
+    }
+    
     public function getDistinctUser()
     {
         $data = $this->fetchAll($this->select()

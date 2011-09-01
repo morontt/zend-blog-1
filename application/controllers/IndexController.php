@@ -163,6 +163,11 @@ class IndexController extends Zend_Controller_Action
     {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
+        
+        $topics = new Application_Model_DbTable_Topics();
+        
+        $feedArray = $topics->getFeedData();
+        Zend_Debug::dump($feedArray);
     }
     
 }
