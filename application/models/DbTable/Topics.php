@@ -121,10 +121,12 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 		return $paginator;
     }
     
-    public function getFeedData()
+    public function getFeedData($feedType)
     {	
+        $baseUrl = 'http://morontt.info';
+        
         $result = array('title'       => 'Новые статьи',
-                        'link'        => $base_url . 'rss/recent-articles/',
+                        'link'        => $baseUrl . '/feed/' . $feedType,
                         'description' => 'Новые статьи, добавленные на сайте.',
                         'language'    => 'ru-ru',
                         'charset'     => 'utf-8',

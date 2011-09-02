@@ -161,12 +161,14 @@ class IndexController extends Zend_Controller_Action
     
     public function feedAction()
     {
+        $feedType = $this->_getParam('feed');
+        
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
         
         $topics = new Application_Model_DbTable_Topics();
         
-        $feedArray = $topics->getFeedData();
+        $feedArray = $topics->getFeedData($feedType);
         Zend_Debug::dump($feedArray);
     }
     
