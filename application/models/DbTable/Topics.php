@@ -146,14 +146,17 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         
         $entries = array();
         foreach ($topics as $topic) {
+            //time format
+            list($year, $month, $day, $hour, $min, $sec) = sscanf($topic->time_created, "%d-%d-%d %d:%d:%d");
+            $timestamp = mktime($hour, $min, $sec, $month, $day, $year);
             
-            if (empty($lastDate)) $lastDate = $topic->time_created;
+            if (empty($lastDate)) $lastDate = $timestamp;
             
             $item = array(
                 'title' => $topic->title,
                 'link' => $baseUrl . 'topic/' . $topic->post_id,
                 'description' => $topic->text_post,
-                'lastUpdate' => $topic->time_created,
+                'lastUpdate' => $timestamp,
                 'comments' => $baseUrl . 'topic/' . $topic->post_id,
             );
             $entries[] = $item;
