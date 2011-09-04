@@ -12,6 +12,14 @@
     $this->headLink(array('rel'  => 'shortcut icon',
                           'href' => '/favicon.ico',
                           'type' => 'image/x-icon'));
+    $this->headLink(array('rel'   => 'alternate',
+                          'title' => 'RSS',
+                          'href'  => 'http://' . $_SERVER['HTTP_HOST'] . '/feed/rss',
+                          'type'  => 'application/rss+xml'));
+    $this->headLink(array('rel'   => 'alternate',
+                          'title' => 'Atom',
+                          'href'  => 'http://' . $_SERVER['HTTP_HOST'] . '/feed/atom',
+                          'type'  => 'application/atom+xml'));
     echo $this->headLink() . PHP_EOL;
     echo $this->headScript() . PHP_EOL; ?>
 <?php if ((getenv('APPLICATION_ENV') != 'development') && $this->showGoogleAnalytic) { ?>

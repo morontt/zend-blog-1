@@ -169,7 +169,9 @@ class IndexController extends Zend_Controller_Action
         $topics = new Application_Model_DbTable_Topics();
         
         $feedArray = $topics->getFeedData($feedType);
-        Zend_Debug::dump($feedArray);
+        
+        $feed = Zend_Feed::importArray($feedArray, $feedType);
+        $feed->send();
     }
     
 }

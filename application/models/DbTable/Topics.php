@@ -123,17 +123,44 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
     
     public function getFeedData($feedType)
     {	
-        $baseUrl = 'http://morontt.info';
+        $request = Zend_Controller_Front::getInstance()->getRequest();
+        $baseUrl = $request->getScheme() . '://' . $request->getHttpHost() . '/';
+        $host = $request->getHttpHost();
         
-        $result = array('title'       => 'Новые статьи',
-                        'link'        => $baseUrl . '/feed/' . $feedType,
-                        'description' => 'Новые статьи, добавленные на сайте.',
+        $result = array('title'       => $host,
+                        'link'        => $baseUrl,
+                        'description' => $host . ' - последние записи',
                         'language'    => 'ru-ru',
                         'charset'     => 'utf-8',
-                        'pubDate'     => $pubDate,
-                        'generator'   => '1000 specially trained monkeys',
-                        'entries'     => array()
+                        'generator'   => 'Zend Framework Generator',
                 );
+        
+        $select = $this->select()
+                       ->where('hide <> 1')
+                       ->order('time_created DESC')
+                       ->limit(25);
+        
+        $topics = $this->fetchAll($select);
+        
+        $lastDate = '';
+        
+        $entries = array();
+        foreach ($topics as $topic) {
+            
+            if (empty($lastDate)) $lastDate = $topic->time_created;
+            
+            $item = array(
+                'title' => $topic->title,
+                'link' => $baseUrl . 'topic/' . $topic->post_id,
+                'description' => $topic->text_post,
+                'lastUpdate' => $topic->time_created,
+                'comments' => $baseUrl . 'topic/' . $topic->post_id,
+            );
+            $entries[] = $item;
+        }
+        
+        $result['entries'] = $entries;
+        $result['lastUpdate'] = $lastDate;
 		
 		return $result;
     }
