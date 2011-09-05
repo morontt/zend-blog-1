@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Aug-22-2011
+LAST MODIFIED: Sep-05-2011
 *********************************************/
 
 /*******************
@@ -447,7 +447,7 @@ div.comment_text
 
 #captcha-element
 {
-    font-size: 6pt;
+    font-size: 8pt;
 }
 
 #captcha-element .errors
@@ -486,7 +486,7 @@ div.form_note
     background-image: url("/img/alert_asterisk.png");
     background-repeat: no-repeat;
     background-position: 10px 50%;
-    margin: 10px 0 10px 0;
+    margin: 0 0 10px 0;
 	padding: 5px 5px 5px 36px;
 	background-color: #000;
 	border: 1px solid #FFF;

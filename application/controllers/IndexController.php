@@ -63,6 +63,7 @@ class IndexController extends Zend_Controller_Action
         $fetch = $this->_getParam('fetch');
         
         $this->view->showGoogleAnalytic = TRUE;
+        $this->view->syntaxHighlight = TRUE;
 		
 	    $topics = new Application_Model_DbTable_Topics();
 
@@ -105,6 +106,7 @@ class IndexController extends Zend_Controller_Action
         $formData = $this->_getParam('formData');
         
         $this->view->showGoogleAnalytic = TRUE;
+        $this->view->syntaxHighlight = TRUE;
 		
         $topic = new Application_Model_DbTable_Topics();
         $comments = new Application_Model_DbTable_Comments();

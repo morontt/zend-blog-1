@@ -1,15 +1,7 @@
 <?php
     $this->headTitle($this->layout()->title . ' - ' . $this->topic->title);
     $this->headMeta()->appendName('robots', 'index, follow');
-    $this->headScript()->appendFile('/scripts/jquery-1.6.2.js',
-                                    'text/javascript', array());
 ?>
-<div id="no-JavaScript">
-    Для корректной работы этой страницы требуется поддержка JavaScript в браузере.
-</div>
-<script type="text/javascript">
-    jQuery('#no-JavaScript').remove();
-</script>
 <div id="sidebar">
     <div class="title">Категории:</div>
     <?php echo $this->listCategory(); ?>
@@ -89,17 +81,6 @@
         </div>
     </div>
 </div>
-<?php if ($this->topic['syntax'] == 1) {
-        $this->headScript()->appendFile('/scripts/syntaxhighlighter/shCore.js',
-                                        'text/javascript', array())
-                           ->appendFile('/scripts/syntaxhighlighter/shBrushPhp.js',
-                                        'text/javascript', array());
-        $this->headLink()->appendStylesheet('/scripts/syntaxhighlighter/style/shCoreRDark.css')
-                         ->appendStylesheet('/scripts/syntaxhighlighter/style/shThemeRDark.css'); ?>
-<script type="text/javascript">
-    SyntaxHighlighter.all()
-</script>
-<?php } ?>
 <script type="text/javascript">
 jQuery(document).ready(function() {
 <?php if ($this->formHide) { ?>

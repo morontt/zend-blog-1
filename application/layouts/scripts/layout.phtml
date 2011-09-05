@@ -3,6 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
 <head>
 <?php
+    $this->headScript()->appendFile('/scripts/jquery-1.6.2.js',
+                                    'text/javascript', array());    
+    if ($this->syntaxHighlight) {
+        $this->headScript()->appendFile('/scripts/syntaxhighlighter/shCore.js',
+                                        'text/javascript', array())
+                           ->appendFile('/scripts/syntaxhighlighter/shBrushPhp.js',
+                                        'text/javascript', array());
+        $this->headLink()->appendStylesheet('/scripts/syntaxhighlighter/style/shCoreRDark.css')
+                         ->appendStylesheet('/scripts/syntaxhighlighter/style/shThemeRDark.css');
+    }
+?>
+<?php
     $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')
                      ->appendHttpEquiv('Content-Language', 'RU')
                      ->appendName('author', 'morontt');
@@ -37,6 +49,12 @@
 </head>
 <body>
     <div id="container">
+        <div id="no-JavaScript">
+            Для корректной работы этой страницы требуется поддержка JavaScript в браузере.
+        </div>
+        <script type="text/javascript">
+            jQuery('#no-JavaScript').remove();
+        </script>
         <div id="header">
             <div id="sitename">
                 <a href="<?php
@@ -53,5 +71,10 @@
             &#169; 2011 <a href="<?php echo $this->url(array('page' => 1), 'home'); ?>"><?php echo $this->layout()->title; ?></a>: Footer
         </div>
     </div>
+<?php if ($this->syntaxHighlight) { ?>
+<script type="text/javascript">
+    SyntaxHighlighter.all()
+</script>
+<?php } ?>
 </body>
 </html>
