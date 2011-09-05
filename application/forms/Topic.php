@@ -12,7 +12,7 @@ class Application_Form_Topic extends Zend_Form
         $categoryId = new Zend_Form_Element_Select('category_id');
 //        $tagSelect = new Zend_Form_Element_Multiselect('tagSelect');
         $tagString = new Zend_Form_Element_Text('tags');
-        $codeSyntax = new Zend_Form_Element_Checkbox('syntax');
+//        $codeSyntax = new Zend_Form_Element_Checkbox('syntax');
         $hide = new Zend_Form_Element_Select('hide');
             
         $submit = new Zend_Form_Element_Submit('submit');
@@ -55,8 +55,8 @@ class Application_Form_Topic extends Zend_Form
 //                  ->setAttrib('size', 8)
 //                  ->addMultiOptions($dataTags);
         
-        $codeSyntax->setLabel('Подсветка кода:');
-        
+//        $codeSyntax->setLabel('Подсветка кода:');
+//        
         $hide->setLabel('Скрытие:');
         $hide->addMultiOption('0', 'Видно всем')
              ->addMultiOption('1', 'Скрыто');
@@ -65,7 +65,7 @@ class Application_Form_Topic extends Zend_Form
 //                                 $tagSelect, $hide, $submit));
 
         $this->addElements(array($title, $textarea, $tagString, $categoryId,
-                                 $codeSyntax, $hide, $submit));
+                                 $hide, $submit));
     }
 
 

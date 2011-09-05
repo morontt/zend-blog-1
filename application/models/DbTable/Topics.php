@@ -209,7 +209,8 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
                       'text_post'    => $text,
                       'user_id'      => $userId,
                       'time_created' => date('Y-m-d H:i:s'),
-                      'syntax'       => $formData['syntax']);
+                      //'syntax'       => $formData['syntax']
+                );
         
         $topicId = $this->insert($data);
         
@@ -233,7 +234,8 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
                       'title'       => $formData['title'],
                       'text_post'   => $text,
                       'last_update' => date('Y-m-d H:i:s'),
-                      'syntax'      => $formData['syntax']);
+                      //'syntax'      => $formData['syntax']
+                );
         
         $relation = new Application_Model_DbTable_RelationTopicTag();
         $relation->deleteRelation($id);
