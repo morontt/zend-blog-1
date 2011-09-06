@@ -1,6 +1,10 @@
 <?php
     $this->headTitle($this->layout()->title . ' - ' . $this->topic->title);
-    $this->headMeta()->appendName('robots', 'index, follow');
+    if ($this->robots) {
+        $this->headMeta()->appendName('robots', 'index, follow');
+    } else {
+        $this->headMeta()->appendName('robots', 'noindex, follow');
+    }
 ?>
 <div id="sidebar">
     <div class="title">Категории:</div>

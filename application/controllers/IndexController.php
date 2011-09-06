@@ -105,6 +105,9 @@ class IndexController extends Zend_Controller_Action
         $hide = $this->_getParam('hide');
         $formData = $this->_getParam('formData');
         
+        $request = $this->getRequest()->getRequestUri();
+        $this->view->robots = strpos($request, 'reply') ? FALSE : TRUE;
+        
         $this->view->showGoogleAnalytic = TRUE;
         $this->view->syntaxHighlight = TRUE;
 		
