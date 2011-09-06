@@ -153,11 +153,12 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
             if (empty($lastDate)) $lastDate = $timestamp;
             
             $item = array(
-                'title' => $topic->title,
-                'link' => $baseUrl . 'topic/' . $topic->post_id,
+                'title'       => $topic->title,
+                'link'        => $baseUrl . 'topic/' . $topic->post_id,
                 'description' => $topic->text_post,
-                'lastUpdate' => $timestamp,
-                'comments' => $baseUrl . 'topic/' . $topic->post_id,
+                'lastUpdate'  => $timestamp,
+                'comments'    => $baseUrl . 'topic/' . $topic->post_id,
+                'guid'        => 'topic_' . $topic->post_id
             );
             $entries[] = $item;
         }
