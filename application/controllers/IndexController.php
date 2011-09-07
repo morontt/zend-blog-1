@@ -5,6 +5,7 @@ class IndexController extends Zend_Controller_Action
 
     private $_showHideTopic = null;
     private $_config;
+    private $_cache;
 
     public function init()
     {
@@ -13,10 +14,12 @@ class IndexController extends Zend_Controller_Action
         
         $this->_showHideTopic = $acl->isAllowed($role,'showHideTopic','view');
         
-        $frontendOptions = array('lifetime' => 86400,
+        $frontendOptions = array('lifetime' => 345600,
                                  'automatic_serialization' => true);
         $backendOptions = array('cache_dir' => '../cache/');
         $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
+        
+        $this->_cache = $cache;
         
         $cacheNameTags = $cache->load('nameTags');
         if (!$cacheNameTags) {
@@ -171,9 +174,16 @@ class IndexController extends Zend_Controller_Action
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
         
-        $topics = new Application_Model_DbTable_Topics();
+        $nameCacheFeed = 'Feed_' . $feedType;
         
-        $feedArray = $topics->getFeedData($feedType);
+        $cacheFeed = $this->_cache->load($nameCacheFeed);
+        if (!$cacheNameTags) {
+            $topics = new Application_Model_DbTable_Topics();
+            $cacheFeed = $topics->getFeedData($feedType);
+            $this->_cache->save($cacheFeed, $nameCacheFeed);
+        }
+        
+        $feedArray = $cacheFeed;
         
         $feed = Zend_Feed::importArray($feedArray, $feedType);
         $feed->send();

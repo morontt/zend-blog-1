@@ -223,6 +223,8 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $category = new Application_Model_DbTable_Category;
         $category->setCount($formData['category_id'], 1);
         
+        $this->clearCacheFeed();
+        
         return $topicId;
     }
     
@@ -253,6 +255,7 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $category->setCount($formData['category_id'], 1);
         
         $this->clearCacheTagByTopic($id);
+        $this->clearCacheFeed();
         
         return $this->update($data, 'post_id = ' . $id);
     }
@@ -271,6 +274,7 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $relation->deleteRelation($id);
         
         $this->clearCacheTagByTopic($id);
+        $this->clearCacheFeed();
     }
 
     public function setCount($id, $delta)
@@ -287,6 +291,13 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
     {
         $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
         $cache->remove('tagsByTopic_' . $id);
+    }
+    
+    public function clearCacheFeed()
+    {
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache->remove('Feed_rss');
+        $cache->remove('Feed_atom');
     }
     
 }
