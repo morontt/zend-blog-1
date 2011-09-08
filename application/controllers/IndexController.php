@@ -177,7 +177,7 @@ class IndexController extends Zend_Controller_Action
         $nameCacheFeed = 'Feed_' . $feedType;
         
         $cacheFeed = $this->_cache->load($nameCacheFeed);
-        if (!$cacheNameTags) {
+        if (!$cacheFeed) {
             $topics = new Application_Model_DbTable_Topics();
             $cacheFeed = $topics->getFeedData($feedType);
             $this->_cache->save($cacheFeed, $nameCacheFeed);
