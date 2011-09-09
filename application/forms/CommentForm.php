@@ -19,6 +19,7 @@ class Application_Form_CommentForm extends Zend_Form
             $name = new Zend_Form_Element_Text('name');
             $name->setLabel('Имя:')
                  ->setRequired(true)
+                 ->setAttrib('placeholder', 'Nickname')
                  ->addFilter('StripTags')
                  ->addFilter('StringTrim')
                  ->addValidator('NotEmpty');
@@ -29,11 +30,13 @@ class Application_Form_CommentForm extends Zend_Form
                 'label'      => 'E-mail:',
                 //'required'   => true,
                 'validators' => array('EmailAddress'),
+                'attribs'    => array('placeholder' => 'mail@example.org'),
                 'filters'    => array('StripTags', 'StringTrim')));
 
             $website = new Zend_Form_Element_Text('website');
             $website->setLabel('Website:')
                     ->setRequired(false)
+                    ->setAttrib('placeholder', 'http://example.org')
                     ->addFilter('StripTags')
                     ->addFilter('StringTrim')
                     ->addValidator(new Application_Model_UriValidate());
