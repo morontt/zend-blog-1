@@ -19,7 +19,7 @@ class Application_Form_CommentForm extends Zend_Form
             $name = new Zend_Form_Element_Text('name');
             $name->setLabel('Имя:')
                  ->setRequired(true)
-                 ->setAttrib('placeholder', 'Nickname')
+                 ->setAttrib('placeholder', 'nickname')
                  ->addFilter('StripTags')
                  ->addFilter('StringTrim')
                  ->addValidator('NotEmpty');
