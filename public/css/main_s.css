@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Sep-05-2011
+LAST MODIFIED: Sep-14-2011
 *********************************************/
 
 /*******************
@@ -429,6 +429,7 @@ div.comment_text
     font-size: 13pt;
 	text-align: left;
 	border: 1px solid #FFF;
+    cursor: pointer;
 }
 
 #toggle_comment_add:hover
