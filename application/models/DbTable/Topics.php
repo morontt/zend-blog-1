@@ -204,12 +204,15 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         
         $text = $this->htmlFilter($formData['text_post']);
         
+        $dateTime = date('Y-m-d H:i:s');
+        
         $data = array('category_id'  => $formData['category_id'],
                       'hide'         => $formData['hide'],
                       'title'        => $formData['title'],
                       'text_post'    => $text,
                       'user_id'      => $userId,
-                      'time_created' => date('Y-m-d H:i:s'),
+                      'time_created' => $dateTime,
+                      'last_update'  => $dateTime,
                       //'syntax'       => $formData['syntax']
                 );
         
