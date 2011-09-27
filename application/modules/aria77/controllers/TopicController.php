@@ -64,6 +64,8 @@ class Aria77_TopicController extends Zend_Controller_Action
                 
                 $topic = new Application_Model_DbTable_Topics();
                 $topicId = $topic->createNewTopic($formData);
+                
+                Application_Model_SitemapClass::createSitemap();
 
                 $this->_flashMessenger->addMessage('Запись создана');
 
@@ -90,6 +92,8 @@ class Aria77_TopicController extends Zend_Controller_Action
                 }
 
                 $topic->editTopic($formData, $id);
+                
+                Application_Model_SitemapClass::createSitemap();
 
                 $this->_flashMessenger->addMessage('Запись отредактирована');
                 
@@ -114,6 +118,9 @@ class Aria77_TopicController extends Zend_Controller_Action
             $del = $this->getRequest()->getPost('del');
             if ($del == 'Да') {
                 $topic->deleteTopic($id);
+                
+                Application_Model_SitemapClass::createSitemap();
+                
                 $this->_flashMessenger->addMessage('Запись удалена');
                 
                 $this->_redirect('/aria77/topic');

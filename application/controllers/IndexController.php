@@ -97,8 +97,6 @@ class IndexController extends Zend_Controller_Action
         if (count($paginator) < $page || $page < 1) {
             $this->gotoError404();
         }
-		
-        Application_Model_SitemapClass::createSitemap();
         
 		$this->view->paginator = $paginator;
     }

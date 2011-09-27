@@ -1,117 +1,219 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-  <loc>http://morontt.info/login</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/50</loc>
+  <lastmod>2011-09-07T22:25:29+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/registration</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/49</loc>
+  <lastmod>2011-09-05T23:54:34+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/63</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/48</loc>
+  <lastmod>2011-08-19T23:07:49+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/62</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/47</loc>
+  <lastmod>2011-07-14T21:58:14+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/61</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/46</loc>
+  <lastmod>2011-07-14T21:57:00+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/60</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/45</loc>
+  <lastmod>2011-06-27T07:57:46+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/59</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/44</loc>
+  <lastmod>2011-06-27T07:32:32+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/58</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/43</loc>
+  <lastmod>2011-06-25T01:40:04+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/57</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/42</loc>
+  <lastmod>2011-06-24T16:53:32+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/56</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/40</loc>
+  <lastmod>2011-06-24T03:16:54+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/55</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/39</loc>
+  <lastmod>2011-06-24T03:08:57+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/54</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/38</loc>
+  <lastmod>2011-06-24T02:41:26+03:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/forgot</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/37</loc>
+  <lastmod>2011-06-23T23:38:23+03:00</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.64</priority>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/53</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/36</loc>
+  <lastmod>2011-06-23T06:36:56+03:00</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.64</priority>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/52</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/35</loc>
+  <lastmod>2011-06-23T06:17:37+03:00</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.64</priority>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/51</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/34</loc>
+  <lastmod>2011-06-21T05:15:58+03:00</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.64</priority>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/50</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/23</loc>
+  <lastmod>2011-06-20T01:50:16+03:00</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.64</priority>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://morontt.info/topic/49</loc>
-  <lastmod>2011-09-24T21:25:47+00:00</lastmod>
+  <loc>http://zendblog/topic/21</loc>
+  <lastmod>2011-06-19T14:33:04+03:00</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.64</priority>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/19</loc>
+  <lastmod>2011-06-19T01:57:24+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/15</loc>
+  <lastmod>2011-06-04T17:06:57+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/14</loc>
+  <lastmod>2011-06-04T17:04:02+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/13</loc>
+  <lastmod>2011-05-31T12:24:16+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/12</loc>
+  <lastmod>2011-05-28T09:48:32+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/11</loc>
+  <lastmod>2011-05-20T04:37:20+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/10</loc>
+  <lastmod>2011-05-11T21:36:41+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/9</loc>
+  <lastmod>2011-05-10T04:20:00+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/7</loc>
+  <lastmod>2011-05-08T18:58:34+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/6</loc>
+  <lastmod>2011-05-06T18:09:26+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/5</loc>
+  <lastmod>2011-05-04T02:46:36+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/4</loc>
+  <lastmod>2011-04-27T00:51:01+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/3</loc>
+  <lastmod>2011-04-27T00:49:46+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/2</loc>
+  <lastmod>2011-04-27T00:48:28+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/topic/1</loc>
+  <lastmod>2011-04-27T00:46:57+03:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://zendblog/login</loc>
+  <lastmod>2011-08-01T21:25:47+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.50</priority>
+</url>
+<url>
+  <loc>http://zendblog/registration</loc>
+  <lastmod>2011-08-01T21:25:47+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.50</priority>
+</url>
+<url>
+  <loc>http://zendblog/forgot</loc>
+  <lastmod>2011-08-01T21:25:47+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.50</priority>
 </url>
 </urlset>

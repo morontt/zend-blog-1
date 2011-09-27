@@ -1,3 +1,5 @@
+Sitemap: http://morontt.info/sitemap.xml
+
 User-agent: *
 Disallow: /aria77/
 Disallow: /tag/
