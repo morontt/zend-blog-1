@@ -30,6 +30,18 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 
 		return Zend_Paginator::factory($select);
     }
+    
+    public function getSitemapTopic()
+    {
+        $select = $this->select()
+                       ->from($this->_name, array('post_id', 'last_update'))
+                       ->where('hide <> 1')
+                       ->order('time_created DESC');
+        
+        $result = $this->fetchAll($select)->toArray();
+
+		return $result;
+    }
 
 	public function getTopicByCategoryId($id, $showHidden)
     {	

@@ -98,6 +98,8 @@ class IndexController extends Zend_Controller_Action
             $this->gotoError404();
         }
 		
+        Application_Model_SitemapClass::createSitemap();
+        
 		$this->view->paginator = $paginator;
     }
 
