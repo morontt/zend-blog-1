@@ -1,7 +1,7 @@
-Sitemap: http://morontt.info/sitemap.xml
-
 User-agent: *
+
 Disallow: /aria77/
 Disallow: /tag/
 Disallow: /category/
 Disallow: /author/
+Sitemap: http://morontt.info/sitemap.xml
