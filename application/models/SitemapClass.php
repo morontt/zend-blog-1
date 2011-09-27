@@ -2,7 +2,7 @@
 
 class Application_Model_SitemapClass
 {
-    static function createSitemap()
+    public static function createSitemap()
     {
         $result = false;
         
