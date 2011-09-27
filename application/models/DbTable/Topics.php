@@ -136,8 +136,10 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
     public function getFeedData($feedType)
     {	
         $request = Zend_Controller_Front::getInstance()->getRequest();
-        $baseUrl = $request->getScheme() . '://' . $request->getHttpHost() . '/';
+        $baseUrl = $request->getScheme() . '://' . $request->getHttpHost();
         $host = $request->getHttpHost();
+        
+        $router = Zend_Controller_Front::getInstance()->getRouter();
         
         $result = array('title'       => $host,
                         'link'        => $baseUrl,
@@ -164,12 +166,14 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
             
             if (empty($lastDate)) $lastDate = $timestamp;
             
+            $linkTopic = $router->assemble(array('id' => $topic->post_id), 'topic', false, true);
+            
             $item = array(
                 'title'       => $topic->title,
-                'link'        => $baseUrl . 'topic/' . $topic->post_id,
+                'link'        => $baseUrl . $linkTopic,
                 'description' => $topic->text_post,
                 'lastUpdate'  => $timestamp,
-                'comments'    => $baseUrl . 'topic/' . $topic->post_id,
+                'comments'    => $baseUrl . $linkTopic,
                 'guid'        => 'topic_' . $topic->post_id
             );
             $entries[] = $item;
