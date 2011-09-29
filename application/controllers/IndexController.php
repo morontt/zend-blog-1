@@ -67,6 +67,7 @@ class IndexController extends Zend_Controller_Action
         
         $this->view->showGoogleAnalytic = TRUE;
         $this->view->syntaxHighlight = TRUE;
+        $this->view->robots = FALSE;
 		
 	    $topics = new Application_Model_DbTable_Topics();
 
@@ -74,6 +75,7 @@ class IndexController extends Zend_Controller_Action
         if ($fetch == 'index') {
             $paginator = $topics->getAllTopic($this->_showHideTopic);
             //$this->view->browsertitle = ' - Cтраница ' . $page;
+            $this->view->robots = TRUE;
         }
         //extract of records by category
         if ($fetch == 'category') {
