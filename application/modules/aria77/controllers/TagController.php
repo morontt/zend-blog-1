@@ -52,6 +52,7 @@ class Aria77_TagController extends Zend_Controller_Action
             
                 $tag = new Application_Model_DbTable_Tags();
                 $tag->createNewTag($formData['name']);
+                $this->clearCacheTag(false);
 
                 $this->_flashMessenger->addMessage('Тег создан');
             
@@ -75,6 +76,7 @@ class Aria77_TagController extends Zend_Controller_Action
                 $formData = $form->getValues();
                 
                 $tag->editTag($id, $formData['name']);
+                $this->clearCacheTag($id);
 
                 $this->_flashMessenger->addMessage('Тег отредактирован');
             
@@ -105,6 +107,7 @@ class Aria77_TagController extends Zend_Controller_Action
 
                 if ($result) {
                     $this->_flashMessenger->addMessage('Тег удалён');
+                    $this->clearCacheTag($id);
                 } else {
                     $this->_flashMessenger->addMessage('Тег не может быть удалён');
                 }
@@ -123,11 +126,17 @@ class Aria77_TagController extends Zend_Controller_Action
         }
     }
     
+    protected function clearCacheTag($id)
+    {
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache->remove('nameTags');
+        
+        if ($id) {
+            $tag = 'tag_id_' . $id;
+            $cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG,
+                            array($tag));
+        }
+        
+    }
+    
 }
-
-
-
-
-
-
-

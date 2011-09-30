@@ -52,7 +52,6 @@ class Application_Model_DbTable_Tags extends Zend_Db_Table_Abstract
                       'count' => 0);
 
         $id = $this->insert($data);
-        $this->clearCacheTag(FALSE);
 
         return $id;
     }
@@ -62,7 +61,6 @@ class Application_Model_DbTable_Tags extends Zend_Db_Table_Abstract
         $data = array('name' => $name);
         
         $this->update($data, 'tag_id = ' . (int)$id);
-        $this->clearCacheTag($id);
     }
     
     public function deleteTag($id)
@@ -75,7 +73,6 @@ class Application_Model_DbTable_Tags extends Zend_Db_Table_Abstract
         } else {
             $result = FALSE;
         }
-        $this->clearCacheTag($id);
         
         return $result;
     }
@@ -89,19 +86,6 @@ class Application_Model_DbTable_Tags extends Zend_Db_Table_Abstract
             $this->update($data, 'tag_id = ' . $value);
         }
         $this->clearCacheTag(FALSE);
-    }
-    
-    public function clearCacheTag($id)
-    {
-        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
-        $cache->remove('nameTags');
-        
-        if ($id) {
-            $tag = 'tag_id_' . $id;
-            $cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG,
-                            array($tag));
-        }
-        
     }
     
 }

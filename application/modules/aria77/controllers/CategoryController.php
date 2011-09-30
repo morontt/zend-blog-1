@@ -54,6 +54,8 @@ class Aria77_CategoryController extends Zend_Controller_Action
                 $category->createNewCategory($formData['name'], $formData['parent_id']);
 
                 $this->_flashMessenger->addMessage('Категория создана');
+                
+                $this->clearCacheCategory();
             
                 $this->_redirect('aria77/category');
             }
@@ -79,6 +81,7 @@ class Aria77_CategoryController extends Zend_Controller_Action
                                                        $formData['old_parent']);
                 if ($result) {
                     $this->_flashMessenger->addMessage('Категория отредактирована');
+                    $this->clearCacheCategory();
                 } else {
                     $this->_flashMessenger->addMessage('Категория не может быть отредактирована');
                 }
@@ -110,6 +113,7 @@ class Aria77_CategoryController extends Zend_Controller_Action
             if ($del == 'Да') {
                 if ($category->deleteCategory($id)) {
                     $this->_flashMessenger->addMessage('Категория удалена');
+                    $this->clearCacheCategory();
                 } else {
                     $this->_flashMessenger->addMessage('Категория не можеть быть удалена');
                 }
@@ -127,12 +131,11 @@ class Aria77_CategoryController extends Zend_Controller_Action
             $this->view->category = $data;
         }
     }
+    
+    protected function clearCacheCategory()
+    {
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache->remove('nameCategory');
+    }
 
 }
-
-
-
-
-
-
-
