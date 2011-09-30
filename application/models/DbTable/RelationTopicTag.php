@@ -13,10 +13,11 @@ class Application_Model_DbTable_RelationTopicTag extends Zend_Db_Table_Abstract
         function trimStringTag(&$item)
         {
             $item = trim($item);
+            $item = mb_strtolower($item, 'UTF-8');
         }
 
         array_walk($tagsArray, 'trimStringTag');
-
+        
         $data = array();
 
         foreach ($tagsArray as $value) {
