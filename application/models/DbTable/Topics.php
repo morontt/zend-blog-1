@@ -142,10 +142,12 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $router = Zend_Controller_Front::getInstance()->getRouter();
         
         $result = array('title'       => $host,
-                        'link'        => $baseUrl,
+                        'link'        => $baseUrl . '/',
                         'description' => $host . ' - последние записи',
                         'language'    => 'ru-ru',
                         'charset'     => 'utf-8',
+                        'author'      => 'morontt',
+                        'email'       => 'support@morontt.info',
                         'generator'   => 'Zend Framework Generator',
                 );
         
@@ -168,19 +170,29 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
             
             $linkTopic = $router->assemble(array('id' => $topic->post_id), 'topic', false, true);
             
-            $item = array(
-                'title'       => $topic->title,
-                'link'        => $baseUrl . $linkTopic,
-                'description' => $topic->text_post,
-                'lastUpdate'  => $timestamp,
-                'comments'    => $baseUrl . $linkTopic,
-                'guid'        => 'topic_' . $topic->post_id
+            if ($feedType == 'rss') {
+                $item = array(
+                    'title'       => $topic->title,
+                    'link'        => $baseUrl . $linkTopic . '/',
+                    'description' => $topic->text_post,
+                    'lastUpdate'  => $timestamp,
+                    'comments'    => $baseUrl . $linkTopic,
+                    'guid'        => 'topic_' . $topic->post_id
+                );
+            } else {
+                $item = array(
+                    'title'       => $topic->title,
+                    'link'        => $baseUrl . $linkTopic . '/',
+                    'description' => $topic->text_post,
+                    'lastUpdate'  => $timestamp,
+                    'comments'    => $baseUrl . $linkTopic,
             );
+            }
             $entries[] = $item;
         }
         
-        $result['entries'] = $entries;
         $result['lastUpdate'] = $lastDate;
+        $result['entries'] = $entries;
 		
 		return $result;
     }
