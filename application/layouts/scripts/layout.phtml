@@ -1,6 +1,6 @@
 <?php echo $this->doctype(); ?>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 <head>
 <?php
     $this->headScript()->appendFile('/scripts/jquery-1.6.2.js',
@@ -9,6 +9,10 @@
         $this->headScript()->appendFile('/scripts/syntaxhighlighter/shCore.js',
                                         'text/javascript', array())
                            ->appendFile('/scripts/syntaxhighlighter/shBrushPhp.js',
+                                        'text/javascript', array())
+                           ->appendFile('/scripts/syntaxhighlighter/shBrushXml.js',
+                                        'text/javascript', array())
+                           ->appendFile('/scripts/syntaxhighlighter/shBrushJScript.js',
                                         'text/javascript', array());
         $this->headLink()->appendStylesheet('/scripts/syntaxhighlighter/style/shCoreRDark.css')
                          ->appendStylesheet('/scripts/syntaxhighlighter/style/shThemeRDark.css');
