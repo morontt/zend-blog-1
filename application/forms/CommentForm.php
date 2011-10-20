@@ -14,6 +14,8 @@ class Application_Form_CommentForm extends Zend_Form
 
         $this->setAction('/index/addcomment');
         $this->setMethod('post');
+        
+        $this->setAttrib('id', 'CommentForm');
 
         if (!$userReg) {
             $name = new Zend_Form_Element_Text('name');

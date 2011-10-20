@@ -47,6 +47,7 @@
 <div id="comment_box">
     <?php echo $this->paginationControl($this->comments, 'Elastic', 'main_paginator.phtml'); ?>
     <?php if (count($this->comments)) { ?>
+        <div id="commentList">
     <?php   foreach ($this->comments as $comment) { ?>
         <div class="comment_item">
         <div class="comment_title"><?php
@@ -71,6 +72,7 @@
             </div>
         </div>
     <?php   } ?>
+        </div>
     <?php } ?>
     <?php echo $this->paginationControl($this->comments, 'Elastic', 'main_paginator.phtml'); ?>
     <div id="toggle_comment_add">
@@ -92,6 +94,20 @@ jQuery(document).ready(function() {
 <?php } ?>
     jQuery('#toggle_comment_add').click(function() {
         jQuery('#comment_add').slideToggle('slow');
+    });
+    jQuery('#submit').click(function() {
+        var dataForm = jQuery('#CommentForm').serialize();
+        jQuery.ajax({
+            url: '/index/addcomment',
+            data: dataForm,
+            type: 'POST',
+            success: function() {
+                jQuery('#commentList').load('<?php echo $this->url(array('id' => $this->topic->post_id),
+                                                                                'topic'); ?> #commentList > *');
+                jQuery('#comment_add').slideToggle('slow');
+            }
+        });
+        return false;
     });
 });
 </script>
