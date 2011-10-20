@@ -46,8 +46,8 @@
 </div>
 <div id="comment_box">
     <?php echo $this->paginationControl($this->comments, 'Elastic', 'main_paginator.phtml'); ?>
+    <div id="commentList">
     <?php if (count($this->comments)) { ?>
-        <div id="commentList">
     <?php   foreach ($this->comments as $comment) { ?>
         <div class="comment_item">
         <div class="comment_title"><?php
@@ -72,8 +72,8 @@
             </div>
         </div>
     <?php   } ?>
-        </div>
     <?php } ?>
+    </div>
     <?php echo $this->paginationControl($this->comments, 'Elastic', 'main_paginator.phtml'); ?>
     <div id="toggle_comment_add">
     Добавить свой комментарий:
