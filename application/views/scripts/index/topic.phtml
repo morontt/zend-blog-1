@@ -5,6 +5,8 @@
     } else {
         $this->headMeta()->appendName('robots', 'noindex, follow');
     }
+    $this->headScript()->prependFile('/scripts/topicScript.js',
+                                     'text/javascript', array());
 ?>
 <div id="sidebar">
     <div class="title">Категории:</div>
@@ -88,26 +90,6 @@
     </div>
 </div>
 <script type="text/javascript">
-jQuery(document).ready(function() {
-<?php if ($this->formHide) { ?>
-    jQuery('#comment_add').hide();
-<?php } ?>
-    jQuery('#toggle_comment_add').click(function() {
-        jQuery('#comment_add').slideToggle('slow');
-    });
-    jQuery('#submit').click(function() {
-        var dataForm = jQuery('#CommentForm').serialize();
-        jQuery.ajax({
-            url: '/index/addcomment',
-            data: dataForm,
-            type: 'POST',
-            success: function() {
-                jQuery('#commentList').load('<?php echo $this->url(array('id' => $this->topic->post_id),
-                                                                                'topic'); ?> #commentList > *');
-                jQuery('#comment_add').slideToggle('slow');
-            }
-        });
-        return false;
-    });
-});
+var formHide = <?php if ($this->formHide) echo '1'; else echo '0'; ?>;
+var linkAddComment = '<?php echo $this->url(array('id' => $this->topic->post_id), 'topic'); ?> #commentList > *';
 </script>
