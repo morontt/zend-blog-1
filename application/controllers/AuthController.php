@@ -7,6 +7,7 @@ class AuthController extends Zend_Controller_Action
     public function init()
     {
         $this->_flashMessenger = $this->_helper->FlashMessenger;
+        $this->view->headMeta()->appendName('robots', 'noindex, follow');
     }
 
     public function indexAction()
