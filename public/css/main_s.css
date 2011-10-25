@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Sep-14-2011
+LAST MODIFIED: Oct-25-2011
 *********************************************/
 
 /*******************
@@ -14,7 +14,6 @@ body
 	padding: 0;
 	font-size: 12pt;
 	font-family: 'Consolas', monospace;
-	/* background-color: #FFF; */
 	color: #FFF;
 	background-image: url("/img/blackgreenpatt.png");
 	background-repeat: repeat;
@@ -164,18 +163,18 @@ tr.even
 	border: 1px solid #FFF;
 }
 
-#menu li a
+#menu a
 {
 	color: #DAF29F;
 }
 
-#menu li.act
+#menu .act
 {
 	color: #000;
 	background-color: #DAF29F;
 }
 
-#menu li.act a
+#menu .act a
 {
 	color: #000;
 }
@@ -186,12 +185,12 @@ tr.even
 	background-color: #00E000;
 }
 
-#menu li a:hover
+#menu a:hover
 {
 	color: #000;
 }
 
-#menu li.user
+#menu .user
 {
 	font-family: "Georgia", serif;
     font-style: italic;
@@ -214,7 +213,7 @@ tr.even
 	margin-right: 255px;
 }
 
-#strlist a.button
+#strlist .button
 {
     /* margin: 15px 5px 5px 5px; */
 	padding: 5px;
@@ -224,7 +223,7 @@ tr.even
 	border: 1px solid #FFF;
 }
 
-#strlist a.button:hover
+#strlist .button:hover
 {
     color: #000;
     background-color: #00E000;
@@ -239,13 +238,13 @@ tr.even
 	border: 1px solid #FFF;
 }
 
-div.topic-text
+.topic-text
 {
     margin: 5px 5px 10px 5px;
     padding: 5px 0 0 0;
 }
 
-div.title
+.title
 {
 	margin: 5px;
 	padding: 2px 5px 2px 5px;
@@ -253,7 +252,7 @@ div.title
 	border: 1px solid #FFF;
 }
 
-div.strecord
+.strecord
 {
 	/* position: relative; */
 	margin: 10px 10px 40px 10px;
@@ -263,7 +262,7 @@ div.strecord
 	border: 1px solid #000;
 }
 
-div.dateline
+.dateline
 {
 	margin: 0;
 	padding: 5px;
@@ -274,7 +273,7 @@ div.dateline
 	text-align: right;
 }
 
-a.author
+.author
 {
 	font-size: 10pt;
     font-family: "Georgia", serif;
@@ -284,12 +283,12 @@ a.author
 	font-weight: bold
 }
 
-a.author:hover
+.author:hover
 {
 	color: #F93;
 }
 
-div.theme
+.theme
 {
 	margin: 0;
 	padding: 5px;
@@ -300,7 +299,7 @@ div.theme
 	text-align: left;
 }
 
-div.paginator
+.paginator
 {
 	margin: 10px 10px 7px 10px;
 	padding: 5px;
@@ -309,7 +308,7 @@ div.paginator
 	border: 1px solid #FFF;
 }
 
-div.strloginform
+.strloginform
 {
 	margin: 10px 50px 10px 50px;
 	text-align: center;
@@ -317,7 +316,7 @@ div.strloginform
 	border: 1px solid #FFF;
 }
 
-div.strsigninform
+.strsigninform
 {
 	margin: 10px 50px 10px 50px;
 	padding: 5px;
@@ -326,21 +325,21 @@ div.strsigninform
 	border: 1px solid #FFF;
 }
 
-ul.My_Navigation
+.My_Navigation
 {
     list-style-type: none;
     margin: 0;
     padding: 0 0 0 10px;
 }
 
-ul.Zend_Tag_Cloud
+.Zend_Tag_Cloud
 {
     list-style-type: none;
     margin: 5px 5px 20px 5px;
     padding: 0;
 }
 
-ul.Zend_Tag_Cloud li
+.Zend_Tag_Cloud li
 {
     display: inline;
 }
@@ -353,7 +352,7 @@ ul.Zend_Tag_Cloud li
 	border: 1px solid #FFF;
 }
 
-div.comments_link
+.comments_link
 {
     position: relative;
     top: 12px;
@@ -365,7 +364,7 @@ div.comments_link
 	text-align: right;
 }
 
-div.comment_item
+.comment_item
 {
 	margin: 10px 10px 10px 10px;
 	padding: 5px;
@@ -374,7 +373,7 @@ div.comment_item
 	border: 1px solid #000;
 }
 
-div.comment_title
+.comment_title
 {
 	margin: 0;
 	padding: 5px;
@@ -385,37 +384,34 @@ div.comment_title
 	text-align: left;
 }
 
-div.comment_title a
+.comment_title a
 {
 	color: #FC3;
 	font-weight: bold
 }
 
-div.comment_title a:hover
+.comment_title a:hover
 {
 	color: #F93;
 }
 
-div.comment_title a.notregistered
+.comment_title .notregistered
 {
 	color: #9C0;
 	font-weight: bold
 }
 
-div.comment_title a.notregistered:hover
+.comment_title .notregistered:hover
 {
 	color: #690;
 }
 
-div.comment_datetime
+.comment_datetime
 {
-	/* font-size: 10pt;
-    font-family: 'Georgia', serif;
-    font-style: italic; */
     text-align: right;
 }
 
-div.comment_text
+.comment_text
 {
 	margin: 10px 5px;
 }
@@ -456,7 +452,7 @@ div.comment_text
     font-size: 12pt;
 }
 
-div.messages
+.messages
 {
     margin: 10px;
     padding: 5px;
@@ -467,14 +463,14 @@ div.messages
 	border: 1px solid #FFF;
 }
 
-div.form_note
+.form_note
 {
     padding: 10px 5px 15px 5px;
     border-top: 1px dashed #FFF;
     font-size: 11pt;
 }
 
-#comment_add label.required
+#comment_add .required
 {
     background-image: url("/img/req_asterisk.png");
     background-repeat: no-repeat;
@@ -499,8 +495,6 @@ div.form_note
 	padding: 5px;
 	font-size: 10pt;
 	text-align: center;
-	/* opacity: 0.8; */
-	/* filter: alpha(Opacity = 80); */
 	background-color: #000;
 	border: 1px solid #FFF;
 }
