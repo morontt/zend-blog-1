@@ -14,6 +14,13 @@ class Application_Model_DbTable_Comments extends Zend_Db_Table_Abstract
         
 		return $paginator;
     }
+    
+    public function getById($id)
+    {
+        $result = $this->fetchRow('id = ' . $id);
+        
+		return $result;
+    }
 
     public function saveComment($formData, $mailSend)
     {

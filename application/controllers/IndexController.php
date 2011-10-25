@@ -157,7 +157,6 @@ class IndexController extends Zend_Controller_Action
 		if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
                 $data = $form->getValues();
-                $this->view->data = $data;
                 $comments->saveComment($data, $this->_config['comments']['sendmail']);
                 
                 $this->_redirect($this->view->url(array('id' => $topicId), 'topic'));
@@ -165,6 +164,36 @@ class IndexController extends Zend_Controller_Action
                 $data = $form->getValues();
                 Zend_Controller_Action::_forward('topic', 'index', 'default', array('id'       => $topicId,
                                                                                     'formData' => $data));
+            }
+        }
+    }
+    
+    public function ajaxcommentAction()
+    {
+        $topicId = $this->_getParam('topicId');
+        
+        $this->_helper->layout->disableLayout();
+
+        $comments = new Application_Model_DbTable_Comments();
+        $form = new Application_Form_CommentForm;
+
+		if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
+                $this->view->formValid = true;
+                $data = $form->getValues();
+                $resultDb = $comments->saveComment($data, $this->_config['comments']['sendmail']);
+                
+                $commentData = $comments->getById($resultDb);
+                
+                $this->view->comment = $commentData;
+                
+                //$this->_redirect($this->view->url(array('id' => $topicId), 'topic'));
+            } else {
+                $this->view->formValid = false;
+                //$data = $form->getValues();
+                $this->view->form = $form;
+                //Zend_Controller_Action::_forward('topic', 'index', 'default', array('id'       => $topicId,
+                //                                                                    'formData' => $data));
             }
         }
     }

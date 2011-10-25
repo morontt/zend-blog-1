@@ -452,6 +452,11 @@ tr.even
     font-size: 12pt;
 }
 
+#CommentForm .errors
+{
+    color: #F33;
+}
+
 .messages
 {
     margin: 10px;

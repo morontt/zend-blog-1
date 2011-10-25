@@ -30,7 +30,6 @@ class Application_Form_CommentForm extends Zend_Form
 
             $this->addElement('text', 'mail', array(
                 'label'      => 'E-mail:',
-                //'required'   => true,
                 'validators' => array('EmailAddress'),
                 'attribs'    => array('placeholder' => 'mail@example.org'),
                 'filters'    => array('StripTags', 'StringTrim')));
@@ -61,10 +60,8 @@ class Application_Form_CommentForm extends Zend_Form
             'captcha' => array(
                 'captcha' => 'Figlet',
                 'wordLen' => 5,
-                //'useNumbers' => false,
                 'timeout' => 1200)
             ));
-        //Zend_Debug::dump($captcha); die;
 
         if (!$userReg) {
             $this->addElement($captcha);
