@@ -15,10 +15,22 @@ jQuery(document).ready(function() {
             dataType: 'json',
             type: 'POST',
             success: function(data) {
-                //jQuery('#commentList').load(linkCommentBlock);
-                //jQuery('#comment_add').slideToggle('slow');
-                console.log(data.result);
-                alert('PREVED');
+                var divComment = '<div class="comment_item"><div class="comment_title">';
+                if (data.link == 'none') {
+                    divComment += '<b>' + data.name + '</b>';
+                } else {
+                    if (data.reg) {
+                        divComment += '<a href="' + data.link + '">' + data.name + '</a>';
+                    } else {
+                        divComment += '<a class="notregistered" href="' + data.link + '">' + data.name + '</a>';
+                    }
+                }
+                divComment += ' : <div class="comment_datetime">' + data.time + '</div></div>';
+                divComment += '<div class="comment_text">' + data.text + '</div>';
+                divComment += '</div></div>';
+                jQuery('#comment_add').slideToggle('slow');
+                jQuery(divComment).appendTo('#commentList');
+                jQuery('#captcha-element').load(linkCommentBlock);
             },
             error: function(data) {
                 jQuery('#CommentForm').html(data.responseText);

@@ -2,8 +2,10 @@
     $comment = $this->comment;
     $name = (!empty($comment->user_id)) ? $this->nameUser[$comment->user_id] : $comment->name;
     $link = 'none';
+    $rigisterUser = 'false';
     if (!empty($comment->user_id)) {
         $link = $this->url(array('id' => $comment->user_id),'author');
+        $rigisterUser = 'true';
     }
     if (!empty($comment->website)) {
         $link = $comment->website;
@@ -12,11 +14,11 @@
     $text = $comment->text;
 ?>
 {
-    "result": 1,
-    "name": "<?php echo $name; ?>",
-    "link": "<?php echo $link; ?>",
+    "name": <?php echo json_encode($name); ?>,
+     "reg": <?php echo $rigisterUser; ?>,
+    "link": <?php echo json_encode($link); ?>,
     "time": "<?php echo $time; ?>",
-    "text": "<?php echo $text; ?>"
+    "text": <?php echo json_encode($text); ?>
 }
 <?php } else {
     echo $this->form;
