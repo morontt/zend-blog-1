@@ -68,7 +68,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 																  'username',
 																	 'login',
                                                                  'user_type',)));
-            Zend_Session::rememberMe(1209600);
+            //Zend_Session::rememberMe(1209600);
             $rez = TRUE;
         } else {
             $rez = FALSE;
