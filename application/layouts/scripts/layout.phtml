@@ -25,6 +25,7 @@
     echo $this->headMeta() . PHP_EOL;
     echo $this->headTitle() . PHP_EOL;
     $this->headLink()->prependStylesheet('/css/main_s.css');
+    $this->headLink()->prependStylesheet('http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400italic,700,700italic&subset=latin,cyrillic,cyrillic-ext,latin-ext');
     $this->headLink(array('rel'  => 'shortcut icon',
                           'href' => '/favicon.ico',
                           'type' => 'image/x-icon'));

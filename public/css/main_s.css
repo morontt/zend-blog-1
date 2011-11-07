@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Oct-25-2011
+LAST MODIFIED: Nov-07-2011
 *********************************************/
 
 /*******************
@@ -13,7 +13,8 @@ body
 	margin: 0 auto;
 	padding: 0;
 	font-size: 12pt;
-	font-family: 'Consolas', monospace;
+	/* font-family: 'Consolas', monospace; */
+    font-family: 'Ubuntu Mono', monospace;
 	color: #FFF;
 	background-image: url("/img/blackgreenpatt.png");
 	background-repeat: repeat;
