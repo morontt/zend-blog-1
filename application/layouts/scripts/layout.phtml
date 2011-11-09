@@ -13,6 +13,8 @@
                            ->appendFile('/scripts/syntaxhighlighter/shBrushXml.js',
                                         'text/javascript', array())
                            ->appendFile('/scripts/syntaxhighlighter/shBrushJScript.js',
+                                        'text/javascript', array())
+                           ->appendFile('/scripts/syntaxhighlighter/shBrushSql.js',
                                         'text/javascript', array());
         $this->headLink()->appendStylesheet('/scripts/syntaxhighlighter/style/shCoreRDark.css')
                          ->appendStylesheet('/scripts/syntaxhighlighter/style/shThemeRDark.css');
