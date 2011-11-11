@@ -102,13 +102,13 @@ class IndexController extends Zend_Controller_Action
         
         $topicCount = new Application_Model_DbTable_TopicsCount();
         
-        $arrayCount = array();
+        $arrayQuery = array();
         foreach ($paginator as $pagin) {
             $tmp = $pagin->toArray();
-            $arrayCount[$tmp['post_id']] = $topicCount->getCounts($tmp['post_id']);
+            $arrayQuery[] = $tmp['post_id'];
         }
         
-        $this->view->arrayCount = $arrayCount;
+        $this->view->arrayCount = $topicCount->getArrayCounts($arrayQuery);
 		$this->view->paginator = $paginator;
     }
 

@@ -38,4 +38,26 @@ class Application_Model_DbTable_TopicsCount extends Zend_Db_Table_Abstract
         
         return $row->toArray();
     }
+    
+    public function getArrayCounts($arrayId)
+    {
+        $select = $this->select()
+                       ->from($this->_name, array('post_id',
+                                                  'comments',
+                                                  'views'));
+        foreach ($arrayId as $id) {
+            $select->orWhere('post_id = ?', $id);
+        }
+        
+        $rez = $this->fetchAll($select)->toArray();
+        $result = array();
+        foreach ($rez as $item) {
+            $result[$item['post_id']] = array(
+                'comments' => $item['comments'],
+                'views'    => $item['views']
+            );
+        }
+        
+        return $result;
+    }
 }
