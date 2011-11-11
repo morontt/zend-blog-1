@@ -10,11 +10,6 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $id = (int)$id;
         $row = $this->fetchRow('post_id = ' . $id);
         
-        $countViews = $row->views;
-        
-        $data = array('views' => $countViews + 1);
-        $upd = $this->update($data, 'post_id = ' . $id);
-        
 		return $row;
     }
 
@@ -241,7 +236,6 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
                       'user_id'      => $userId,
                       'time_created' => $dateTime,
                       'last_update'  => $dateTime,
-                      //'syntax'       => $formData['syntax']
                 );
         
         $topicId = $this->insert($data);
@@ -255,6 +249,9 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $category->setCount($formData['category_id'], 1);
         
         $this->clearCacheFeed();
+        
+        $topicCount = new Application_Model_DbTable_TopicsCount();
+        $topicCount->addNewRow($topicId);
         
         return $topicId;
     }
@@ -308,16 +305,6 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
         $this->clearCacheFeed();
     }
 
-    public function setCount($id, $delta)
-    {
-        $row = $this->fetchRow('post_id = '. $id);
-        $count = $row->count_comments;
-
-        $count += $delta;
-        $data = array('count_comments' => $count);
-        $this->update($data, 'post_id = ' . $id);
-    }
-    
     public function clearCacheTagByTopic($id)
     {
         $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));

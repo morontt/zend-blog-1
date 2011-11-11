@@ -57,8 +57,8 @@ class Application_Model_DbTable_Comments extends Zend_Db_Table_Abstract
         $commentId = $this->insert($data);
 
         if ($commentId) {
-            $topic = new Application_Model_DbTable_Topics();
-            $topic->setCount((int)$formData['topicId'], 1);
+            $count = new Application_Model_DbTable_TopicsCount();
+            $count->setCommentCount((int)$formData['topicId'], 1);
         }
         
         if ($mailSend) {

@@ -132,6 +132,10 @@ class IndexController extends Zend_Controller_Action
         }
 
         if ($topicRow) {
+            if (!$topicRow->hide) {
+                $viewcount = new Application_Model_DbTable_TopicsCount();
+                $viewcount->setViewCount($id);
+            }
             if (!$topicRow->hide || $this->_showHideTopic) {
                 $paginator = $comments->getByTopicId($id);
                 $paginator->setItemCountPerPage($this->_config['comments']['per']['page']);
