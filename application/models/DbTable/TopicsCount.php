@@ -31,4 +31,11 @@ class Application_Model_DbTable_TopicsCount extends Zend_Db_Table_Abstract
     {
         $this->insert(array('post_id' => $id));
     }
+    
+    public function getCounts($id)
+    {
+        $row = $this->fetchRow('post_id = ' . $id);
+        
+        return $row->toArray();
+    }
 }

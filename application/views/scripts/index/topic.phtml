@@ -39,8 +39,8 @@
     <p><?php $tag = $this->viewTags($this->topic->post_id);
               if ($tag) echo $tag; ?></p>
     <div class="comments_link"><div style="float: left; text-align: left;">Просмотров: <?php
-        echo $this->topic->views; ?></div><?php
-        echo $this->numberOfComments($this->topic->count_comments); ?> | <a href="<?php
+        echo $this->counts['views']; ?></div><?php
+        echo $this->numberOfComments($this->counts['comments']); ?> | <a href="<?php
         echo $this->url(array('id' => $this->topic->post_id,
                               'hide' => 'reply'), 'topic') . '/#comment_add';
         ?>">Оставить комментарий</a></div>

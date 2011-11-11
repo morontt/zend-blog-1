@@ -70,7 +70,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->robots = FALSE;
 		
 	    $topics = new Application_Model_DbTable_Topics();
-
+        
         //extract of all records
         if ($fetch == 'index') {
             $paginator = $topics->getAllTopic($this->_showHideTopic);
@@ -100,6 +100,15 @@ class IndexController extends Zend_Controller_Action
             $this->gotoError404();
         }
         
+        $topicCount = new Application_Model_DbTable_TopicsCount();
+        
+        $arrayCount = array();
+        foreach ($paginator as $pagin) {
+            $tmp = $pagin->toArray();
+            $arrayCount[$tmp['post_id']] = $topicCount->getCounts($tmp['post_id']);
+        }
+        
+        $this->view->arrayCount = $arrayCount;
 		$this->view->paginator = $paginator;
     }
 
@@ -132,8 +141,8 @@ class IndexController extends Zend_Controller_Action
         }
 
         if ($topicRow) {
+            $viewcount = new Application_Model_DbTable_TopicsCount();
             if (!$topicRow->hide) {
-                $viewcount = new Application_Model_DbTable_TopicsCount();
                 $viewcount->setViewCount($id);
             }
             if (!$topicRow->hide || $this->_showHideTopic) {
@@ -143,6 +152,7 @@ class IndexController extends Zend_Controller_Action
                 $this->view->topic = $topicRow;
                 $this->view->comments = $paginator;
                 $this->view->form = $form;
+                $this->view->counts = $viewcount->getCounts($id);
             } else {
                 $this->gotoError404(); //сообщить, что доступ к записи закрыт
             }

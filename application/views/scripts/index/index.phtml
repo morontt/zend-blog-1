@@ -38,7 +38,7 @@
             if ($tag) echo $tag; ?></p>
     <div class="comments_link"><a href="<?php
         echo $linkTopic . '#comment_box'; ?>"><?php
-        echo $this->numberOfComments($topic->count_comments); ?></a> | <a href="<?php
+        echo $this->numberOfComments($this->arrayCount[$topic->post_id]['comments']); ?></a> | <a href="<?php
         echo $this->url(array('id' => $topic->post_id,
                               'hide' => 'reply'), 'topic') . '#comment_add'; ?>">Оставить комментарий</a>
     </div>
