@@ -55,6 +55,8 @@ class Aria77_TopicController extends Zend_Controller_Action
 		$form->submit->setLabel('Создать запись');
         $this->view->form = $form;
         
+        $this->clearCacheCategory();
+        
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
                 $formData = $form->getValues();
@@ -83,6 +85,9 @@ class Aria77_TopicController extends Zend_Controller_Action
         $form = new Application_Form_Topic;
 		$form->submit->setLabel('Изменить запись');
         $this->view->form = $form;
+        
+        
+        $this->clearCacheCategory();
         
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
@@ -132,6 +137,12 @@ class Aria77_TopicController extends Zend_Controller_Action
             $this->view->topic = $topic->getTopicById($id);
         }
         
+    }
+    
+    protected function clearCacheCategory()
+    {
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache->remove('nameCategory');
     }
 
 }
