@@ -3,9 +3,10 @@
 <div id="strlist">
     <div class="strecord">
         <div class="theme">Панель управления</div>
-        <p><ul>
+        <ul>
             <li><a href="<?php echo $this->url(array(), 'topicControl', TRUE);
                          ?>">Управление записями</a></li>
+            <li><a href="#">Управление комментариями</a></li>
             <?php if ($this->edit) { ?><li><a href="<?php echo $this->url(array(), 'categoryControl', TRUE);
                          ?>">Управление категориями</a></li>
             <li><a href="<?php echo $this->url(array(), 'tagsControl', TRUE);
@@ -13,7 +14,10 @@
             <?php if ($this->editUser) { ?><li><a href="<?php
                                echo $this->url(array(), 'usersControl', TRUE);
                          ?>">Управление пользователями</a></li><?php } ?>
-        </ul></p>
+        </ul>
+        <ul>
+            <li><a href="/aria77/index/clearcache">Очистить кеш</a></li>
+        </ul>
     </div>
 </div>
 

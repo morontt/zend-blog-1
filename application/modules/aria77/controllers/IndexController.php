@@ -27,7 +27,15 @@ class Aria77_IndexController extends Zend_Controller_Action
         // action body
     }
 
-
+    public function clearcacheAction()
+    {
+        if (!$this->_accessControl) {
+            $this->_redirect('aria77/index/denied');
+        }
+        
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache->clean(Zend_Cache::CLEANING_MODE_ALL);
+    }
 }
 
 
