@@ -19,7 +19,8 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
     
     public function getNotEmpty()
 	{
-        $data = $this->fetchAll($this->select()->where('count <> 0'));
+        $data = $this->fetchAll($this->select()
+                                     ->where('count <> 0'));
         
         $arrayName = array();
 		foreach($data as $value_cat) {
@@ -40,7 +41,8 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 	
     public function getAllCategory()
 	{
-		$select = $this->select()->order('name ASC');
+		$select = $this->select()
+                       ->order('name ASC');
         
         $paginator = Zend_Paginator::factory($select);
 		

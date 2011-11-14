@@ -97,7 +97,7 @@ class IndexController extends Zend_Controller_Action
         $paginator->SetCurrentPageNumber($page);
         
         if (count($paginator) < $page || $page < 1) {
-            //$this->gotoError404();
+            $this->gotoError404();
         }
         
         $topicCount = new Application_Model_DbTable_TopicsCount();
