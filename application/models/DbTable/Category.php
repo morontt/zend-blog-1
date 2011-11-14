@@ -8,7 +8,8 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 	{
 	    $data = $this->fetchAll();
 		
-		foreach($data as $value_cat) {
+		$arrayName = array();
+        foreach($data as $value_cat) {
 			$key = $value_cat->category_id;
 			$arrayName[$key] = $value_cat->name;
 		}
@@ -20,6 +21,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 	{
         $data = $this->fetchAll($this->select()->where('count <> 0'));
         
+        $arrayName = array();
 		foreach($data as $value_cat) {
             $key = $value_cat['category_id'];
             $arrayName[$key] = array('name'      => $value_cat['name'],

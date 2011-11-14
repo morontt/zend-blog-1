@@ -8,6 +8,7 @@ class Application_Model_DbTable_Tags extends Zend_Db_Table_Abstract
 	{
 	    $data = $this->fetchAll();
 		
+        $arrayName = array();
 		foreach($data as $value) {
 			$key = $value->tag_id;
 			$arrayName[$key] = array('name' => $value->name,

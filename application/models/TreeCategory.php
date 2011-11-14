@@ -10,6 +10,7 @@ class Application_Model_TreeCategory
 
         $data = $category->fetchAll();
 
+        $childArray = array();
         foreach ($data as $key => $value)
         {
             if (!is_null($value->parent_id))

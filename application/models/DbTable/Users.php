@@ -8,6 +8,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 	{
 	    $data = $this->fetchAll();
 		
+        $arrayName = array();
 		foreach($data as $value_cat) {
 			$key = $value_cat->user_id;
 			$arrayName[$key] = $value_cat->username;
