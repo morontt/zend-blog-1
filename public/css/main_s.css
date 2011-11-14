@@ -1,7 +1,7 @@
 /*********************************************
 AUTHOR:        morontt 
 WEBSITE:       http://morontt.info/
-LAST MODIFIED: Nov-07-2011
+LAST MODIFIED: Nov-14-2011
 *********************************************/
 
 /*******************
@@ -360,8 +360,8 @@ tr.even
     margin: 0 5px;
 	padding: 2px 10px;
 	background-color: #000;
-	font-family: 'Consolas', monospace;
-    font-size: 11pt;
+	/* font-family: 'Consolas', monospace;
+    font-size: 11pt; */
 	text-align: right;
 }
 
