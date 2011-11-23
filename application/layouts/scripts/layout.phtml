@@ -75,7 +75,7 @@
 		?>
         <div style="clear: both" />
         <div id="footer">
-            &#169; 2011 <a href="<?php echo $this->url(array('page' => 1), 'home'); ?>"><?php echo $this->layout()->title; ?></a>: Footer
+            &#169; 2011 <a href="<?php echo $this->url(array('page' => 1), 'home'); ?>"><?php echo $this->layout()->title; ?></a>: Mem <?php echo memory_get_peak_usage(); ?>
         </div>
     </div>
 <?php if ($this->syntaxHighlight) { ?>
