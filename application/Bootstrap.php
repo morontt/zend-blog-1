@@ -11,6 +11,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         
         return $layout;
     }
+    
+    protected function _initLog()
+    {
+        $writer = new Zend_Log_Writer_Firebug();
+        $logger = new Zend_Log($writer);
+        
+        Zend_Registry::set('logger', $logger);
+        
+        //using
+        //$logger = Zend_Registry::get('logger');
+        //$logger->log('bla-bla-bla', Zend_Log::INFO);
+    }
 
     protected function _initRouters()
     {
