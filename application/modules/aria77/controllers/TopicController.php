@@ -145,6 +145,33 @@ class Aria77_TopicController extends Zend_Controller_Action
         $cache->remove('nameCategory');
     }
 
+    public function updateurlAction()
+    {
+        $topic = new Application_Model_DbTable_Topics();
+        
+        $select = $topic->select()
+                        ->from('blog_posts', array('post_id', 'title'));
+        $topics = $topic->fetchAll($select);
+        
+        $arrayUrl = array();
+        
+        foreach ($topics as $item) {
+            
+            $url = Zml_Transform::ruTransform($item->title);
+            $data = array(
+                'url' => $url,
+            );
+            
+            $arrayUrl[] = array(
+                'id'  => $item->post_id,
+                'url' => $url,
+            );
+            
+            $topic->update($data, 'post_id = ' . $item->post_id);
+        }
+        
+        $this->view->urlArray = $arrayUrl;
+    }
 }
 
 

@@ -139,4 +139,31 @@ class Aria77_TagController extends Zend_Controller_Action
         
     }
     
+    public function updateurlAction()
+    {
+        $topic = new Application_Model_DbTable_Tags();
+        
+        $select = $topic->select()
+                        ->from('tags', array('tag_id', 'name'));
+        $topics = $topic->fetchAll($select);
+        
+        $arrayUrl = array();
+        
+        foreach ($topics as $item) {
+            
+            $url = Zml_Transform::ruTransform($item->name);
+            $data = array(
+                'url' => $url,
+            );
+            
+            $arrayUrl[] = array(
+                'id'  => $item->tag_id,
+                'url' => $url,
+            );
+            
+            $topic->update($data, 'tag_id = ' . $item->tag_id);
+        }
+        
+        $this->view->urlArray = $arrayUrl;
+    }
 }

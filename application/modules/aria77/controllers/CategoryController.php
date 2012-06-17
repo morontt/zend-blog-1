@@ -138,4 +138,31 @@ class Aria77_CategoryController extends Zend_Controller_Action
         $cache->remove('nameCategory');
     }
 
+    public function updateurlAction()
+    {
+        $topic = new Application_Model_DbTable_Category();
+        
+        $select = $topic->select()
+                        ->from('category', array('category_id', 'name'));
+        $topics = $topic->fetchAll($select);
+        
+        $arrayUrl = array();
+        
+        foreach ($topics as $item) {
+            
+            $url = Zml_Transform::ruTransform($item->name);
+            $data = array(
+                'url' => $url,
+            );
+            
+            $arrayUrl[] = array(
+                'id'  => $item->category_id,
+                'url' => $url,
+            );
+            
+            $topic->update($data, 'category_id = ' . $item->category_id);
+        }
+        
+        $this->view->urlArray = $arrayUrl;
+    }
 }

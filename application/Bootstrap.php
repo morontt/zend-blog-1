@@ -103,6 +103,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                       'controller' => 'topic', 
                                                       'action' => 'index',
                                                       'page' => 1)));
+        
+        $router->addRoute('topic_update_url', new Zend_Controller_Router_Route('aria77/topic/updateurl',
+                                                array('module' => 'aria77',
+                                                      'controller' => 'topic', 
+                                                      'action' => 'updateurl')));
 
         $router->addRoute('addTopic', new Zend_Controller_Router_Route('aria77/addTopic',
                                                 array('module' => 'aria77',
@@ -125,6 +130,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                       'action' => 'index',
                                                       'page' => 1)));
         
+        $router->addRoute('category_update_url', new Zend_Controller_Router_Route('aria77/category/updateurl',
+                                                array('module' => 'aria77',
+                                                      'controller' => 'category', 
+                                                      'action' => 'updateurl')));
+        
         $router->addRoute('addCategory', new Zend_Controller_Router_Route('aria77/addCategory',
                                                 array('module' => 'aria77',
                                                       'controller' => 'category',
@@ -145,7 +155,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                       'controller' => 'tag', 
                                                       'action' => 'index',
                                                       'page' => 1)));
-
+        
+        $router->addRoute('tags_update_url', new Zend_Controller_Router_Route('aria77/tag/updateurl',
+                                                array('module' => 'aria77',
+                                                      'controller' => 'tag',
+                                                      'action' => 'updateurl')));
+        
         $router->addRoute('addTag', new Zend_Controller_Router_Route('aria77/addTag',
                                                 array('module' => 'aria77',
                                                       'controller' => 'tag',
