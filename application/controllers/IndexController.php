@@ -16,7 +16,7 @@ class IndexController extends Zend_Controller_Action
         
         $frontendOptions = array('lifetime' => 345600,
                                  'automatic_serialization' => true);
-        $backendOptions = array('cache_dir' => realpath(__DIR__ . '/../../cache'));
+        $backendOptions = array('cache_dir' => realpath(APPLICATION_PATH . '/../cache'));
         $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
         
         $this->_cache = $cache;

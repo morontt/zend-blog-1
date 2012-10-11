@@ -171,7 +171,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
     
     public function clearCacheUsers()
     {
-        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => realpath(APPLICATION_PATH . '/../cache')));
         $cache->remove('nameUsers');
     }
     

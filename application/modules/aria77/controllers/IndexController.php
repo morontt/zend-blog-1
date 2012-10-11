@@ -33,7 +33,7 @@ class Aria77_IndexController extends Zend_Controller_Action
             $this->_redirect('aria77/index/denied');
         }
         
-        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => realpath(APPLICATION_PATH . '/../cache')));
         $cache->clean(Zend_Cache::CLEANING_MODE_ALL);
     }
 }

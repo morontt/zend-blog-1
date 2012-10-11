@@ -128,13 +128,12 @@ class Aria77_TagController extends Zend_Controller_Action
     
     protected function clearCacheTag($id)
     {
-        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => realpath(APPLICATION_PATH . '/../cache')));
         $cache->remove('nameTags');
         
         if ($id) {
             $tag = 'tag_id_' . $id;
-            $cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG,
-                            array($tag));
+            $cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array($tag));
         }
         
     }

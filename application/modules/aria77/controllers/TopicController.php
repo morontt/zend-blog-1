@@ -141,7 +141,7 @@ class Aria77_TopicController extends Zend_Controller_Action
     
     protected function clearCacheCategory()
     {
-        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => realpath(APPLICATION_PATH . '/../cache')));
         $cache->remove('nameCategory');
     }
 

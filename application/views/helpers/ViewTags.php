@@ -6,7 +6,7 @@ class Zend_View_Helper_ViewTags extends Zend_View_Helper_Abstract
 	{
 	    $frontendOptions = array('lifetime' => 86400,
                                  'automatic_serialization' => true);
-        $backendOptions = array('cache_dir' => '../cache/');
+        $backendOptions = array('cache_dir' => realpath(APPLICATION_PATH . '/../cache'));
         $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
         
         $result = $cache->load('tagsByTopic_' . $topicId);

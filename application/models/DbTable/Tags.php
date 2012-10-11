@@ -87,7 +87,7 @@ class Application_Model_DbTable_Tags extends Zend_Db_Table_Abstract
             $this->update($data, 'tag_id = ' . $value);
         }
         
-        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => realpath(APPLICATION_PATH . '/../cache')));
         $cache->remove('nameTags');
     }
     

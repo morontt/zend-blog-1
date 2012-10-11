@@ -307,13 +307,13 @@ class Application_Model_DbTable_Topics extends Zend_Db_Table_Abstract
 
     public function clearCacheTagByTopic($id)
     {
-        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => realpath(APPLICATION_PATH . '/../cache')));
         $cache->remove('tagsByTopic_' . $id);
     }
     
     public function clearCacheFeed()
     {
-        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => '../cache/'));
+        $cache = Zend_Cache::factory('Core', 'File', array(), array('cache_dir' => realpath(APPLICATION_PATH . '/../cache')));
         $cache->remove('Feed_rss');
         $cache->remove('Feed_atom');
     }
